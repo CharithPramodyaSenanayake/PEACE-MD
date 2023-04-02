@@ -108,7 +108,7 @@ let audio = JSON.parse(fs.readFileSync('./database/AUTO/audio.json'));
 let charithsticker = JSON.parse(fs.readFileSync('./database/AUTO/sticker.json'));
 let charithaudio = JSON.parse(fs.readFileSync('./database/AUTO/audio.json'));
 
-module.exports = QueenNilu = async (QueenNilu, m, chatUpdate, store) => {
+module.exports = PEACEMD = async (PEACEMD, m, chatUpdate, store) => {
     try {
 var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
 var budy = (typeof m.text == 'string' ? m.text : '')
@@ -117,10 +117,10 @@ const isCmd = body.startsWith(prefix)
 const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
 const args = body.trim().split(/ +/).slice(1)
 const pushname = m.pushName || "No Name"
-const botNumber = await QueenNilu.decodeJid(QueenNilu.user.id)
+const botNumber = await PEACEMD.decodeJid(PEACEMD.user.id)
 const Janith = "94712448370"
 const isNilu = m.sender == "94712448370@s.whatsapp.net" ? true : false
-const isCreator = [Janith, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+const isCreator = [CHARITH, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
 const itsMe = m.sender == botNumber ? true : false
 const text = q = args.join(" ")
 const quoted = m.quoted ? m.quoted : m
@@ -172,7 +172,7 @@ if (cek == null) return null
 		const fkontak = { key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': ownername, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ownername},;;;\nFN:${ownername}\nitem1.TEL;waid=916909137213:916909137213\nitem1.X-ABLabel:Mobile\nEND:VCARD`, 'jpegThumbnail': thumb, thumbnail: thumb,sendEphemeral: true}}}
 	    const fakestatus = {key: {fromMe: false,participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "status@broadcast" } : {})},message: { "imageMessage": {"url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc","mimetype": "image/jpeg","caption": wm,"fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=","fileLength": "28777","height": 1080,"width": 1079,"mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=","fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=","directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69","mediaKeyTimestamp": "1610993486","jpegThumbnail": fs.readFileSync('./Media/bot.jpg'),"scansSidecar": "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="}}}		
 // Group
-        const groupMetadata = m.isGroup ? await QueenNilu.groupMetadata(m.chat).catch(e => {}) : ''
+        const groupMetadata = m.isGroup ? await PEACEMD.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
         const participants = m.isGroup ? await groupMetadata.participants : ''
         const groupAdmins = m.isGroup ? await getGroupAdmins(participants) : ''
@@ -259,7 +259,7 @@ return list[Math.floor(Math.random() * list.length)]
 }
 
 // Public & Self
-if (!QueenNilu.public) {
+if (!PEACEMD.public) {
     if (!m.key.fromMe) return
 }
 function randomNomor(angka){
@@ -268,10 +268,10 @@ return Math.floor(Math.random() * angka) + 1
 const hsjdh = randomNomor(5)
 
 //auto recording all
-    if (global.autoRecord) { if (m.chat) { QueenNilu.sendPresenceUpdate('recording', m.chat) }
+    if (global.autoRecord) { if (m.chat) { PEACEMD.sendPresenceUpdate('recording', m.chat) }
 }
 //autotyper all
-  if (global.autoTyping) { if (m.chat) { QueenNilu.sendPresenceUpdate('composing', m.chat) }
+  if (global.autoTyping) { if (m.chat) { PEACEMD.sendPresenceUpdate('composing', m.chat) }
 }
 
 // total hit
@@ -309,7 +309,7 @@ participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "" } : {})
 "isAnimated": false
 }}}
 const xbug = (teks) => {
-  QueenNilu.relayMessage(m.chat, { requestPaymentMessage: { Message: { extendedTextMessage: { text: teks, currencyCodeIso4217: 'INR', requestFrom: '0@s.whatsapp.net', expiryTimestamp: 8000, amount: 1, background: thumb }}}}, {})}
+  PEACEMD.relayMessage(m.chat, { requestPaymentMessage: { Message: { extendedTextMessage: { text: teks, currencyCodeIso4217: 'INR', requestFrom: '0@s.whatsapp.net', expiryTimestamp: 8000, amount: 1, background: thumb }}}}, {})}
 //-------------------End--------------------\\
 //Dont edit ot recode or bug wont work
 
@@ -334,7 +334,7 @@ detectLinks: false,
     //reply fake
 	//group target \\
 const reply = (teks) => {
-           QueenNilu.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botname}`,"body": `${ownername}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./Media/bot.jpg`),"sourceUrl": `${linkz}`}}}, { quoted: m})
+           PEACEMD.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botname}`,"body": `${ownername}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./Media/bot.jpg`),"sourceUrl": `${linkz}`}}}, { quoted: m})
         }
 
 	//button
@@ -345,7 +345,7 @@ footer: desc1,
 buttons: but,
 headerType: 1
 }
-QueenNilu.sendMessage(id, butonna, options)
+PEACEMD.sendMessage(id, butonna, options)
 }
 const http = randomNomor(500)
 
@@ -383,7 +383,7 @@ let buttonMessage = {
      mediaType: 1
    }}
        }
-   QueenNilu.sendMessage(m.chat, buttonMessage, options)
+   PEACEMD.sendMessage(m.chat, buttonMessage, options)
    }
                 
 
@@ -391,13 +391,13 @@ let buttonMessage = {
         if (global.antilink == 'true' && m.isGroup ) {
         if (budy.match(`chat.whatsapp.com`)) {
         if (!isBotAdmins) return m.reply(`${mess.botAdmin}, to kick the person who send link`)
-        let gclink = (`https://chat.whatsapp.com/`+await QueenNilu.groupInviteCode(m.chat))
+        let gclink = (`https://chat.whatsapp.com/`+await PEACEMD.groupInviteCode(m.chat))
         let isLinkThisGc = new RegExp(gclink, 'i')
         let isgclink = isLinkThisGc.test(m.text)
-        if (isgclink) return QueenNilu.sendMessage(m.chat, {text: `\`\`\`「 Group Link Detected 」\`\`\`\n\nYou won't be kicked by a bot because what you send is a link to this group`})
-        if (isAdmins) return QueenNilu.sendMessage(m.chat, {text: `\`\`\`「 Group Link Detected 」\`\`\`\n\nAdmin has sent a link, admin is free to post any link`})
-        if (isCreator) return QueenNilu.sendMessage(m.chat, {text: `\`\`\`「 Group Link Detected 」\`\`\`\n\nOwner has sent a link, owner is free to post any link`})
-        await QueenNilu.sendMessage(m.chat,
+        if (isgclink) return PEACEMD.sendMessage(m.chat, {text: `\`\`\`「 Group Link Detected 」\`\`\`\n\nYou won't be kicked by a bot because what you send is a link to this group`})
+        if (isAdmins) return PEACEMD.sendMessage(m.chat, {text: `\`\`\`「 Group Link Detected 」\`\`\`\n\nAdmin has sent a link, admin is free to post any link`})
+        if (isCreator) return PEACEMD.sendMessage(m.chat, {text: `\`\`\`「 Group Link Detected 」\`\`\`\n\nOwner has sent a link, owner is free to post any link`})
+        await PEACEMD.sendMessage(m.chat,
 			    {
 			        delete: {
 			            remoteJid: m.chat,
@@ -406,8 +406,8 @@ let buttonMessage = {
 			            participant: m.key.participant
 			        }
 			    })
-			QueenNilu.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-			QueenNilu.sendMessage(from, {text:`\`\`\`「 Group Link Detected 」\`\`\`\n\n@${kice.split("@")[0]} Has been kicked because of sending group link in this group`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+			PEACEMD.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+			PEACEMD.sendMessage(from, {text:`\`\`\`「 Group Link Detected 」\`\`\`\n\n@${kice.split("@")[0]} Has been kicked because of sending group link in this group`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
             }            
         }
         
@@ -427,7 +427,7 @@ emoji.get(satu)
 .then(emoji => {
 const buttons = [{buttonId: "y", buttonText: {displayText:satu}, type: 1}]
 const buttonMessage = {image: {url: emoji.images[dua].url},caption: "ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ",footerText: `${botname}`,buttons: buttons,headerType: 4}
-QueenNilu.sendMessage(from, buttonMessage, {quoted:m})
+PEACEMD.sendMessage(from, buttonMessage, {quoted:m})
 })
 } catch (e) {
 m.reply("Emoji error, please enter another emoji\nNOTE : Just enter 1 emoji")
@@ -438,10 +438,10 @@ if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in globa
 let hash = global.db.data.sticker[m.msg.fileSha256.toString('base64')]
 let { text, mentionedJid } = hash
 let messages = await generateWAMessage(m.chat, { text: text, mentions: mentionedJid }, {
-    userJid: QueenNilu.user.id,
+    userJid: PEACEMD.user.id,
     quoted: m.quoted && m.quoted.fakeObj
 })
-messages.key.fromMe = areJidsSameUser(m.sender, QueenNilu.user.id)
+messages.key.fromMe = areJidsSameUser(m.sender, PEACEMD.user.id)
 messages.key.id = m.key.id
 messages.pushName = m.pushName
 if (m.isGroup) messages.participant = m.sender
@@ -450,7 +450,7 @@ let msg = {
     messages: [proto.WebMessageInfo.fromObject(messages)],
     type: 'append'
 }
-QueenNilu.ev.emit('messages.upsert', msg)
+PEACEMD.ev.emit('messages.upsert', msg)
 }
 
 //guess song
@@ -458,7 +458,7 @@ QueenNilu.ev.emit('messages.upsert', msg)
             kuis = true
             jawaban = tebaklagu[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await QueenNilu.sendButtonText(m.chat, [{ buttonId: 'guess song', buttonText: { displayText: 'Guess The Song' }, type: 1 }], `🎮 Guess The Music 🎮\n\nCorrect Answer 🎉\n\nWant To Play Again? Press The Button Below`, QueenNilu.user.name, m)
+                await PEACEMD.sendButtonText(m.chat, [{ buttonId: 'guess song', buttonText: { displayText: 'Guess The Song' }, type: 1 }], `🎮 Guess The Music 🎮\n\nCorrect Answer 🎉\n\nWant To Play Again? Press The Button Below`, PEACEMD.user.name, m)
                 delete tebaklagu[m.sender.split('@')[0]]
             } else m.reply('*Wrong answer!*')
         }
@@ -521,8 +521,8 @@ ${isWin ? `@${winner.split('@')[0]} Won!` : isTie ? `Game Over` : `Turn ${['❌'
 Type *surrender* to surrender and admit defeat`
 	    if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
 	    room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
-	    if (room.x !== room.o) await QueenNilu.sendText(room.x, str, m, { mentions: parseMention(str) } )
-	    await QueenNilu.sendText(room.o, str, m, { mentions: parseMention(str) } )
+	    if (room.x !== room.o) await PEACEMD.sendText(room.x, str, m, { mentions: parseMention(str) } )
+	    await PEACEMD.sendText(room.o, str, m, { mentions: parseMention(str) } )
 	    if (isTie || isWin) {
 	    delete this.game[room.id]
 	    }
@@ -536,7 +536,7 @@ Type *surrender* to surrender and admit defeat`
 	    let tie = false
 	    if (m.sender == roof.p2 && /^(acc(ept)?|accept|yes|okay?|reject|no|later|nop(e.)?yes|y)/i.test(m.text) && m.isGroup && roof.status == 'wait') {
 	    if (/^(reject|no|later|n|nop(e.)?yes)/i.test(m.text)) {
-	    QueenNilu.sendTextWithMentions(m.chat, `@${roof.p2.split`@`[0]} rejected the suit, the suit is canceled`, m)
+	    PEACEMD.sendTextWithMentions(m.chat, `@${roof.p2.split`@`[0]} rejected the suit, the suit is canceled`, m)
 	    delete this.suit[roof.id]
 	    return !0
 	    }
@@ -544,20 +544,20 @@ Type *surrender* to surrender and admit defeat`
 	    roof.asal = m.chat
 	    clearTimeout(roof.waktu)
 	    //delete roof[roof.id].waktu
-	    QueenNilu.sendText(m.chat, `Suit has been sent to chat
+	    PEACEMD.sendText(m.chat, `Suit has been sent to chat
 
 @${roof.p.split`@`[0]} and 
 @${roof.p2.split`@`[0]}
 
 Please choose a suit in the respective chat"
 click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] })
-	    if (!roof.pilih) QueenNilu.sendText(roof.p, `Please Select \n\Rock🗿\nPaper📄\nScissors✂️`, m)
-	    if (!roof.pilih2) QueenNilu.sendText(roof.p2, `Please Select \n\nRock🗿\nPaper📄\nScissors✂️`, m)
+	    if (!roof.pilih) PEACEMD.sendText(roof.p, `Please Select \n\Rock🗿\nPaper📄\nScissors✂️`, m)
+	    if (!roof.pilih2) PEACEMD.sendText(roof.p2, `Please Select \n\nRock🗿\nPaper📄\nScissors✂️`, m)
 	    roof.waktu_milih = setTimeout(() => {
-	    if (!roof.pilih && !roof.pilih2) QueenNilu.sendText(m.chat, `Both Players Don't Want To Play,\nSuit Canceled`)
+	    if (!roof.pilih && !roof.pilih2) PEACEMD.sendText(m.chat, `Both Players Don't Want To Play,\nSuit Canceled`)
 	    else if (!roof.pilih || !roof.pilih2) {
 	    win = !roof.pilih ? roof.p2 : roof.p
-	    QueenNilu.sendTextWithMentions(m.chat, `@${(roof.pilih ? roof.p2 : roof.p).split`@`[0]} Didn't Choose Suit, Game Over!`, m)
+	    PEACEMD.sendTextWithMentions(m.chat, `@${(roof.pilih ? roof.p2 : roof.p).split`@`[0]} Didn't Choose Suit, Game Over!`, m)
 	    }
 	    delete this.suit[roof.id]
 	    return !0
@@ -573,13 +573,13 @@ click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] 
 	    roof.pilih = reg.exec(m.text.toLowerCase())[0]
 	    roof.text = m.text
 	    m.reply(`You have chosen ${m.text} ${!roof.pilih2 ? `\n\nWaiting for the opponent to choose` : ''}`)
-	    if (!roof.pilih2) QueenNilu.sendText(roof.p2, '_The opponent has chosen_\nNow it is your turn', 0)
+	    if (!roof.pilih2) PEACEMD.sendText(roof.p2, '_The opponent has chosen_\nNow it is your turn', 0)
 	    }
 	    if (jwb2 && reg.test(m.text) && !roof.pilih2 && !m.isGroup) {
 	    roof.pilih2 = reg.exec(m.text.toLowerCase())[0]
 	    roof.text2 = m.text
 	    m.reply(`You have chosen ${m.text} ${!roof.pilih ? `\n\nWaiting for the opponent to choose` : ''}`)
-	    if (!roof.pilih) QueenNilu.sendText(roof.p, '_The opponent has chosen_\nNow it is your turn', 0)
+	    if (!roof.pilih) PEACEMD.sendText(roof.p, '_The opponent has chosen_\nNow it is your turn', 0)
 	    }
 	    let stage = roof.pilih
 	    let stage2 = roof.pilih2
@@ -592,7 +592,7 @@ click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] 
 	    else if (k.test(stage) && b.test(stage2)) win = roof.p
 	    else if (k.test(stage) && g.test(stage2)) win = roof.p2
 	    else if (stage == stage2) tie = true
-	    QueenNilu.sendText(roof.asal, `_*Suit Results*_${tie ? '\nSERIES' : ''}
+	    PEACEMD.sendText(roof.asal, `_*Suit Results*_${tie ? '\nSERIES' : ''}
 
 @${roof.p.split`@`[0]} (${roof.text}) ${tie ? '' : roof.p == win ? ` Win \n` : ` Lost \n`}
 @${roof.p2.split`@`[0]} (${roof.text2}) ${tie ? '' : roof.p2 == win ? ` Win \n` : ` Lost  \n`}
@@ -660,7 +660,7 @@ let docs = pickRandom(documents)
                         { buttonId: 'antiwame on', buttonText: { displayText: 'ON' }, type: 1 },
                         { buttonId: 'antiwame off', buttonText: { displayText: 'OFF' }, type: 1 }
                     ]
-                    await QueenNilu.sendButtonText(m.chat, buttons, `Mode Anti Wa.me`, QueenNilu.user.name, m)
+                    await PEACEMD.sendButtonText(m.chat, buttons, `Mode Anti Wa.me`, PEACEMD.user.name, m)
                 }
              }
              break
@@ -671,9 +671,9 @@ case 'apk':{
     /*var P_LINK = ''
     if (global.LANG == 'EN') P_LINK = return reply('*💃 Please give me a correct link*\n _.apk https://play.google.com/store/apps/details?id=com.whatsapp_')
     if (global.LANG == 'EN') P_LINK = */
-    await QueenNilu.sendMessage(from, { react: { text: `🧰`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `🧰`, key: m.key }})
                if (!text) return reply('*Please give plastore app name*\nඕනෙ app එකේ නම දෙන්න')
-                await QueenNilu.sendText(m.chat,mess.wait)
+                await PEACEMD.sendText(m.chat,mess.wait)
                await fetchJson(`https://api.akuari.my.id/search/playstoresearch?query=${text}`)
                 .then(async (charith) => {  
                const caption = `
@@ -700,30 +700,30 @@ case 'apk':{
                         headerType: 4
                     }
                     
-               await QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+               await PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
                 }).catch((err) => m.reply(NOT_FOUND))
            }
            break    
            
            case 'getapk' : {
                 if (!text.includes('https://play.google.com/')) return reply('*Please give me a correct link*\n*link එක වැරදියි*\n _.apk https://play.google.com/store/apps/details?id=com.whatsapp_')
-               await QueenNilu.sendMessage(from, { text: `*📥 Downloading Playstore apk...*` }, { quoted: m })
+               await PEACEMD.sendMessage(from, { text: `*📥 Downloading Playstore apk...*` }, { quoted: m })
                      //await getBuffer(`https://api.akuari.my.id/downloader/apkdownloader2?package=${text}`)
                     //const kkkkh = await fetchJson(`https://api.akuari.my.id/search/playstoresearch?query=${text}
                 //const name = `${args[0].split('https://play.google.com/store/apps/details?id=')[1]}`
                    //.then(async (charith) => {
                     const apk = await fetchJson(`https://api.akuari.my.id/downloader/apkdownloader2?package=${text}`)
-                    await QueenNilu.sendMessage(from, { text: `*📤 Uploading playstore apk...*` }, { quoted: m })
+                    await PEACEMD.sendMessage(from, { text: `*📤 Uploading playstore apk...*` }, { quoted: m })
                     //https://telegra.ph/file/5c59cd0f4c3e3fa79ee77.jpg
                   //const buffer = await getBuffer(charith.respon.downloadapk)
                   
-                   await QueenNilu.sendMessage(m.chat, { document: {url : apk.respon.downloadapk} , mimetype: 'application/vnd.android.package-archive', fileName: `${text}`}, { quoted: m })
+                   await PEACEMD.sendMessage(m.chat, { document: {url : apk.respon.downloadapk} , mimetype: 'application/vnd.android.package-archive', fileName: `${text}`}, { quoted: m })
                    //}).catch((err) => m.reply(NOT_FOUND))
                
                              }
                 break
                 case 'modapk' :{
-                await QueenNilu.sendText(m.chat,mess.wait) 
+                await PEACEMD.sendText(m.chat,mess.wait) 
                 await fetchJson(`https://api.akuari.my.id/search/searchmod?query=${text}`)
                 .then(async (charith) => {  
                 const search = charith.respon
@@ -740,7 +740,7 @@ case 'apk':{
          }
          sections.push(list)   
          }
-      const sendm =  QueenNilu.sendMessage(
+      const sendm =  PEACEMD.sendMessage(
           m.chat, 
           {
            text: `${m.pushName} This is matching apk\n\n🔎 Reaquest ${text}`,
@@ -753,18 +753,18 @@ case 'apk':{
                 }
                 break
                 case 'modapkdl' : {
-                const down = await QueenNilu.sendMessage(from, { text: `*📥 Downloding mod apk...*` }, { quoted: m })
+                const down = await PEACEMD.sendMessage(from, { text: `*📥 Downloding mod apk...*` }, { quoted: m })
                 const charith = await fetchJson(`https://api.akuari.my.id/downloader/dlmod?link=${args[0]}`)
-                const upload = await QueenNilu.sendMessage(from, { text: `*📤 Uploading mod apk...*` }, { quoted: m })
-                await QueenNilu.sendMessage(m.chat,{delete : down.key })  
-                await QueenNilu.sendMessage(m.chat, { document: { url : charith.respon.linkdl } , mimetype: 'application/vnd.android.package-archive', fileName: `${args[1]}.apk`}, { quoted: m })
-                await QueenNilu.sendMessage(m.chat,{delete : upload.key })  
+                const upload = await PEACEMD.sendMessage(from, { text: `*📤 Uploading mod apk...*` }, { quoted: m })
+                await PEACEMD.sendMessage(m.chat,{delete : down.key })  
+                await PEACEMD.sendMessage(m.chat, { document: { url : charith.respon.linkdl } , mimetype: 'application/vnd.android.package-archive', fileName: `${args[1]}.apk`}, { quoted: m })
+                await PEACEMD.sendMessage(m.chat,{delete : upload.key })  
                
                 }
 
               break
               case 'findapk' :{
-                await QueenNilu.sendText(m.chat,mess.wait) 
+                await PEACEMD.sendText(m.chat,mess.wait) 
                 await fetchJson(`https://api.akuari.my.id/search/playstoresearch?query=${text}`)
                 .then(async (charith) => {  
                 const search = charith.hasil
@@ -781,7 +781,7 @@ case 'apk':{
          }
          sections.push(list)   
          }
-      const sendm =  QueenNilu.sendMessage(
+      const sendm =  PEACEMD.sendMessage(
           m.chat, 
           {
            text: `${m.pushName} This is matching apk\n\n🔎 Reaquest ${text}`,
@@ -794,12 +794,12 @@ case 'apk':{
                 }
                 break
                 case 'apk2' : {
-                const down = await QueenNilu.sendMessage(from, { text: `*📥 Downloding mod apk...*` }, { quoted: m })
+                const down = await PEACEMD.sendMessage(from, { text: `*📥 Downloding mod apk...*` }, { quoted: m })
                 const charith = await fetchJson(`https://api.akuari.my.id/downloader/apkdownloader2?package=${args[0]}`)
-                const upload = await QueenNilu.sendMessage(from, { text: `*📤 Uploading mod apk...*` }, { quoted: m })
-                await QueenNilu.sendMessage(m.chat,{delete : down.key })  
-                await QueenNilu.sendMessage(m.chat, { document: { url : charith.respon.downloadapk } , mimetype: 'application/vnd.android.package-archive', fileName: `${args[1]}.apk`}, { quoted: m })
-                await QueenNilu.sendMessage(m.chat,{delete : upload.key })  
+                const upload = await PEACEMD.sendMessage(from, { text: `*📤 Uploading mod apk...*` }, { quoted: m })
+                await PEACEMD.sendMessage(m.chat,{delete : down.key })  
+                await PEACEMD.sendMessage(m.chat, { document: { url : charith.respon.downloadapk } , mimetype: 'application/vnd.android.package-archive', fileName: `${args[1]}.apk`}, { quoted: m })
+                await PEACEMD.sendMessage(m.chat,{delete : upload.key })  
                
                 }
 
@@ -808,7 +808,7 @@ case 'apk':{
               ////----------------------------------------EHI STORE ----------------------------------\\\\\
 
               case 'vpn' :    case 'feeinternet':  {
-                await QueenNilu.sendMessage(from, { react: { text: `💉`, key: m.key }})
+                await PEACEMD.sendMessage(from, { react: { text: `💉`, key: m.key }})
                     const sections =[
                                                              {
                                                                  "title": `ᴀᴘᴋ ꜰᴏʀ ᴛʜᴇ ꜰʀᴇᴇ ɪɴᴛᴇʀɴᴇᴛ`,
@@ -858,12 +858,12 @@ case 'apk':{
                   buttonText: "Click Here",
                   sections
                 }
-                const sendMsg = await QueenNilu.sendMessage(m.chat, listMessage,{ react: { text: `✌`, key: m.key }})
+                const sendMsg = await PEACEMD.sendMessage(m.chat, listMessage,{ react: { text: `✌`, key: m.key }})
                 }
                 break
 
                 case 'ehifiles'  :  {
-                    await QueenNilu.sendMessage(from, { react: { text: `💉`, key: m.key }})
+                    await PEACEMD.sendMessage(from, { react: { text: `💉`, key: m.key }})
                         const sections =[
                                                                  {
                                                                      "title": `🇺🇸 ᴜɴɪᴛᴇᴅ ꜱᴛᴀᴛᴇꜱ ꜱᴇʀᴠᴇʀ 🇺🇸`,
@@ -923,7 +923,7 @@ case 'apk':{
                       buttonText: "Click Here",
                       sections
                     }
-                    const sendMsg = await QueenNilu.sendMessage(m.chat, listMessage,{ react: { text: `✌`, key: m.key }})
+                    const sendMsg = await PEACEMD.sendMessage(m.chat, listMessage,{ react: { text: `✌`, key: m.key }})
                     }
                     break
     
@@ -937,12 +937,12 @@ case 'apk':{
               ehi3 = nilu.EHI_FILES[0].US_ZOOM3
 
                              
-                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi1 }, mimetype: 'application/octet-stream', fileName: `☘️ Zoom🇺🇸1.ehi`}, { quoted: m })
-                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi2 }, mimetype: 'application/octet-stream', fileName: `☘️ Zoom🇺🇸2.ehi`}, { quoted: m })
-                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi3 }, mimetype: 'application/octet-stream', fileName: `☘️ Zoom🇺🇸3.ehi`}, { quoted: m })
+                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi1 }, mimetype: 'application/octet-stream', fileName: `☘️ Zoom🇺🇸1.ehi`}, { quoted: m })
+                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi2 }, mimetype: 'application/octet-stream', fileName: `☘️ Zoom🇺🇸2.ehi`}, { quoted: m })
+                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi3 }, mimetype: 'application/octet-stream', fileName: `☘️ Zoom🇺🇸3.ehi`}, { quoted: m })
 
                             
-                            await QueenNilu.sendText(m.chat, `✅ _Success send_ *${m.pushName}* _Ehi Files..._`,m)
+                            await PEACEMD.sendText(m.chat, `✅ _Success send_ *${m.pushName}* _Ehi Files..._`,m)
                             
                             }
                             break
@@ -955,12 +955,12 @@ case 'apk':{
                               ehi3 = nilu.EHI_FILES[0].US_WP3
                 
                                              
-                                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi1 }, mimetype: 'application/octet-stream', fileName: `🌷 WhatsApp.ehi`}, { quoted: m })
-                                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi2 }, mimetype: 'application/octet-stream', fileName: `🌷 WhatsApp.ehi`}, { quoted: m })
-                                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi3 }, mimetype: 'application/octet-stream', fileName: `🌷 WhatsApp.ehi`}, { quoted: m })
+                                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi1 }, mimetype: 'application/octet-stream', fileName: `🌷 WhatsApp.ehi`}, { quoted: m })
+                                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi2 }, mimetype: 'application/octet-stream', fileName: `🌷 WhatsApp.ehi`}, { quoted: m })
+                                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi3 }, mimetype: 'application/octet-stream', fileName: `🌷 WhatsApp.ehi`}, { quoted: m })
                 
                                             
-                                            await QueenNilu.sendText(m.chat, `✅ _Success send_ *${m.pushName}* _Ehi Files..._`,m)
+                                            await PEACEMD.sendText(m.chat, `✅ _Success send_ *${m.pushName}* _Ehi Files..._`,m)
                                             
                                             }
                                             break
@@ -973,12 +973,12 @@ case 'apk':{
                                               ehi3 = nilu.EHI_FILES[0].US_FB3
                                 
                                                              
-                                                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi1 }, mimetype: 'application/octet-stream', fileName: `💖 facebook.ehi`}, { quoted: m })
-                                                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi2 }, mimetype: 'application/octet-stream', fileName: `💖 facebook.ehi`}, { quoted: m })
-                                                            await QueenNilu.sendMessage(m.chat, { document: { url: ehi3 }, mimetype: 'application/octet-stream', fileName: `💖 facebook.ehi`}, { quoted: m })
+                                                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi1 }, mimetype: 'application/octet-stream', fileName: `💖 facebook.ehi`}, { quoted: m })
+                                                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi2 }, mimetype: 'application/octet-stream', fileName: `💖 facebook.ehi`}, { quoted: m })
+                                                            await PEACEMD.sendMessage(m.chat, { document: { url: ehi3 }, mimetype: 'application/octet-stream', fileName: `💖 facebook.ehi`}, { quoted: m })
                                 
                                                             
-                                                            await QueenNilu.sendText(m.chat, `✅ _Success send_ *${m.pushName}* _Ehi Files..._`,m)
+                                                            await PEACEMD.sendText(m.chat, `✅ _Success send_ *${m.pushName}* _Ehi Files..._`,m)
                                                             
                                                             }
                                                             break
@@ -987,7 +987,7 @@ case 'apk':{
                               const buffer = await getBuffer('https://te.legra.ph/file/57c7bd5c8b26430634a40.jpg')
                               const link = 'http://youtube.com/c/Janithsadanuwan'
                               
-                            await QueenNilu.sendMessage(from, { react: { text: `💉`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `💉`, key: m.key }})
                             AGAINTRY = ` ╔══════❨ ❄ ❩══════╗
                             
                                         *🎗️ ᴘᴇᴀᴄᴇ ᴍᴅ ᴇʜɪ 🎗️*
@@ -1031,7 +1031,7 @@ case 'apk':{
                               mediaUrl: link,
                               }}
                               }
-                            QueenNilu.sendMessage(m.chat, buttonMessage, {quoted: m })
+                            PEACEMD.sendMessage(m.chat, buttonMessage, {quoted: m })
                           }
               
 
@@ -1110,18 +1110,18 @@ case 'apk':{
                     break 
                     case 'httpinjector' : {
                            
-                           const load = await QueenNilu.sendText(m.chat,'*📤 Uploading...*' )
-                           await QueenNilu.sendMessage(m.chat, { document: { url: 'https://github.com/Dragonxjanith/UPLOADS/raw/main/APK/HTTP%20Injector%20(SSHProxyV2Ray)%20VPN.apk' }, mimetype: 'application/vnd.android.package-archive', fileName: `HTTP Injector Queen Nilu (SSHProxyV2Ray) VPN.apk`}, { quoted: m })
-                           const app = await QueenNilu.sendMessage(m.chat, { delete: load.key })
-                           await QueenNilu.sendMessage(from, { react: { text: `🚀`, key: app.key }})
+                           const load = await PEACEMD.sendText(m.chat,'*📤 Uploading...*' )
+                           await PEACEMD.sendMessage(m.chat, { document: { url: 'https://github.com/Dragonxjanith/UPLOADS/raw/main/APK/HTTP%20Injector%20(SSHProxyV2Ray)%20VPN.apk' }, mimetype: 'application/vnd.android.package-archive', fileName: `HTTP Injector Queen Nilu (SSHProxyV2Ray) VPN.apk`}, { quoted: m })
+                           const app = await PEACEMD.sendMessage(m.chat, { delete: load.key })
+                           await PEACEMD.sendMessage(from, { react: { text: `🚀`, key: app.key }})
                     }
                     break
                     case 'alphav2ray' : {
                            
-                        const load = await QueenNilu.sendText(m.chat,'*📤 Uploading...*' )
-                        await QueenNilu.sendMessage(m.chat, { document: { url: 'https://github.com/Dragonxjanith/UPLOADS/raw/main/APK/Alpha_v2ray.apk' }, mimetype: 'application/vnd.android.package-archive', fileName: `Alpha V2ray Queen Nilu (SSHProxyV2Ray) VPN.apk`}, { quoted: m })
-                        const app = await QueenNilu.sendMessage(m.chat, { delete: load.key })
-                        await QueenNilu.sendMessage(from, { react: { text: `🚀`, key: app.key }})
+                        const load = await PEACEMD.sendText(m.chat,'*📤 Uploading...*' )
+                        await PEACEMD.sendMessage(m.chat, { document: { url: 'https://github.com/Dragonxjanith/UPLOADS/raw/main/APK/Alpha_v2ray.apk' }, mimetype: 'application/vnd.android.package-archive', fileName: `Alpha V2ray Queen Nilu (SSHProxyV2Ray) VPN.apk`}, { quoted: m })
+                        const app = await PEACEMD.sendMessage(m.chat, { delete: load.key })
+                        await PEACEMD.sendMessage(from, { react: { text: `🚀`, key: app.key }})
                  }
                  break
 ////////////////EHI STORE END \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -1131,19 +1131,19 @@ case 'apk':{
                 if (!isCreator) throw mess.owner
                 if (!q) throw 'Option : 1. mute\n2. unmute\n3. archive\n4. unarchive\n5. read\n6. unread\n7. delete'
                 if (args[0] === 'mute') {
-                    QueenNilu.chatModify({ mute: 'Infinity' }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    PEACEMD.chatModify({ mute: 'Infinity' }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'unmute') {
-                    QueenNilu.chatModify({ mute: null }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    PEACEMD.chatModify({ mute: null }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'archive') {
-                    QueenNilu.chatModify({  archive: true }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    PEACEMD.chatModify({  archive: true }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'unarchive') {
-                    QueenNilu.chatModify({ archive: false }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    PEACEMD.chatModify({ archive: false }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'read') {
-                    QueenNilu.chatModify({ markRead: true }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    PEACEMD.chatModify({ markRead: true }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'unread') {
-                    QueenNilu.chatModify({ markRead: false }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    PEACEMD.chatModify({ markRead: false }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'delete') {
-                    QueenNilu.chatModify({ clear: { message: { id: m.quoted.id, fromMe: true }} }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    PEACEMD.chatModify({ clear: { message: { id: m.quoted.id, fromMe: true }} }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 }
             }
             break
@@ -1152,14 +1152,14 @@ case 'apk':{
 			if (!text) throw `Example : ${prefix + command} peace|hi`
             let jawab = `${text.split("|")[0]}`
             let buttons = [{ buttonId: 'menu', buttonText: { displayText: `${themeemoji}` }, type: 1 }]
-            await QueenNilu.sendButtonText(m.chat, buttons, jawab, `${text.split("|")[1]}`, m)
+            await PEACEMD.sendButtonText(m.chat, buttons, jawab, `${text.split("|")[1]}`, m)
             }
             break
             //////////////////////////////////////////////  News start \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
             case 'news' : {
-                await QueenNilu.sendMessage(from, { react: { text: `🗞️`, key: m.key }})
-                const load = await QueenNilu.sendText(m.chat, mess.wait , m, ) 
+                await PEACEMD.sendMessage(from, { react: { text: `🗞️`, key: m.key }})
+                const load = await PEACEMD.sendText(m.chat, mess.wait , m, ) 
                 const news = await fetchJson(`https://api.sdbots.tk/hirunews`)
                 const cap = `
          *🏷️ මාතෘකාව :* ${news.title}
@@ -1183,10 +1183,10 @@ case 'apk':{
              headerType: 4
          }
               
-              await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m })
-              await QueenNilu.sendMessage(m.chat,{delete : load.key })  
+              await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m })
+              await PEACEMD.sendMessage(m.chat,{delete : load.key })  
           
-             // await QueenNilu.sendMessage(m.chat, { image: { url : news.img} , caption : cap }, { quoted: m })
+             // await PEACEMD.sendMessage(m.chat, { image: { url : news.img} , caption : cap }, { quoted: m })
            }
            break
            
@@ -1204,7 +1204,7 @@ case 'apk':{
                         key: { remoteJid: m.chat, fromMe: true, id: quoted.id }
                     }
                 }
-                QueenNilu.sendMessage(m.chat, reactionMessage)
+                PEACEMD.sendMessage(m.chat, reactionMessage)
             }
             break  
             case 'join': {
@@ -1213,12 +1213,12 @@ case 'apk':{
                 if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'
                 m.reply(mess.wait)
                 let result = args[0].split('https://chat.whatsapp.com/')[1]
-                await QueenNilu.groupAcceptInvite(result).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                await PEACEMD.groupAcceptInvite(result).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
             }
             break
             case 'leavegc': {
                 if (!isCreator) throw mess.owner
-                await QueenNilu.groupLeave(m.chat).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                await PEACEMD.groupLeave(m.chat).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
             }
             break
             case 'setexif': {
@@ -1235,7 +1235,7 @@ case 'apk':{
                         if (!isAdmins) return reply( mess.admin)
                  let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
                  if(users === "94712448370@s.whatsapp.net") return reply('*👸💬 Can`t Remove charith*')
-                await QueenNilu.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(global.KICK_MASSAGE)).catch((err) => reply(jsonformat(err)))
+                await PEACEMD.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(global.KICK_MASSAGE)).catch((err) => reply(jsonformat(err)))
 	}
 	break
 	case 'add': {
@@ -1243,7 +1243,7 @@ case 'apk':{
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await QueenNilu.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await PEACEMD.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 	case 'promote': {
@@ -1251,7 +1251,7 @@ case 'apk':{
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await QueenNilu.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await PEACEMD.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 	case 'demote': {
@@ -1259,7 +1259,7 @@ case 'apk':{
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await QueenNilu.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await PEACEMD.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 
@@ -1270,13 +1270,13 @@ case 'apk':{
         case 'block': {
 		if (!isCreator) throw mess.owner
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await QueenNilu.updateBlockStatus(users, 'block').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await PEACEMD.updateBlockStatus(users, 'block').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
         case 'unblock': {
 		if (!isCreator) throw mess.owner
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await QueenNilu.updateBlockStatus(users, 'unblock').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await PEACEMD.updateBlockStatus(users, 'unblock').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 
@@ -1288,15 +1288,15 @@ case 'group': case 'grup': {
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins) throw mess.admin
     if (args[0] === 'close'){
-        await QueenNilu.groupSettingUpdate(m.chat, 'announcement').then((res) => reply(Lang.G_MUTE)).catch((err) => reply(jsonformat(err)))
+        await PEACEMD.groupSettingUpdate(m.chat, 'announcement').then((res) => reply(Lang.G_MUTE)).catch((err) => reply(jsonformat(err)))
     } else if (args[0] === 'open'){
-        await QueenNilu.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply(Lang.G_UNMUTE)).catch((err) => reply(jsonformat(err)))
+        await PEACEMD.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply(Lang.G_UNMUTE)).catch((err) => reply(jsonformat(err)))
     } else {
     let buttons = [
             { buttonId: 'group open', buttonText: { displayText: 'Open' }, type: 1 },
             { buttonId: 'group close', buttonText: { displayText: 'Close' }, type: 1 }
         ]
-        await QueenNilu.sendButtonText(m.chat, buttons, `Group Mode`, QueenNilu.user.name, m)
+        await PEACEMD.sendButtonText(m.chat, buttons, `Group Mode`, PEACEMD.user.name, m)
 
  }
 }
@@ -1306,10 +1306,10 @@ case 'mute':{
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins) throw mess.admin
     
-    await QueenNilu.sendMessage(from, { react: { text: `🔐`, key: m.key }})
-    await QueenNilu.groupSettingUpdate(m.chat, 'announcement')
-    const sendmsg = await QueenNilu.sendText(m.chat,Lang.G_MUTE)
-    await QueenNilu.sendMessage(from, { react: { text: `🔇`, key: sendmsg.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `🔐`, key: m.key }})
+    await PEACEMD.groupSettingUpdate(m.chat, 'announcement')
+    const sendmsg = await PEACEMD.sendText(m.chat,Lang.G_MUTE)
+    await PEACEMD.sendMessage(from, { react: { text: `🔇`, key: sendmsg.key }})
     
    }
    break
@@ -1317,10 +1317,10 @@ case 'unmute':{
     if (!m.isGroup) throw mess.group
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins) throw mess.admin
-    await QueenNilu.sendMessage(from, { react: { text: `🔓`, key: m.key }})
-    await QueenNilu.groupSettingUpdate(m.chat, 'not_announcement')
-    const sendmsg = await QueenNilu.sendText(m.chat,Lang.G_UNMUTE)
-    await QueenNilu.sendMessage(from, { react: { text: `🔊`, key: sendmsg.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `🔓`, key: m.key }})
+    await PEACEMD.groupSettingUpdate(m.chat, 'not_announcement')
+    const sendmsg = await PEACEMD.sendText(m.chat,Lang.G_UNMUTE)
+    await PEACEMD.sendMessage(from, { react: { text: `🔊`, key: sendmsg.key }})
     
  }
  break
@@ -1329,15 +1329,15 @@ case 'editinfo': {
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins) throw mess.admin
  if (args[0] === 'open'){
-    await QueenNilu.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(Lang.G_INFOON)).catch((err) => reply(jsonformat(err)))
+    await PEACEMD.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(Lang.G_INFOON)).catch((err) => reply(jsonformat(err)))
  } else if (args[0] === 'close'){
-    await QueenNilu.groupSettingUpdate(m.chat, 'locked').then((res) => reply(Lang.G_UNMUTE)).catch((err) => reply(jsonformat(err)))
+    await PEACEMD.groupSettingUpdate(m.chat, 'locked').then((res) => reply(Lang.G_UNMUTE)).catch((err) => reply(jsonformat(err)))
  } else {
  let buttons = [
             { buttonId: 'editinfo open', buttonText: { displayText: 'OPEN' }, type: 1 },
             { buttonId: 'editinfo close', buttonText: { displayText: 'CLOSE' }, type: 1 }
         ]
-        await QueenNilu.sendButtonText(m.chat, buttons, `Mode Edit Info`, QueenNilu.user.name, m)
+        await PEACEMD.sendButtonText(m.chat, buttons, `Mode Edit Info`, PEACEMD.user.name, m)
 
 }
 }
@@ -1348,7 +1348,7 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (!text) throw 'Text ?'
-                await QueenNilu.groupUpdateSubject(m.chat, text).then((res) => m.reply(mess.success)).catch((err) => m.reply(jsonformat(err)))
+                await PEACEMD.groupUpdateSubject(m.chat, text).then((res) => m.reply(mess.success)).catch((err) => m.reply(jsonformat(err)))
             }
             break
           case 'setdesc': case 'setdesk': {
@@ -1356,7 +1356,7 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (!text) throw 'Text ?'
-                await QueenNilu.groupUpdateDescription(m.chat, text).then((res) => m.reply(mess.success)).catch((err) => m.reply(jsonformat(err)))
+                await PEACEMD.groupUpdateDescription(m.chat, text).then((res) => m.reply(mess.success)).catch((err) => m.reply(jsonformat(err)))
             }
             break
           case 'setbotpp': case 'setbotpp': {
@@ -1364,8 +1364,8 @@ break
                 if (!quoted) throw `Send/Reply Image With Caption ${prefix + command}`
                 if (!/image/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
                 if (/webp/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
-                let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
-                await QueenNilu.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
+                let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
+                await PEACEMD.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
                 m.reply(mess.success)
                 }
                 break
@@ -1375,21 +1375,21 @@ break
                 if (!quoted) throw `Send/Reply Image With Caption ${prefix + command}`
                 if (!/image/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
                 if (/webp/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
-                let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
-                await QueenNilu.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
+                let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
+                await PEACEMD.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
                 m.reply(mess.success)
                 }
                 break
                 
                 case 'grupinfo': case 'groupinfo':
                 try{
-                 var pic = await QueenNilu.getProfilePicture(m.chat)
+                 var pic = await PEACEMD.getProfilePicture(m.chat)
                   } catch {
                  var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
                   }
                 let ingfo = `*𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢*\n\n*𝗡𝗔𝗠𝗘 :* ${groupName}\n*𝗜𝗗 𝗚𝗥𝗢𝗨𝗣:* ${m.chat}\n*𝗠𝗔𝗗𝗘 :* ${moment(`${groupMetadata.creation}` * 1000).tz('Africa/Harare').format('DD/MM/YYYY HH:mm:ss')}\n*𝗚𝗥𝗢𝗨𝗣 𝗢𝗪𝗡𝗘𝗥:* @${groupMetadata.owner.split('@')[0]}\n*𝗔𝗗𝗠𝗜𝗡𝗦 :* ${groupAdmins.length}\n*𝗠𝗘𝗠𝗕𝗘𝗥𝗦 :* ${participants.length}\n*𝗗𝗘𝗦𝗖 :* \n${groupMetadata.desc}`
                 ds = await getBuffer(pic)
-                QueenNilu.sendMessage(m.chat, { image: ds,caption: ingfo, mentions: [groupMetadata.owner] }, { quoted: m})
+                PEACEMD.sendMessage(m.chat, { image: ds,caption: ingfo, mentions: [groupMetadata.owner] }, { quoted: m})
                 break
                 case 'tagadmin' : {
                 if (!m.isGroup) throw mess.group
@@ -1399,7 +1399,7 @@ break
                 for (let mem of groupAdmins) {
                                 teks += `    `
                                 }
-                QueenNilu.sendMessage(m.chat, { text: teks, mentions: groupAdmins.map(a => a.id) }, { quoted: m })
+                PEACEMD.sendMessage(m.chat, { text: teks, mentions: groupAdmins.map(a => a.id) }, { quoted: m })
                                 
                 }
                 break
@@ -1413,18 +1413,18 @@ break
                                 for (let mem of participants) {
                                 teks += `🔵 @${mem.id.split('@')[0]}\n`
                                 }
-                                QueenNilu.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+                                PEACEMD.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
                                 }
                                 break
                                 case 'hidetag': {
                             if (!m.isGroup) throw mess.group
                             if (!isAdmins) throw mess.admin
-                            QueenNilu.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
+                            PEACEMD.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
                             }
                             break
                             case '####taggrp': {
                             for (let mem of participants) {
-                               await QueenNilu.sendText(m.chat,mem.id) 
+                               await PEACEMD.sendText(m.chat,mem.id) 
                                 }
                             
  }
@@ -1513,14 +1513,14 @@ let waktu = read ? read : unread
 teks += `${global.themeemoji} @${i.userJid.split('@')[0]}\n`
 teks += ` ┗━${global.themeemoji} *Time :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} ${global.themeemoji} *Status :* ${read ? 'Read' : 'Sent'}\n\n`
 }
-QueenNilu.sendTextWithMentions(m.chat, teks, m)
+PEACEMD.sendTextWithMentions(m.chat, teks, m)
 }
 break
             case 'linkgroup': case 'linkgc': case 'gclink': case 'grouplink': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
-                let response = await QueenNilu.groupInviteCode(m.chat)
-                QueenNilu.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\nGroup Link : ${groupMetadata.subject}`, m, { detectLink: true })
+                let response = await PEACEMD.groupInviteCode(m.chat)
+                PEACEMD.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\nGroup Link : ${groupMetadata.subject}`, m, { detectLink: true })
             }
             break
             case 'ephemeral': {
@@ -1529,9 +1529,9 @@ break
                 if (!isAdmins) throw mess.admin
                 if (!text) throw 'Enter the value enable/disable'
                 if (args[0] === 'enable') {
-                    await QueenNilu.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    await PEACEMD.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'disable') {
-                    await QueenNilu.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    await PEACEMD.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 }
             }
             break
@@ -1539,7 +1539,7 @@ break
                 if (!m.quoted) throw false
                 let { chat, fromMe, id, isBaileys } = m.quoted
                 if (!isBaileys) throw 'The message was not sent by a bot!'
-                QueenNilu.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
+                PEACEMD.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
             }
             break
             case 'report': case 'bug': {
@@ -1549,13 +1549,13 @@ break
                let pjtxt = `Message From : @${me.split('@')[0]} \nFor : @${ownernya.split('@')[0]}\n\n${text}`
                let ments = [ownernya, me]
                let buttons = [{ buttonId: 'hehehe', buttonText: { displayText: '🙏THANKS FOR THE REPORT' }, type: 1 }]
-            await QueenNilu.sendButtonText(ownernya, buttons, pjtxt, botname, m, {mentions: ments})
+            await PEACEMD.sendButtonText(ownernya, buttons, pjtxt, botname, m, {mentions: ments})
             let akhji = `Report Sent\nTo Owner @${ownernya.split('@')[0]}\n*Thank you for the report🙏*\n_Your number will be blocked_\n_If the Report is Only Created_`
-            await QueenNilu.sendButtonText(m.chat, buttons, akhji, botname, m, {mentions: ments})
+            await PEACEMD.sendButtonText(m.chat, buttons, akhji, botname, m, {mentions: ments})
             }
             break
             case 'clear' : {
-                await QueenNilu.chatModify({
+                await PEACEMD.chatModify({
                             clear: {
                                 messages: [{
                                     id: m.key,
@@ -1569,13 +1569,13 @@ break
              case 'bctext' :{
                 if (!isCreator) return reply( mess.owner)
                 if (!text) throw `${Lang.BC_GC}\n${Lang.EXAMPLE} ${prefix + command} *PEACE ✌ I am CHARITH SENANAYAKE*`
-                    let getGroups = await QueenNilu.groupFetchAllParticipating()
+                    let getGroups = await PEACEMD.groupFetchAllParticipating()
                     let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                     let anu = groups.map(v => v.id)
                     reply(`*Send Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} second*`)
                     for (let i of anu) {
                         await sleep(1500)
-                    await QueenNilu.sendText(i,`『 *ᴘᴇᴀᴄᴇ ᴍᴅ ʙʀᴏᴀᴅᴄᴀsᴛ * 』${text}`)
+                    await PEACEMD.sendText(i,`『 *ᴘᴇᴀᴄᴇ ᴍᴅ ʙʀᴏᴀᴅᴄᴀsᴛ * 』${text}`)
                     //reply (`*Successful Sending Broadcast To ${anu.length} Group(s)*`)
                     }
                     reply (`*Successful Sending Broadcast To ${anu.length} Group(s)*`)
@@ -1585,14 +1585,14 @@ break
                 break
                 case 'bcimg' : {
                 let media = await quoted.download()
-                let getGroups = await QueenNilu.groupFetchAllParticipating()
+                let getGroups = await PEACEMD.groupFetchAllParticipating()
                     let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                     let anu = groups.map(v => v.id)
                     reply(`*Send Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} second*`)
                     for (let i of anu) {
                         await sleep(1500)
-                    await QueenNilu.sendText(i,`${text}`)
-                    await QueenNilu.sendMessage(i, { image: { url: media } }, { quoted: m })
+                    await PEACEMD.sendText(i,`${text}`)
+                    await PEACEMD.sendMessage(i, { image: { url: media } }, { quoted: m })
                     reply (`*Successful Sending Broadcast To ${anu.length} Group(s)*`)
                     
                     }
@@ -1602,13 +1602,13 @@ break
                 case 'bcgc': case 'bcgroup': {
                     if (!isCreator) throw mess.owner
                     if (!text) throw `${Lang.BC_GC}${Lang.EXAMPLE}\n : ${prefix + command} PEACE ✌ I am CHARITH SENANAYAKE`
-                    let getGroups = await QueenNilu.groupFetchAllParticipating()
+                    let getGroups = await PEACEMD.groupFetchAllParticipating()
                     let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                     let anu = groups.map(v => v.id)
                     reply(`Send Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} second`)
                     for (let i of anu) {
                         await sleep(1500)
-                        QueenNilu.sendText(i ,`*『 *ᴘᴇᴀᴄᴇ ᴍᴅ ʙʀᴏᴀᴅᴄᴀsᴛ * 』*\n${text}`)
+                        PEACEMD.sendText(i ,`*『 *ᴘᴇᴀᴄᴇ ᴍᴅ ʙʀᴏᴀᴅᴄᴀsᴛ * 』*\n${text}`)
                         
                                 }
                     reply(`Successful Sending Broadcast To ${anu.length} Group(s)`)
@@ -1621,7 +1621,7 @@ break
                     reply(`Send Broadcast To ${anu.length} Chat\n ${anu.length * 1.5} second`)
             for (let yoi of anu) {
                 await sleep(1500)
-                QueenNilu.sendText(yoi,`*『 *ᴘᴇᴀᴄᴇ ᴍᴅ ʙʀᴏᴀᴅᴄᴀsᴛ * 』*\n${text}`)
+                PEACEMD.sendText(yoi,`*『 *ᴘᴇᴀᴄᴇ ᴍᴅ ʙʀᴏᴀᴅᴄᴀsᴛ * 』*\n${text}`)
                   }
             reply('Broadcast Success')
                 }
@@ -1635,23 +1635,23 @@ break
                      let nama = store.messages[i].array[0].pushName
                      teks += `💃 *Name :* ${nama}\n💃 *User :* @${i.split('@')[0]}\n💃 *Chat :* https://wa.me/${i.split('@')[0]}\n\n────────────────────────\n\n`
                  }
-                 QueenNilu.sendTextWithMentions(m.chat, teks, m)
+                 PEACEMD.sendTextWithMentions(m.chat, teks, m)
              }
              break
                 case 'listgc': {
                  let anulistg = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
                  let teks = `🔥 *GROUP CHAT LIST*\n\nTotal Group : ${anulistg.length} Group\n\n`
                  for (let i of anulistg) {
-                     let metadata = await QueenNilu.groupMetadata(i)
+                     let metadata = await PEACEMD.groupMetadata(i)
                      teks += `🔥 *Name :* ${metadata.subject}\n🔥 *Owner :* ${metadata.owner !== undefined ? '@' + metadata.owner.split`@`[0] : 'Unknown'}\n🔥*ID :* ${metadata.id}\n🔥 *Made :* ${moment(metadata.creation * 1000).tz('Asia/Colombo').format('DD/MM/YYYY HH:mm:ss')}\n🔥 *Member :* ${metadata.participants.length}\n\n────────────────────────\n\n`
                  }
-                 QueenNilu.sendTextWithMentions(m.chat, teks, m)
+                 PEACEMD.sendTextWithMentions(m.chat, teks, m)
              }
              break
              case 'listonline': case 'onlinelist': {
                     let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
                     let online = [...Object.keys(store.presences[id]), botNumber]
-                    QueenNilu.sendText(m.chat, 'Online Member:\n\n' + online.map(v => '🌝 @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
+                    PEACEMD.sendText(m.chat, 'Online Member:\n\n' + online.map(v => '🌝 @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
              }
              break
              case 'sticker': case 'st': case 'stickergif2': case 'sgif2': case 's': {
@@ -1664,15 +1664,15 @@ break
                 if (global.LANG == 'SI') MA2X= '*වීඩියෝවකට හෝ ජායාරූපයකට reply ලබාදෙන්න !*'
                 if (global.LANG == 'EN') MA2X= '*💭 Please reply video or photo !*\n*වීඩියෝවකට හෝ ජායාරූපයකට reply ලබාදෙන්න !*'
                 
-                 QueenNilu.sendText(m.chat, Lang.STICKER_MAKING )
+                 PEACEMD.sendText(m.chat, Lang.STICKER_MAKING )
                         if (/image/.test(mime)) {
                     let media = await quoted.download()
-                    let encmedia = await QueenNilu.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: m.pushName })
+                    let encmedia = await PEACEMD.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: m.pushName })
                     await fs.unlinkSync(encmedia)
                 } else if (/video/.test(mime)) {
                     if ((quoted.msg || quoted).seconds > 11) return reply(MAX)
                     let media = await quoted.download()
-                    let encmedia = await QueenNilu.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: m.pushName })
+                    let encmedia = await PEACEMD.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: m.pushName })
                     await fs.unlinkSync(encmedia)
                 } else {
                     throw MA2X
@@ -1700,7 +1700,7 @@ break
 		if (!emoji2) throw `Example : ${prefix + command} 😅+🤔`
 		let anumojimix = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 		for (let res of anumojimix.results) {
-		    let encmedia = await QueenNilu.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+		    let encmedia = await PEACEMD.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
 		    await fs.unlinkSync(encmedia)
 		}
 	    }
@@ -1709,7 +1709,7 @@ break
 	    if (!text) throw `Example : ${prefix + command} 😅+🤔`
 		let anumix2 = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(text)}`)
 		for (let res of anumix2.results) {
-		    let encmedia = await QueenNilu.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+		    let encmedia = await PEACEMD.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
 		    await fs.unlinkSync(encmedia)
 		}
 	    }
@@ -1717,7 +1717,7 @@ break
          case 'tts': case 'say':{
          	if (!text) throw `Example : ${prefix + command} text`
              let tts = await fetchJson(`https://api.akuari.my.id/texttovoice/texttosound_english?query=${text}`)
-             QueenNilu.sendMessage(m.chat, { audio: { url: tts.result }, mimetype: 'audio/mp4', ptt: true, fileName: `${text}.mp3` }, { quoted: m })
+             PEACEMD.sendMessage(m.chat, { audio: { url: tts.result }, mimetype: 'audio/mp4', ptt: true, fileName: `${text}.mp3` }, { quoted: m })
          	}
          break 
 	case 'smeme': case 'stickermeme': case 'stickmeme': {
@@ -1726,10 +1726,10 @@ if (!text) return m.reply(`Senstickerd/Reply Photo With Caption ${prefix + comma
 if (text.includes('|')) return m.reply(`Send/Reply Photo With Caption ${prefix + command} *text*`)
 if (!/image/.test(mime)) return m.reply(`Send/Reply Photo With Caption ${prefix + command} *text*`)
 m.reply(mess.wait)
-mee = await QueenNilu.downloadAndSaveMediaMessage(quoted)
+mee = await PEACEMD.downloadAndSaveMediaMessage(quoted)
 mem = await TelegraPh(mee)
 meme = `https://api.memegen.link/images/custom/-/${text}.png?background=${mem}`
-memek = await QueenNilu.sendImageAsSticker(m.chat, meme, m, { packname: global.packname, author: global.author })
+memek = await PEACEMD.sendImageAsSticker(m.chat, meme, m, { packname: global.packname, author: global.author })
 await fs.unlinkSync(memek)
 }
 break
@@ -1742,15 +1742,15 @@ case 'photo': case 'toimg': {
     if (global.LANG == 'SI') STICKER = '*ඔබ reply කරන ලද්දේ ස්ටිකර් එකකට නොවේ කරුනාකර ස්ටිකර් එකකට reply කරන්න*'
         if (!quoted) throw '*💭 photo එකකට reply කරන්න !*'
         if (!/webp/.test(mime)) throw `${REPLY} *${prefix + command}*`
-        const load = await QueenNilu.sendText(m.chat, Lang.CONVER_TING )
-        let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
-        await QueenNilu.sendMessage(m.chat, { delete: load.key })
+        const load = await PEACEMD.sendText(m.chat, Lang.CONVER_TING )
+        let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
+        await PEACEMD.sendMessage(m.chat, { delete: load.key })
         let ran = await getRandom('.png')
         exec(`ffmpeg -i ${media} ${ran}`, (err) => {
             fs.unlinkSync(media)
             if (err) throw err
             let buffer = fs.readFileSync(ran)
-            QueenNilu.sendMessage(m.chat, { image: buffer , caption : global.cap  }, { quoted: m })
+            PEACEMD.sendMessage(m.chat, { image: buffer , caption : global.cap  }, { quoted: m })
             fs.unlinkSync(ran)
         })
     }
@@ -1761,9 +1761,9 @@ case 'tomp4': case 'tovideo': {
                 if (!/webp/.test(mime)) throw `reply sticker with caption *${prefix + command}*`
                 m.reply(mess.wait)
 		let { webp2mp4File } = require('./lib/uploader')
-                let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
+                let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
                 let webpToMp4 = await webp2mp4File(media)
-                await QueenNilu.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' } }, { quoted: m })
+                await PEACEMD.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' } }, { quoted: m })
                 await fs.unlinkSync(media)
             }
             break
@@ -1774,7 +1774,7 @@ case 'tomp4': case 'tovideo': {
             let media = await quoted.download()
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
-            QueenNilu.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
+            PEACEMD.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
             }
             break
             case 'tomp3': {
@@ -1785,7 +1785,7 @@ case 'tomp4': case 'tovideo': {
             let media = await quoted.download()
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
-            QueenNilu.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${QueenNilu.user.name}.mp3`}, { quoted : m })
+            PEACEMD.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${PEACEMD.user.name}.mp3`}, { quoted : m })
             }
             break
             case 'tovn': case 'toptt': {
@@ -1795,7 +1795,7 @@ case 'tomp4': case 'tovideo': {
             let media = await quoted.download()
             let { toPTT } = require('./lib/converter')
             let audio = await toPTT(media, 'mp4')
-            QueenNilu.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+            PEACEMD.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
             }
             break
             case 'togif': {
@@ -1803,9 +1803,9 @@ case 'tomp4': case 'tovideo': {
                 if (!/webp/.test(mime)) throw `reply sticker with caption *${prefix + command}*`
                 m.reply(mess.wait)
 		let { webp2mp4File } = require('./lib/uploader')
-                let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
+                let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
                 let webpToMp4 = await webp2mp4File(media)
-                await QueenNilu.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
+                await PEACEMD.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
                 await fs.unlinkSync(media)
             }
             break
@@ -1817,7 +1817,7 @@ case 'tomp4': case 'tovideo': {
 	    let apirnobg = ['q61faXzzR5zNU6cvcrwtUkRU','S258diZhcuFJooAtHTaPEn4T','5LjfCVAp4vVNYiTjq9mXJWHF','aT7ibfUsGSwFyjaPZ9eoJc61','BY63t7Vx2tS68YZFY6AJ4HHF','5Gdq1sSWSeyZzPMHqz7ENfi8','86h6d6u4AXrst4BVMD9dzdGZ','xp8pSDavAgfE5XScqXo9UKHF','dWbCoCb3TacCP93imNEcPxcL']
 	    let apinobg = apirnobg[Math.floor(Math.random() * apirnobg.length)]
 	    hmm = await './src/remobg-'+getRandom('')
-	    localFile = await QueenNilu.downloadAndSaveMediaMessage(quoted, hmm)
+	    localFile = await PEACEMD.downloadAndSaveMediaMessage(quoted, hmm)
 	    outputFile = await './src/hremo-'+getRandom('.png')
 	    m.reply(mess.wait)
 	    remobg.removeBackgroundFromImageFile({
@@ -1828,7 +1828,7 @@ case 'tomp4': case 'tovideo': {
 	      scale: "100%",
 	      outputFile 
 	    }).then(async result => {
-	    QueenNilu.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : m })
+	    PEACEMD.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : m })
 	    await fs.unlinkSync(localFile)
 	    await fs.unlinkSync(outputFile)
 	    })
@@ -1843,7 +1843,7 @@ case 'tomp4': case 'tovideo': {
                 for (let i of search.all) {
                     teks += `${themeemoji} No : ${no++}\n${themeemoji} Type : ${i.type}\n${themeemoji} Video ID : ${i.videoId}\n${themeemoji} Title : ${i.title}\n${themeemoji} Views : ${i.views}\n${themeemoji} Duration : ${i.timestamp}\n${themeemoji} Uploaded : ${i.ago}\n${themeemoji} Url : ${i.url}\n\n─────────────────\n\n`
                 }
-                QueenNilu.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+                PEACEMD.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
             }
             break
         case 'google': {
@@ -1886,7 +1886,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 buttonText: "Videos",
                 mentions: parseMention(teskd), sections
             }
-            return QueenNilu.sendMessage(m.chat, listMessage, {
+            return PEACEMD.sendMessage(m.chat, listMessage, {
                 quoted: m
             })
             }
@@ -1920,7 +1920,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 buttonText: "Songs",
                 mentions: parseMention(teskd), sections
             }
-            return QueenNilu.sendMessage(m.chat, listMessage, {
+            return PEACEMD.sendMessage(m.chat, listMessage, {
                 quoted: m
             })
             }
@@ -1930,9 +1930,9 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 var GIVEME = ''
                 if (global.LANG == 'SI') GIVEME = "```💭 කරුනාකර මට වීඩියෝවක හෝ ගීතයක නමක් ලබාදෙන්න.```\n*උදාහරණ - .yt Bombe motayi*"
                 if (global.LANG == 'EN') GIVEME ="```💭 Please give me a video or song name.```\n```💭 කරුනාකර මට වීඩියෝවක හෝ ගීතයක නමක් ලබාදෙන්න.```\n .yt Bombe motayi*"
-                                                  await QueenNilu.sendMessage(from, { react: { text: `📽️`, key: m.key }})
+                                                  await PEACEMD.sendMessage(from, { react: { text: `📽️`, key: m.key }})
                                                   if (!text) return reply (GIVEME)
-                                                  await QueenNilu.sendText(m.chat,mess.wait, m, )
+                                                  await PEACEMD.sendText(m.chat,mess.wait, m, )
                                                   let yts = require("youtube-yts")
                                                   var svid = text.replace("shorts/","watch?v=")
                                                   var s2vid = svid.replace("?feature=share","")
@@ -1965,7 +1965,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                     headerType: 4
                                 }
                                 
-                               QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                               PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
                                  
                 } else if (search.all[0].type == 'video') {
                                 let nilu = search.all           
@@ -1993,7 +1993,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                     headerType: 4
                                 }
                                 
-                               QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                               PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
                                  
                 }})
                                                   
@@ -2009,7 +2009,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 const hdmidpid = rash.sdmiddlid
                 const hdpid = rash.hddlid
                                               if (!text) throw `${Lang.EXAMPLE}\n : *${prefix + command} bombe motayi*`
-                                                  await QueenNilu.sendText(m.chat, `\n*🔄 Please wait ${m.pushName}...*\nපොඩ්ඩක් ඉන්න...`, m, )
+                                                  await PEACEMD.sendText(m.chat, `\n*🔄 Please wait ${m.pushName}...*\nපොඩ්ඩක් ඉන්න...`, m, )
                                                   let yts = require("youtube-yts")
                                                   var svid = text.replace("shorts/","watch?v=")
                                                   var s2vid = svid.replace("?feature=share","")
@@ -2042,12 +2042,12 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                   sections
                 }
                 
-                const me = await QueenNilu.sendMessage(m.chat, listMessage)}).catch((err) => m.reply('*Sorry, Can\'t Find your reqest ❗*'))
-                await QueenNilu.sendMessage(from, { react: { text: `🎦`, key: m.key }})
+                const me = await PEACEMD.sendMessage(m.chat, listMessage)}).catch((err) => m.reply('*Sorry, Can\'t Find your reqest ❗*'))
+                await PEACEMD.sendMessage(from, { react: { text: `🎦`, key: m.key }})
                 await new Promise(r => setTimeout(r, 2000)) 
-                await QueenNilu.sendMessage(from, { react: { text: `⏳`, key: m.key }})
+                await PEACEMD.sendMessage(from, { react: { text: `⏳`, key: m.key }})
                 await new Promise(r => setTimeout(r, 2000)) 
-                await QueenNilu.sendMessage(from, { react: { text: `🎦`, key: m.key }})
+                await PEACEMD.sendMessage(from, { react: { text: `🎦`, key: m.key }})
                   }
                             break
                 
@@ -2058,9 +2058,9 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 const rash = await fetchJson(`https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/JS/songdl.json`)
                 const audidd = rash.audcmd
                 const docidd = rash.doccmd
-                                              await QueenNilu.sendMessage(from, { react: { text: `🎵`, key: m.key }})
+                                              await PEACEMD.sendMessage(from, { react: { text: `🎵`, key: m.key }})
                                                   if (!text) return reply(GIVEME)
-                                                  await QueenNilu.sendText(m.chat, mess.wait, m, )
+                                                  await PEACEMD.sendText(m.chat, mess.wait, m, )
                                                   let yts = require("youtube-yts")
                                                  // let search = await yts(text)
                                                   yts(text).then(async (search) => {  
@@ -2095,7 +2095,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                     headerType: 4
                                 }
                                 
-                               QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })})
+                               PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })})
 
                             }
                           break
@@ -2110,9 +2110,9 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 if (global.LANG == 'SI') GIVEME = "```කරුනාකර මට වීඩියෝවක නමක් ලබාදෙන්න.```\n*උදාහරණ - .yt Bombe motayi*"
                 if (global.LANG == 'EN') GIVEME ="```💭 Please give me a video name.```\n```කරුනාකර මට වීඩියෝවක නමක් ලබාදෙන්න.```\n* .yt Bombe motayi*"
                 
-                                          await QueenNilu.sendMessage(from, { react: { text: `📽️`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `📽️`, key: m.key }})
                                                   if (!text) return reply (GIVEME)
-                                                  await QueenNilu.sendText(m.chat, mess.wait, m, )
+                                                  await PEACEMD.sendText(m.chat, mess.wait, m, )
                                                   let yts = require("youtube-yts")
                                                   var svid = text.replace("shorts/","watch?v=")
                                                   var s2vid = svid.replace("?feature=share","")
@@ -2146,7 +2146,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                     headerType: 4
                                 }
                                 
-                               QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                               PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
                                  
                 } else if (search.all[0].type == 'video') {
                 const rash = await fetchJson(`https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/JS/songdl.json`)
@@ -2180,7 +2180,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                     headerType: 4
                                 }
                                 
-                               QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                               PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
                                  
                 }})
                                                   
@@ -2193,32 +2193,32 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 if (global.LANG == 'EN') GIVEME ="```💭 Please give me a song name.```\n```කරුනාකර මට ගීතයක නමක් ලබාදෙන්න.```\n* .song2 bombe motayi*"
                 text1 = q.split(";")[0]
                 text2 = q.split(";")[1]
-                await QueenNilu.sendMessage(from, { react: { text: `⌛`, key: m.key }})
+                await PEACEMD.sendMessage(from, { react: { text: `⌛`, key: m.key }})
                 
-                                          //await QueenNilu.sendMessage(from, { react: { text: `🎧`, key: m.key }})
+                                          //await PEACEMD.sendMessage(from, { react: { text: `🎧`, key: m.key }})
                                                   if (!text) return reply (GIVEME)
                                                   let yts = require("youtube-yts")
-                                                  //const load = await QueenNilu.sendText(m.chat, `\n*📥 Downloading ${m.pushName} your song...*\n` )
-                                                  const load = await QueenNilu.sendText(m.chat,global.SONG_DOWN, m, )
+                                                  //const load = await PEACEMD.sendText(m.chat, `\n*📥 Downloading ${m.pushName} your song...*\n` )
+                                                  const load = await PEACEMD.sendText(m.chat,global.SONG_DOWN, m, )
                                                   yts(text).then(async (search) => {  
                                                   
                                                   let nilu = search.all
                                                   let media = await fetchJson(`https://queen-elisa-api-1-2-3.herokuapp.com/api/dowloader/yt?url=${search.all[0].url}`)
                                                   buf = await getBuffer(media.result.thumb)
-                                                  await  QueenNilu.sendMessage(m.chat, { delete: load.key })
-                                                  //const up = await QueenNilu.sendText(m.chat, `\n*📤 Uploading ${m.pushName} your song...*\n` )
-                                                  const up = await QueenNilu.sendText(m.chat, global.SONG_UP, m, )
+                                                  await  PEACEMD.sendMessage(m.chat, { delete: load.key })
+                                                  //const up = await PEACEMD.sendText(m.chat, `\n*📤 Uploading ${m.pushName} your song...*\n` )
+                                                  const up = await PEACEMD.sendText(m.chat, global.SONG_UP, m, )
                                                   
                                                   if (media.result.song_size >= 120000) return reply('*FILE SIZE IS BIG !!!*')
-                                                  const doc = await QueenNilu.sendMessage(m.chat, {document:{ url: media.result.mp3 }, mimetype:"audio/mpeg", fileName: `${media.result.Title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
+                                                  const doc = await PEACEMD.sendMessage(m.chat, {document:{ url: media.result.mp3 }, mimetype:"audio/mpeg", fileName: `${media.result.Title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
                                 title:`${media.result.Title}`,
                                 body:"YOUTUBE MP3",
                                 mediaType:2,
                                 thumbnail:buf,
                                 mediaUrl:`${text}`, 
                                 sourceUrl: `${global.ytchannel}` }}}, {quoted:m})
-                                await QueenNilu.sendMessage(m.chat, { delete: up.key })
-                                                  await QueenNilu.sendMessage(from, { react: { text: `🎶`, key: doc.key }})
+                                await PEACEMD.sendMessage(m.chat, { delete: up.key })
+                                                  await PEACEMD.sendMessage(from, { react: { text: `🎶`, key: doc.key }})
                 
                                                   }).catch((err) => m.reply(NOT_FOUND))
                                            }
@@ -2228,32 +2228,32 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 if (global.LANG == 'SI') GIVEME = "```කරුනාකර මට ගීතයක නමක් ලබාදෙන්න.```\n*උදාහරණ - .song2 bombe motayi*"
                 if (global.LANG == 'EN') GIVEME ="```💭 Please give me a song name.```\n```කරුනාකර මට ගීතයක නමක් ලබාදෙන්න.```\n* .audiosong2 bombe motayi*"
                 
-                await QueenNilu.sendMessage(from, { react: { text: `⌛`, key: m.key }})
+                await PEACEMD.sendMessage(from, { react: { text: `⌛`, key: m.key }})
                 
-                                          //await QueenNilu.sendMessage(from, { react: { text: `🎧`, key: m.key }})
+                                          //await PEACEMD.sendMessage(from, { react: { text: `🎧`, key: m.key }})
                                                    if (!text) return reply (GIVEME)
                                                   let yts = require("youtube-yts")
-                                                  //const load = await QueenNilu.sendText(m.chat, `\n*📥 Downloading ${m.pushName} your song...*\n` )
-                                                  const load = await QueenNilu.sendText(m.chat,global.SONG_DOWN, m, )
+                                                  //const load = await PEACEMD.sendText(m.chat, `\n*📥 Downloading ${m.pushName} your song...*\n` )
+                                                  const load = await PEACEMD.sendText(m.chat,global.SONG_DOWN, m, )
                                                   yts(text).then(async (search) => {  
                                                   
                                                   let nilu = search.all
                                                   let media = await fetchJson(`https://test-apiyaa.herokuapp.com/api/dowloader/yt?url=${search.all[0].url}`)
                                                   buf = await getBuffer(media.result.thumb)
-                                                  await  QueenNilu.sendMessage(m.chat, { delete: load.key })
-                                                  //const up = await QueenNilu.sendText(m.chat, `\n*📤 Uploading ${m.pushName} your song...*\n` )
-                                                  const up = await QueenNilu.sendText(m.chat, global.SONG_UP, m, )
+                                                  await  PEACEMD.sendMessage(m.chat, { delete: load.key })
+                                                  //const up = await PEACEMD.sendText(m.chat, `\n*📤 Uploading ${m.pushName} your song...*\n` )
+                                                  const up = await PEACEMD.sendText(m.chat, global.SONG_UP, m, )
                                                   
                                                   if (media.result.song_size >= 120000) return reply('*FILE SIZE IS BIG !!!*')
-                                                  const doc = await QueenNilu.sendMessage(m.chat, {audio:{ url: media.result.mp3 }, mimetype:"audio/mpeg", fileName: `${media.result.Title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
+                                                  const doc = await PEACEMD.sendMessage(m.chat, {audio:{ url: media.result.mp3 }, mimetype:"audio/mpeg", fileName: `${media.result.Title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
                                 title:`${media.result.Title}`,
                                 body:"YOUTUBE MP3",
                                 mediaType:2,
                                 thumbnail:buf,
                                 mediaUrl:`${text}`, 
                                 sourceUrl: `${global.ytchannel}` }}}, {quoted:m})
-                                await QueenNilu.sendMessage(m.chat, { delete: up.key })
-                                                  await QueenNilu.sendMessage(from, { react: { text: `🎶`, key: doc.key }})
+                                await PEACEMD.sendMessage(m.chat, { delete: up.key })
+                                                  await PEACEMD.sendMessage(from, { react: { text: `🎶`, key: doc.key }})
                 
                                                   }).catch((err) => m.reply(NOT_FOUND))
                                            }
@@ -2264,28 +2264,28 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 if (global.LANG == 'EN') GIVEME ="```💭 Please give me a song name.```\n```කරුනාකර මට ගීතයක නමක් ලබාදෙන්න.```\n* song4 bombe motayi*"
                 text1 = q.split(";")[0]
                 text2 = q.split(";")[1]
-                                          await QueenNilu.sendMessage(from, { react: { text: `🎧`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `🎧`, key: m.key }})
                                                   if (!text) return reply (GIVEME)
                                                   let yts = require("youtube-yts")
-                                                  //const load = await QueenNilu.sendText(m.chat, `\n*📥 Downloading ${m.pushName} your song...*\n` )
-                                                  const laod = await QueenNilu.sendText(m.chat,global.SONG_DOWN, m, )
+                                                  //const load = await PEACEMD.sendText(m.chat, `\n*📥 Downloading ${m.pushName} your song...*\n` )
+                                                  const laod = await PEACEMD.sendText(m.chat,global.SONG_DOWN, m, )
                                                   yts(text).then(async (search) => {  
                                                   let nilu = search.all
                                           
                                           const akur = await fetchJson(`https://a.api.akuari.my.id/downloader/youtube3?link=${search.all[0].url}&type=360`)
                                           const gettsong = akur.audio.audio
-                                          await  QueenNilu.sendMessage(m.chat, { delete: load.key })
-                                          //const up = await QueenNilu.sendText(m.chat, `\n*📤 Uploading ${m.pushName} your song...*\n` )
-                                          const up = await QueenNilu.sendText(m.chat, global.SONG_UP, m, )
+                                          await  PEACEMD.sendMessage(m.chat, { delete: load.key })
+                                          //const up = await PEACEMD.sendText(m.chat, `\n*📤 Uploading ${m.pushName} your song...*\n` )
+                                          const up = await PEACEMD.sendText(m.chat, global.SONG_UP, m, )
                                           if ( text2 === 'audio' ){
                                                  // if (media.filesize >= 120000) return reply('❗ Audio size is too big '+util.format(media))
-                                                  await QueenNilu.sendMessage(m.chat, { audio: { url : gettsong }, mimetype: 'audio/mpeg', fileName: `${akur.title}.mp3` }, { quoted: m })
-                                                  return await QueenNilu.sendMessage(m.chat, { delete: up.key })
+                                                  await PEACEMD.sendMessage(m.chat, { audio: { url : gettsong }, mimetype: 'audio/mpeg', fileName: `${akur.title}.mp3` }, { quoted: m })
+                                                  return await PEACEMD.sendMessage(m.chat, { delete: up.key })
                                                   
                                                   }
                                                  // if (media.filesize >= 120000) return reply('❗ Audio size is too big '+util.format(media))
-                                                  await QueenNilu.sendMessage(m.chat, { document: { url : gettsong }, mimetype: 'audio/mpeg', fileName: `${akur.title}.mp3` }, { quoted: m })
-                                                  await QueenNilu.sendMessage(m.chat, { delete: up.key })
+                                                  await PEACEMD.sendMessage(m.chat, { document: { url : gettsong }, mimetype: 'audio/mpeg', fileName: `${akur.title}.mp3` }, { quoted: m })
+                                                  await PEACEMD.sendMessage(m.chat, { delete: up.key })
                                                   
                                           }).catch((err) => m.reply(err))
                                           }
@@ -2297,9 +2297,9 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 text1 = q.split(";")[0]
                 text2 = q.split(";")[1]
                                           if (!text) return reply(GIVEME)
-                                          await QueenNilu.sendMessage(from, { react: { text: `🎥`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `🎥`, key: m.key }})
                                           const yts = require("youtube-yts")
-                                          const load = await QueenNilu.sendText(m.chat, `📥 Downloading ${m.pushName} your video...*`, m, )
+                                          const load = await PEACEMD.sendText(m.chat, `📥 Downloading ${m.pushName} your video...*`, m, )
                                           const search = await yts(text)
                                         //  for (let i of search.all)  
                                           const vid = await fetchJson(`https://youtubeapisdownloader.vercel.app/youtube/downloader/video?url=${search.all[0].url}`)
@@ -2312,19 +2312,19 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           `
                                           const sdsize = vid.result.downloads.tubemp3_biz[0].size
                                           const hdsize = vid.result.downloads.tubemp3_biz[1].size
-                                          await  QueenNilu.sendMessage(m.chat, { delete: load.key })
+                                          await  PEACEMD.sendMessage(m.chat, { delete: load.key })
                                           if (text.split(";")[1] == 'hd'){
                                           if (hdsize.split('MB')[0] >= 110) return reply('*CAN\'T UPLODE YOUR FILE* \n_YOUR VIDEO BIGGER THAN 100mb_\n\nfile size')
                                           const video = vid.result.downloads.tubemp3_biz[1].url
-                                          const upload = await QueenNilu.sendText(m.chat, `*📤 Uploading ${m.pushName} your video...*`, m, )
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: video }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: capp }, { quoted: m })
+                                          const upload = await PEACEMD.sendText(m.chat, `*📤 Uploading ${m.pushName} your video...*`, m, )
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: video }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: capp }, { quoted: m })
                                           return 
                                           }
                                           if (sdsize.split('MB')[0] >= 110) return reply('*CAN\'T UPLODE YOUR FILE* \n_YOUR VIDEO BIGGER THAN 100mb_\n\nfile size')
                                           const video = vid.result.downloads.tubemp3_biz[0].url
-                                          const upload = await QueenNilu.sendText(m.chat, `*📤 Uploading ${m.pushName} your video...*`, m, )
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: video }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: capp }, { quoted: m })
-                                          await  QueenNilu.sendMessage(m.chat, { delete: upload.key })
+                                          const upload = await PEACEMD.sendText(m.chat, `*📤 Uploading ${m.pushName} your video...*`, m, )
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: video }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: capp }, { quoted: m })
+                                          await  PEACEMD.sendMessage(m.chat, { delete: upload.key })
                                           }     
                                           break 
                                           case 'video2' :{
@@ -2334,11 +2334,11 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           if (text.includes('https://youtu')){
                                          // if (!text.includes('-')) return reply('*💃 Please give me a correct type*\n_example .video2 https://youtube.com/watch?v=on3sJ8OlH8M - 360p')
                                           const quality = args[1] ? args[1] : '360'
-                                          const load = await QueenNilu.sendText(m.chat, `*📥 Downloading ${m.pushName} your video...*`, m, )
+                                          const load = await PEACEMD.sendText(m.chat, `*📥 Downloading ${m.pushName} your video...*`, m, )
                                           const nilu = await fetchJson(`https://api.akuari.my.id/downloader/youtube3?link=${args[0]}&type=${quality}`)
-                                          const upload = await QueenNilu.sendText(m.chat, `*📤 Uploading ${m.pushName} your video...*`, m, )
+                                          const upload = await PEACEMD.sendText(m.chat, `*📤 Uploading ${m.pushName} your video...*`, m, )
                                           if (nilu.mp4.size.split('MB')[0] >= 110) return m.reply('*FILE SIZE IS BIG !!!*')
-                                          return await QueenNilu.sendMessage(m.chat, { video: { url: nilu.mp4.download }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: `${global.cap}` }, { quoted: m })
+                                          return await PEACEMD.sendMessage(m.chat, { video: { url: nilu.mp4.download }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: `${global.cap}` }, { quoted: m })
                                          
                                           }
                                     m.reply(mess.wait)
@@ -2364,7 +2364,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                      }
                      sections.push(list)   
                      }
-                  const sendm =  QueenNilu.sendMessage(
+                  const sendm =  PEACEMD.sendMessage(
                       m.chat, 
                       {
                        text: `${text} *Here is the list of videos, click the button below to choose*\n\n${m.pushName}`,
@@ -2383,10 +2383,10 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                               if (!text) throw '*Please Give me a link*'
                                               let yts = require("youtube-yts")
                                               const search = await yts(text)
-                                                  //const load = await QueenNilu.sendText(m.chat, `\n*📥 Downloading ${m.pushName} your song...*\n` )
+                                                  //const load = await PEACEMD.sendText(m.chat, `\n*📥 Downloading ${m.pushName} your song...*\n` )
                                                   //yts(text).then(async (search) => {  
                    //buf = await getBuffer(thub.SF_THUB)
-                  // const download = await QueenNilu.sendText(m.chat, ` *Please Wait ${global.botname} Prosesing Your  ${m.pushName} Video ... 🔄*`)
+                  // const download = await PEACEMD.sendText(m.chat, ` *Please Wait ${global.botname} Prosesing Your  ${m.pushName} Video ... 🔄*`)
                 
                                 let bicil = require('@bochilteam/scraper')
                 
@@ -2412,7 +2412,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                      }
                      sections.push(list)   
                      }
-                  const sendm =  QueenNilu.sendMessage(
+                  const sendm =  PEACEMD.sendMessage(
                       m.chat, 
                       {
                        text: `${text} *Here is the list of videos, click the button below to choose*\n\n${m.pushName}`,
@@ -2438,7 +2438,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url3 = await nilu.video['240p'].download()
                                           const dl_url2 = await nilu.video['720p'].download()
                                           const dl_url4 = await nilu.audio['128kbps'].download()
-                                          await QueenNilu.sendText(m.chat,`
+                                          await PEACEMD.sendText(m.chat,`
                 360 ${dl_url}
                 240 ${dl_url2}
                 720 ${dl_url3}
@@ -2481,10 +2481,10 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 const nima3 = await api.downloader.youtube.ytplay(query)
                 const nima4 = await api.downloader.youtube.ytplayvid(query)
                 
-                await QueenNilu.sendText(m.chat , `${jsonformat(nima4)}`)
-                await QueenNilu.sendText(m.chat , `${jsonformat(nima1)}`)
-                await QueenNilu.sendText(m.chat , `${jsonformat(nima2)}`)
-                await QueenNilu.sendText(m.chat , `${jsonformat(nima3)}`)
+                await PEACEMD.sendText(m.chat , `${jsonformat(nima4)}`)
+                await PEACEMD.sendText(m.chat , `${jsonformat(nima1)}`)
+                await PEACEMD.sendText(m.chat , `${jsonformat(nima2)}`)
+                await PEACEMD.sendText(m.chat , `${jsonformat(nima3)}`)
                 
                 
                 
@@ -2492,8 +2492,8 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           break
                                           case '144getvideo' : {
                                          if(!text) return m.reply('need text')
-                                          await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          await QueenNilu.sendText(m.chat,mess.wait)
+                                          await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          await PEACEMD.sendText(m.chat,mess.wait)
                                           const yts = require("youtube-yts")
                                           const search = await yts(`${args[0]}`)
                                           let boltc = require('@bochilteam/scraper')
@@ -2504,15 +2504,15 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const size = nilu.video['144p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
                                        //   if(nilu.video.720p.fileSize >= 110000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: global.cap }, { quoted: m })
                                           }).catch((err) => m.reply(NOT_FOUND))
                                       
                                           }
                                           break
                                           case '240getvideo' : {
                                          if(!text) return m.reply('need text')
-                                          await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          await QueenNilu.sendText(m.chat,mess.wait)
+                                          await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          await PEACEMD.sendText(m.chat,mess.wait)
                                           const yts = require("youtube-yts")
                                           const search = await yts(`${args[0]}`)
                                           let boltc = require('@bochilteam/scraper')
@@ -2523,15 +2523,15 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const size = nilu.video['240p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
                                        //   if(nilu.video.720p.fileSize >= 110000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: global.cap }, { quoted: m })
                                           }).catch((err) => m.reply(NOT_FOUND))
                                       
                                           }
                                           break
                                           case 'getvideo' : {
                                           if(!text) return m.reply('need text')
-                                          await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          await QueenNilu.sendText(m.chat,mess.wait)
+                                          await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          await PEACEMD.sendText(m.chat,mess.wait)
                                           const yts = require("youtube-yts")
                                           const search = await yts(text)
                                           let boltc = require('@bochilteam/scraper')
@@ -2540,16 +2540,16 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url = await nilu.video['360p'].download()
                                           const size = nilu.video['360p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
-                                          //await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: `${global.cap}` }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          //await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: `${global.cap}` }, { quoted: m })
                                           }).catch((err) => m.reply(NOT_FOUND))
                                       
                                           }
                                           break
                                           case '480getvideo' : {
                                           if(!text) return m.reply('need text')
-                                          await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          await QueenNilu.sendText(m.chat,mess.wait)
+                                          await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          await PEACEMD.sendText(m.chat,mess.wait)
                                           const yts = require("youtube-yts")
                                           const search = await yts(text.split("480")[0])
                                           let boltc = require('@bochilteam/scraper')
@@ -2558,15 +2558,15 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url = await nilu.video['480p'].download()
                                           const size = nilu.video['480p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: global.cap }, { quoted: m })
                                           }).catch((err) => m.reply(NOT_FOUND))
                                       
                                           }
                                           break
                                           case '720getvideo' : {
                                          if(!text) return m.reply('need text')
-                                          await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          await QueenNilu.sendText(m.chat,mess.wait)
+                                          await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          await PEACEMD.sendText(m.chat,mess.wait)
                                           const yts = require("youtube-yts")
                                           const search = await yts(`${args[0]}`)
                                           let boltc = require('@bochilteam/scraper')
@@ -2577,15 +2577,15 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const size = nilu.video['720p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
                                        //   if(nilu.video.720p.fileSize >= 110000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: global.cap }, { quoted: m })
                                           }).catch((err) => m.reply(NOT_FOUND))
                                       
                                           }
                                           break
                                           case 'song3' : {
                                           if(!text) return m.reply('need text')
-                                         // await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          const down = await QueenNilu.sendText(m.chat,global.SONG_DOWN,m,)
+                                         // await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          const down = await PEACEMD.sendText(m.chat,global.SONG_DOWN,m,)
                                           const yts = require("youtube-yts")
                                           const search = await yts(text)
                                           const buf = await getBuffer(search.all[0].thumbnail)
@@ -2593,19 +2593,19 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           await boltc.youtubedlv2(search.all[0].url)
                                           .then(async(nilu) => {
                                           const dl_url = await nilu.audio['128kbps'].download()
-                                          await QueenNilu.sendMessage(m.chat,{delete : down.key }) 
-                                          const up = await QueenNilu.sendText(m.chat,global.SONG_UP,m,)
-                                          const doc = await QueenNilu.sendMessage(m.chat, {document:{ url: dl_url }, mimetype:"audio/mpeg", fileName: `${nilu.title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
+                                          await PEACEMD.sendMessage(m.chat,{delete : down.key }) 
+                                          const up = await PEACEMD.sendText(m.chat,global.SONG_UP,m,)
+                                          const doc = await PEACEMD.sendMessage(m.chat, {document:{ url: dl_url }, mimetype:"audio/mpeg", fileName: `${nilu.title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
                                 title:`${nilu.title}`,
                                 body:"YOUTUBE MP3",
                                 mediaType:2,
                                 thumbnail:buf,
                                 mediaUrl:`${text}`, 
                                 sourceUrl: `${global.ytchannel}` }}}, {quoted:m})
-                                await QueenNilu.sendMessage(m.chat, { delete: up.key })
-                                                  await QueenNilu.sendMessage(from, { react: { text: `🎶`, key: doc.key }})
-                //await QueenNilu.sendMessage(m.chat,{delete : up.key }) 
-                                           //await QueenNilu.sendMessage(from, { react: { text: `🎶`, key: m.key }})
+                                await PEACEMD.sendMessage(m.chat, { delete: up.key })
+                                                  await PEACEMD.sendMessage(from, { react: { text: `🎶`, key: doc.key }})
+                //await PEACEMD.sendMessage(m.chat,{delete : up.key }) 
+                                           //await PEACEMD.sendMessage(from, { react: { text: `🎶`, key: m.key }})
                 
                                                   }).catch((err) => m.reply(err))
                                       
@@ -2613,8 +2613,8 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           break
                                           case 'song5' : {
                                           if(!text) return m.reply('need text')
-                                         // await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          const down = await QueenNilu.sendText(m.chat,global.SONG_DOWN,m,)
+                                         // await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          const down = await PEACEMD.sendText(m.chat,global.SONG_DOWN,m,)
                                           const yts = require("youtube-yts")
                                           const search = await yts(text)
                                           //const buf = await getBuffer(search.all[0].thumbnail)
@@ -2622,11 +2622,11 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           await boltc.youtubedlv3(search.all[0].url)
                                           .then(async(nilu) => {
                                           const dl_url = await nilu.audio['131'].download()
-                                          await QueenNilu.sendMessage(m.chat,{delete : down.key }) 
-                                          const up = await QueenNilu.sendText(m.chat,global.SONG_UP,m,)
-                                          await QueenNilu.sendMessage(m.chat, { audio : { url : dl_url }, mimetype: 'audio/mpeg', fileName: `${search.all[0].title}.mp3` }, { quoted: m })
-                                          await QueenNilu.sendMessage(m.chat,{delete : up.key }) 
-                                           //await QueenNilu.sendMessage(from, { react: { text: `🎶`, key: m.key }})
+                                          await PEACEMD.sendMessage(m.chat,{delete : down.key }) 
+                                          const up = await PEACEMD.sendText(m.chat,global.SONG_UP,m,)
+                                          await PEACEMD.sendMessage(m.chat, { audio : { url : dl_url }, mimetype: 'audio/mpeg', fileName: `${search.all[0].title}.mp3` }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat,{delete : up.key }) 
+                                           //await PEACEMD.sendMessage(from, { react: { text: `🎶`, key: m.key }})
                 
                                                   }).catch((err) => m.reply(err))
                                       
@@ -2634,8 +2634,8 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           break
                                           case 'audiosong3' : {
                                           if(!text) return m.reply('need text')
-                                         // await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          const down = await QueenNilu.sendText(m.chat,global.SONG_DOWN,m,)
+                                         // await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          const down = await PEACEMD.sendText(m.chat,global.SONG_DOWN,m,)
                                           const yts = require("youtube-yts")
                                           const search = await yts(text)
                                           const buf = await getBuffer(search.all[0].thumbnail)
@@ -2643,19 +2643,19 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           await boltc.youtubedlv2(search.all[0].url)
                                           .then(async(nilu) => {
                                           const dl_url = await nilu.audio['128kbps'].download()
-                                          await QueenNilu.sendMessage(m.chat,{delete : down.key }) 
-                                          const up = await QueenNilu.sendText(m.chat,global.SONG_UP,m,)
-                                          const doc = await QueenNilu.sendMessage(m.chat, {audio :{ url: dl_url }, mimetype:"audio/mpeg", fileName: `${nilu.title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
+                                          await PEACEMD.sendMessage(m.chat,{delete : down.key }) 
+                                          const up = await PEACEMD.sendText(m.chat,global.SONG_UP,m,)
+                                          const doc = await PEACEMD.sendMessage(m.chat, {audio :{ url: dl_url }, mimetype:"audio/mpeg", fileName: `${nilu.title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
                                 title:`${nilu.title}`,
                                 body:"YOUTUBE MP3",
                                 mediaType:2,
                                 thumbnail:buf,
                                 mediaUrl:`${text}`, 
                                 sourceUrl: `${global.ytchannel}` }}}, {quoted:m})
-                                await QueenNilu.sendMessage(m.chat, { delete: up.key })
-                                                  await QueenNilu.sendMessage(from, { react: { text: `🎶`, key: doc.key }})
-                //await QueenNilu.sendMessage(m.chat,{delete : up.key }) 
-                                           //await QueenNilu.sendMessage(from, { react: { text: `🎶`, key: m.key }})
+                                await PEACEMD.sendMessage(m.chat, { delete: up.key })
+                                                  await PEACEMD.sendMessage(from, { react: { text: `🎶`, key: doc.key }})
+                //await PEACEMD.sendMessage(m.chat,{delete : up.key }) 
+                                           //await PEACEMD.sendMessage(from, { react: { text: `🎶`, key: m.key }})
                 
                                                   }).catch((err) => m.reply(err))
                                       
@@ -2663,7 +2663,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           break
                                          /* case 'yt2' : {
                                           if (!text) return m.reply('Please Give me a youtube link')
-                                          await QueenNilu.sendText(m.chat,mess.wait)
+                                          await PEACEMD.sendText(m.chat,mess.wait)
                                           let boltc = require('@bochilteam/scraper')
                                           await boltc.youtubedlv2(`${text}`)
                                           .then(async(nilu) => {
@@ -2694,7 +2694,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                     headerType: 4
                 }
                 
-                await QueenNilu.sendMessage(m.chat, buttonMessage)
+                await PEACEMD.sendMessage(m.chat, buttonMessage)
                 })
                                           }
                                           break*/
@@ -2732,11 +2732,11 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           break
                                           case 'directvideo4' : {
                                           
-                       const down = await QueenNilu.sendText(m.chat,global.SONG_DOWN, m, )
-                       const up = await QueenNilu.sendText(m.chat, global.SONG_UP, m, )
-                       await QueenNilu.sendMessage(m.chat,{delete : down.key })  
-                       await QueenNilu.sendMessage(m.chat, { video: { url: text }, caption: global.cap}, { quoted: m })
-                       await QueenNilu.sendMessage(m.chat,{delete : up.key })  
+                       const down = await PEACEMD.sendText(m.chat,global.SONG_DOWN, m, )
+                       const up = await PEACEMD.sendText(m.chat, global.SONG_UP, m, )
+                       await PEACEMD.sendMessage(m.chat,{delete : down.key })  
+                       await PEACEMD.sendMessage(m.chat, { video: { url: text }, caption: global.cap}, { quoted: m })
+                       await PEACEMD.sendMessage(m.chat,{delete : up.key })  
                                   
                                           }
                                           break
@@ -2747,83 +2747,83 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 var UPLOAD = ''
                 if (global.LANG == 'SI' ) UPLOAD = '*📤 ඔබගේ විඩියෝව ඔබවෙත එවමින් පවතී...*'
                 if (global.LANG == 'EN' ) UPLOAD = '*📤 UPLOADING YOUR VIDEO...*\n*  ඔබගේ විඩියෝව ඔබවෙත එවමින් පවතී...*'
-                       const down = await QueenNilu.sendText(m.chat,DOWNLOAD, m, )
+                       const down = await PEACEMD.sendText(m.chat,DOWNLOAD, m, )
                        const thub = await fetchJson('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
                        buf = await getBuffer(thub.SF_THUB)
-                       const up = await QueenNilu.sendText(m.chat,UPLOAD, m, )
-                       await QueenNilu.sendMessage(m.chat,{delete : down.key })  
-                       await QueenNilu.sendMessage(m.chat, { video: { url: text }, mimetype: 'video/mp4', fileName: `${text}.mp4`,jpegThumbnail:buf, caption: global.cap }, { quoted: m })
-                       //await QueenNilu.sendMessage(m.chat, { video: { url: text }, caption: global.cap}, { quoted: m })
-                       await QueenNilu.sendMessage(m.chat,{delete : up.key })  
+                       const up = await PEACEMD.sendText(m.chat,UPLOAD, m, )
+                       await PEACEMD.sendMessage(m.chat,{delete : down.key })  
+                       await PEACEMD.sendMessage(m.chat, { video: { url: text }, mimetype: 'video/mp4', fileName: `${text}.mp4`,jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                       //await PEACEMD.sendMessage(m.chat, { video: { url: text }, caption: global.cap}, { quoted: m })
+                       await PEACEMD.sendMessage(m.chat,{delete : up.key })  
                                   }
                 break
                 case 'directaudiodown' : {
                 
-                       const down = await QueenNilu.sendText(m.chat,global.SONG_DOWN, m, )
+                       const down = await PEACEMD.sendText(m.chat,global.SONG_DOWN, m, )
                        const thub = await fetchJson('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
                        buf = await getBuffer(thub.SF_THUB)
-                       const up = await QueenNilu.sendText(m.chat,global.SONG_UP, m, )
-                       await QueenNilu.sendMessage(m.chat,{delete : down.key })  
-                       await QueenNilu.sendMessage(m.chat, { video: { url: text }, mimetype: 'video/mp4', fileName: `${text}.mp4`,jpegThumbnail:buf, caption: global.cap }, { quoted: m })
-                       //await QueenNilu.sendMessage(m.chat, { video: { url: text }, caption: global.cap}, { quoted: m })
-                       await QueenNilu.sendMessage(m.chat,{delete : up.key })  
+                       const up = await PEACEMD.sendText(m.chat,global.SONG_UP, m, )
+                       await PEACEMD.sendMessage(m.chat,{delete : down.key })  
+                       await PEACEMD.sendMessage(m.chat, { video: { url: text }, mimetype: 'video/mp4', fileName: `${text}.mp4`,jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                       //await PEACEMD.sendMessage(m.chat, { video: { url: text }, caption: global.cap}, { quoted: m })
+                       await PEACEMD.sendMessage(m.chat,{delete : up.key })  
                                   }
                 break
                                           case 'ytmp3': case 'ytaudio': {  
-                                          //await QueenNilu.sendMessage(from, { react: { text: `🔄`, key: m.key }})
+                                          //await PEACEMD.sendMessage(from, { react: { text: `🔄`, key: m.key }})
                                                   
                                                   if (!text && text.includes("https://youtu")) return m.reply('*💭 Need youtube url* \n'+'```ℹ️ Example .ytmp3 https://youtube.com/watch?v=WoWlWb6vbzA```')
-                                                 const load = await QueenNilu.sendText(m.chat, `\n*🔄 Preparing ${m.pushName} your song...*\n`, m, )
-                                                 //const load = await QueenNilu.sendText(m.chat,global.SONG_DOWN, m, )
+                                                 const load = await PEACEMD.sendText(m.chat, `\n*🔄 Preparing ${m.pushName} your song...*\n`, m, )
+                                                 //const load = await PEACEMD.sendText(m.chat,global.SONG_DOWN, m, )
                                                   await fetchJson(`https://queen-elisa-api-1-2-3.herokuapp.com/api/dowloader/yt?url=${text}`)
                                                   .then(async (media) => { 
                                                   buf = await getBuffer(media.result.thumb)
                                                   if (media.result.song_size.split("MB")[0] >= 120) return m.reply('*FILE SIZE IS BIG !!!*')
                                                   //reply('❗ Audio size is too big '+util.format(media))
-                                                  //QueenNilu.sendImage(m.chat, media.thumb, `🟡 𝗧𝗜𝗧𝗟𝗘 : ${media.title}\n🎀 𝗙𝗜𝗟𝗘 𝗦𝗜𝗭𝗘 : ${media.filesizeF}\n📡 𝗨𝗥𝗟 : ${isUrl(text)}\n📜 𝗘𝗫𝗧 : MP3\n📑 𝗥𝗘𝗦𝗢𝗟𝗨𝗧𝗜𝗢𝗡 : ${args[1] || '256kbps'}`, m)
-                                                  await QueenNilu.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
+                                                  //PEACEMD.sendImage(m.chat, media.thumb, `🟡 𝗧𝗜𝗧𝗟𝗘 : ${media.title}\n🎀 𝗙𝗜𝗟𝗘 𝗦𝗜𝗭𝗘 : ${media.filesizeF}\n📡 𝗨𝗥𝗟 : ${isUrl(text)}\n📜 𝗘𝗫𝗧 : MP3\n📑 𝗥𝗘𝗦𝗢𝗟𝗨𝗧𝗜𝗢𝗡 : ${args[1] || '256kbps'}`, m)
+                                                  await PEACEMD.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
                                                  // 
-                                                  await QueenNilu.sendMessage(m.chat, {document:{ url: media.result.mp3 }, mimetype:"audio/mpeg", fileName: `${media.result.Title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
+                                                  await PEACEMD.sendMessage(m.chat, {document:{ url: media.result.mp3 }, mimetype:"audio/mpeg", fileName: `${media.result.Title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
                                 title:`🐣 ᴛɪᴛʟᴇ - ${media.result.Title}\n`,
                                 body:"YOUTUBE MP3",
                                 mediaType:2,
                                 thumbnail:buf,
                                 mediaUrl:`${text}`, 
                                 sourceUrl: `${global.ytchannel}` }}}, {quoted:m})
-                                await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})
-                                await QueenNilu.sendMessage(m.chat, { delete: load.key })
+                                await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})
+                                await PEACEMD.sendMessage(m.chat, { delete: load.key })
                                                   
-                              //  await QueenNilu.sendMessage(m.chat,{ delete : upload.key })  
+                              //  await PEACEMD.sendMessage(m.chat,{ delete : upload.key })  
                       
                       }).catch((err) => reply(err))
                       
                                               }
                                               break
                                               case 'seleytmp3': case 'seleytaudio': {  
-                                         // await QueenNilu.sendMessage(from, { react: { text: `🔄`, key: m.key }})
+                                         // await PEACEMD.sendMessage(from, { react: { text: `🔄`, key: m.key }})
                                                   let { yta } = require('./lib/y2mate')
                                                   if (!text) throw `${Lang.EXAMPLE}\n : ${prefix + command} https://Subscribe.com/watch?v=PtF6Tccag%27 320kbps`
-                                                 // const load = await QueenNilu.sendText(m.chat, `\n*🔄 Preparing ${m.pushName} your Document type song...*\n`, m, )
-                                                 const load = await QueenNilu.sendText(m.chat,global.SONG_DOWN, m, )
+                                                 // const load = await PEACEMD.sendText(m.chat, `\n*🔄 Preparing ${m.pushName} your Document type song...*\n`, m, )
+                                                 const load = await PEACEMD.sendText(m.chat,global.SONG_DOWN, m, )
                       
                                                   let quality = args[1] ? args[1] : '128kbps'
                                                   await yta(text, quality)
                                                   .then(async (media) => { 
                                                   buf = await getBuffer(media.thumb)
                                                   if (media.filesize >= 150000) return reply('❗ Audio size is too big '+util.format(media))
-                                                  await QueenNilu.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
+                                                  await PEACEMD.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
                                                   
                     
-                                                  QueenNilu.sendMessage(m.chat, {document:{ url: media.dl_link }, mimetype:"audio/mpeg", fileName: `${media.title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
+                                                  PEACEMD.sendMessage(m.chat, {document:{ url: media.dl_link }, mimetype:"audio/mpeg", fileName: `${media.title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
                                 title:`🐣 ᴛɪᴛʟᴇ - ${media.title}\n🎧 sɪᴢᴇ - ${media.filesize}`,
                                 body:"YOUTUBE MP3",
                                 mediaType:2,
                                 thumbnail:buf,
                                 mediaUrl:`${text}`, 
                                 sourceUrl: `${global.ytchannel}` }}}, {quoted:m})
-                                await  QueenNilu.sendMessage(m.chat, { delete: load.key })
-                                await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})}).catch((err) => m.reply(NOT_FOUND))
-                                //await QueenNilu.sendMessage(m.chat,{delete : upload.key })  
+                                await  PEACEMD.sendMessage(m.chat, { delete: load.key })
+                                await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})}).catch((err) => m.reply(NOT_FOUND))
+                                //await PEACEMD.sendMessage(m.chat,{delete : upload.key })  
                     
                                               }
                                               break
@@ -2832,7 +2832,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 const sdpid = rash.sddlid
                 const hdmidpid = rash.sdmiddlid
                 const hdpid = rash.hddlid
-                                          await QueenNilu.sendMessage(from, { react: { text: `📽️`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `📽️`, key: m.key }})
                 
                                               
                                     YTMASS = `
@@ -2851,14 +2851,14 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                                           { buttonId: `${hdpid} ${text}`, buttonText: { displayText: '720p' }, type: 1 }
                                                       
                                                       ]
-                                                      await QueenNilu.sendButtonText(m.chat, buttons, YTMASS, `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ ` ,m)
+                                                      await PEACEMD.sendButtonText(m.chat, buttons, YTMASS, `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ ` ,m)
                                                   }
                                                   break
                                                   case 'audioselecttypebutton': {  
                                                   const rash = await fetchJson(`https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/JS/songdl.json`)
                 const audidd = rash.audcmd
                 const docidd = rash.doccmd
-                                          await QueenNilu.sendMessage(from, { react: { text: `🎧`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `🎧`, key: m.key }})
                 
                                               
                                     YTMASS = `
@@ -2875,7 +2875,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                                           { buttonId: `${docidd} ${text}`, buttonText: { displayText: '📁 DOCUMENT 📁' }, type: 1 },
                                                           { buttonId: `${audidd} ${text}`, buttonText: { displayText: '🎧 AUDIO 🎧' }, type: 1 }
                                                       ]
-                                                      await QueenNilu.sendButtonText(m.chat, buttons, YTMASS, `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ ` ,m)
+                                                      await PEACEMD.sendButtonText(m.chat, buttons, YTMASS, `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ ` ,m)
                                                   }
                                                   break
                                                   case 'ytmp4' : {
@@ -2883,8 +2883,8 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                               const buf = await getBuffer(thub.YT_THUB)
                                           if(!text) return m.reply('*💭 Need youtube url* \n'+'```ℹ️ Example .ytmp4 https://youtube.com/watch?v=WoWlWb6vbzA```')
                                           if (!text.includes('https://youtu')) return m.reply('*💭 Need youtube url* \n'+'```ℹ️ Example .ytmp4 https://youtube.com/watch?v=WoWlWb6vbzA```')
-                                          await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
-                                          await QueenNilu.sendText(m.chat,mess.wait)
+                                          await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                                          await PEACEMD.sendText(m.chat,mess.wait)
                                           let quality = args[1] ? args[1] : '360p'
                                           //const yts = require("youtube-yts")
                                          // const search = await yts(args[0])
@@ -2895,10 +2895,10 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url = await nilu.video[quality].download()
                                           const size = nilu.video[quality].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          const viddd = await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', fileName: `${nilu.title}.mp4`,jpegThumbnail:buf, caption: global.cap }, { quoted: m })
-                                          await QueenNilu.sendMessage(from, { react: { text: `📽️`, key: viddd.key }})
-                                          // await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
-                                          //await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: `${global.cap}` }, { quoted: m })
+                                          const viddd = await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', fileName: `${nilu.title}.mp4`,jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(from, { react: { text: `📽️`, key: viddd.key }})
+                                          // await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          //await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption: `${global.cap}` }, { quoted: m })
                                           }).catch((err) => m.reply(NOT_FOUND))
                                       
                                           }
@@ -2911,45 +2911,45 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                                       ]
                                                   let { yta } = require('./lib/y2mate')
                                                   if (!text) throw `Example : ${prefix + command} https://Subscribe.com/watch?v=PtF6Tccag%27 320kbps`
-                                                  const load = await QueenNilu.sendText(m.chat, `\n*🔄 Preparing ${m.pushName} your song...*\n`, m, )
+                                                  const load = await PEACEMD.sendText(m.chat, `\n*🔄 Preparing ${m.pushName} your song...*\n`, m, )
                                                   let quality = args[1] ? args[1] : '256kbps'
                                                   let media = await yta(text, quality)
                                                   if (media.filesize >= 150000) return reply('❗ Audio size is too big '+util.format(media))
-                                                  var upload = await QueenNilu.sendButtonText(m.chat, buttons, AGAINTRY, `${m.pushName} Use this only if you have not received the request.` ,m)
-                                                  QueenNilu.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
-                                                   QueenNilu.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: upload.key.id, participant: m.quoted.sender } })
+                                                  var upload = await PEACEMD.sendButtonText(m.chat, buttons, AGAINTRY, `${m.pushName} Use this only if you have not received the request.` ,m)
+                                                  PEACEMD.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
+                                                   PEACEMD.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: upload.key.id, participant: m.quoted.sender } })
                                               }
                                               break*/
                                              case 'audio': case 'seleytaudio': {  
-                                          await QueenNilu.sendMessage(from, { react: { text: `🔄`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `🔄`, key: m.key }})
                                                   let { yta } = require('./lib/y2mate')
                                                   if (!text) throw `${Lang.EXAMPLE}\n : ${prefix + command} https://Subscribe.com/watch?v=PtF6Tccag%27 320kbps`
-                                                 // const load = await QueenNilu.sendText(m.chat, `\n*🔄 Preparing ${m.pushName} your Document type song...*\n`, m, )
-                                                 const load = await QueenNilu.sendText(m.chat,global.SONG_DOWN, m, )
+                                                 // const load = await PEACEMD.sendText(m.chat, `\n*🔄 Preparing ${m.pushName} your Document type song...*\n`, m, )
+                                                 const load = await PEACEMD.sendText(m.chat,global.SONG_DOWN, m, )
                       
                                                   let quality = args[1] ? args[1] : '128kbps'
                                                   await yta(text, quality)
                                                   .then(async (media) => { 
                                                   buf = await getBuffer(media.thumb)
                                                   if (media.filesize >= 150000) return reply('❗ Audio size is too big '+util.format(media))
-                                                  await QueenNilu.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
+                                                  await PEACEMD.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
                                                   
                     
-                                                  QueenNilu.sendMessage(m.chat, {audio:{ url: media.dl_link }, mimetype:"audio/mpeg", fileName: `${media.title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
+                                                  PEACEMD.sendMessage(m.chat, {audio:{ url: media.dl_link }, mimetype:"audio/mpeg", fileName: `${media.title}.mp3`,  quoted: m, contextInfo: { externalAdReply:{
                                 title:`🐣 ᴛɪᴛʟᴇ - ${media.title}\n🎧 sɪᴢᴇ - ${media.filesize}`,
                                 body:"YOUTUBE MP3",
                                 mediaType:2,
                                 thumbnail:buf,
                                 mediaUrl:`${text}`, 
                                 sourceUrl: `${global.ytchannel}` }}}, {quoted:m})
-                              //  await  QueenNilu.sendMessage(m.chat, { delete: load.key })
-                                await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})}).catch((err) => m.reply(NOT_FOUND))
-                                await QueenNilu.sendMessage(m.chat,{delete : load.key })  
+                              //  await  PEACEMD.sendMessage(m.chat, { delete: load.key })
+                                await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})}).catch((err) => m.reply(NOT_FOUND))
+                                await PEACEMD.sendMessage(m.chat,{delete : load.key })  
                     
                                               }
                                               break
                                               case 'audioretry': case 'ytaudioretry': {  
-                                         const up = await QueenNilu.sendMessage(from, { react: { text: `🔄`, key: m.key }})
+                                         const up = await PEACEMD.sendMessage(from, { react: { text: `🔄`, key: m.key }})
                                               
                                                   let { yta } = require('./lib/y2mate')
                                                   if (!text) throw `${Lang.EXAMPLE}\n : ${prefix + command} https://Subscribe.com/watch?v=PtF6Tccag%27 320kbps`
@@ -2957,15 +2957,15 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                                   await yta(text, quality)
                                                   .then(async (media) => { 
                                                   if (media.filesize >= 150000) return reply('❗ Audio size is too big '+util.format(media))
-                                                  QueenNilu.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })}).catch((err) => m.reply(NOT_FOUND))
-                                                  await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})
-                                                  await QueenNilu.sendMessage(m.chat,{delete : up.key })  
+                                                  PEACEMD.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })}).catch((err) => m.reply(NOT_FOUND))
+                                                  await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})
+                                                  await PEACEMD.sendMessage(m.chat,{delete : up.key })  
                       
                                               }
                                               break
                                               case '22ytmp4' : {
-                                              await QueenNilu.sendMessage(from, { react: { text: `📽️`, key: m.key }})
-                                              await QueenNilu.sendText(m.chat,mess.wait)
+                                              await PEACEMD.sendMessage(from, { react: { text: `📽️`, key: m.key }})
+                                              await PEACEMD.sendText(m.chat,mess.wait)
                                               const qulity = args[1]
                                               /*const thub = await fetchJson('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
                                               const buf = await getBuffer(thub.YT_THUB)
@@ -2986,7 +2986,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url = await nilu.video['144p'].download()
                                           const size = nilu.video['144p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
                                           
                                               }else if(qulity = '240p'){
                                               const thub = await fetchJson('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
@@ -2999,7 +2999,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url = await nilu.video['240p'].download()
                                           const size = nilu.video['240p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
                                           
                                               }else if(qulity = '480'){
                                               const thub = await fetchJson('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
@@ -3012,7 +3012,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url = await nilu.video['480p'].download()
                                           const size = nilu.video['480p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
                                           
                                               
                                               }else if(qulity = '720'){
@@ -3026,7 +3026,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                            const dl_url = await nilu.video['720p'].download()
                                           const size = nilu.video['720p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
                                           
                                               
                                               }else if (qulity = '1080'){
@@ -3040,7 +3040,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url = await nilu.video['1080p'].download()
                                           const size = nilu.video['1080p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
                                           
                                               }
                                               const thub = await fetchJson('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
@@ -3053,20 +3053,20 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                           const dl_url = await nilu.video['360p'].download()
                                           const size = nilu.video['360p'].fileSize
                                           if(size >= 120000) return m.reply('*FILE SIZE IS SO BIG !!!*')
-                                          await QueenNilu.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                          await PEACEMD.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4',jpegThumbnail:buf, caption: global.cap }, { quoted: m })
                                           
                                               
                                               
                                               }
                                               break
                                               case '22ytmp4': case '22ytvideo': {  
-                                              await QueenNilu.sendMessage(from, { react: { text: `📽️`, key: m.key }})
+                                              await PEACEMD.sendMessage(from, { react: { text: `📽️`, key: m.key }})
                                               const thub = await fetchJson('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
                                               buf = await getBuffer(thub.YT_THUB)
                 
                                                   let { ytv } = require('./lib/y2mate')
                                                   if (!text) return reply( `${Lang.EXAMPLE}\n ${prefix + command} https://youtube.com/watch?v=on3sJ8OlH8M`)
-                                                  const load = await QueenNilu.sendText(m.chat, mess.wait, m, )
+                                                  const load = await PEACEMD.sendText(m.chat, mess.wait, m, )
                                                   let quality = args[1] ? args[1] : '360p'
                                                   await ytv(text, quality)
                                                   .then(async (media) => { 
@@ -3090,20 +3090,20 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                                   templateButtons: templateButtons
                                                   }
                 
-                                                  return await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m })   
+                                                  return await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m })   
                 
                                                  // return reply('❗ Video size is too big '+util.format(media)+'.mp4')
                                                   }
-                                                  await QueenNilu.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
-                                                  await QueenNilu.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`,jpegThumbnail:buf, caption: global.cap }, { quoted: m })
+                                                  await PEACEMD.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
+                                                  await PEACEMD.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`,jpegThumbnail:buf, caption: global.cap }, { quoted: m })
                                                   
                                                   .catch((err) => m.reply('*Sorry, Can\'t Find your reqest 🥴*'))
-                                                  await  QueenNilu.sendMessage(m.chat, { delete: load.key })}).catch((err) => m.reply(NOT_FOUND))
-                                                  await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})
+                                                  await  PEACEMD.sendMessage(m.chat, { delete: load.key })}).catch((err) => m.reply(NOT_FOUND))
+                                                  await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})
                                               }
                                               break
                                               case 'secytmp4': case 'secytvideo': {  
-                                          await QueenNilu.sendMessage(from, { react: { text: `🎥`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `🎥`, key: m.key }})
                                               AGAINTRY = ` ✌ ENJOY YOUR VIDEO `
                                               
                                               buttons = [
@@ -3118,11 +3118,11 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                               
                                                   let { ytv } = require('./lib/y2mate')
                                                   if (!text) throw `${Lang.EXAMPLE}\n : ${prefix + command} https://Subscribe.com/watch?v=PtFMhcag%27 360p`
-                                                  const load = await QueenNilu.sendText(m.chat,mess.wait, m, )
+                                                  const load = await PEACEMD.sendText(m.chat,mess.wait, m, )
                                                   let quality = args[1] ? args[1] : '360p'
                                                   await ytv(text, quality)
                                                   .then(async (media) => { 
-                                                  await QueenNilu.sendText(m.chat, ` *ʟᴏᴀᴅɪɴɢ ${m.pushName} ʏᴏᴜʀ ᴠɪᴅᴇᴏ... 🔄*`)
+                                                  await PEACEMD.sendText(m.chat, ` *ʟᴏᴀᴅɪɴɢ ${m.pushName} ʏᴏᴜʀ ᴠɪᴅᴇᴏ... 🔄*`)
                                                   if (media.filesize >= 100000)  {
                                                   const msg = `*⛔ FILE SIZE UP TO 100MB ⛔*
                                                   
@@ -3143,26 +3143,26 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                                   templateButtons: templateButtons
                                                   }
                 
-                                                  return await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m }) 
+                                                  return await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m }) 
                                                   }  
                 //return reply('❗ Video size is too big '+util.format(media)+'.mp4')
-                                                  await  QueenNilu.sendMessage(m.chat, { delete: load.key })
-                                                  const upload = await QueenNilu.sendMessage(m.chat, buttonMessage , { quoted: m })
-                                                  await QueenNilu.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
-                                                  QueenNilu.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: global.cap }, { quoted: m })
-                                                  await  QueenNilu.sendMessage(m.chat, { delete: upload.key })}).catch((err) => m.reply(NOT_FOUND))
-                                                  await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})
+                                                  await  PEACEMD.sendMessage(m.chat, { delete: load.key })
+                                                  const upload = await PEACEMD.sendMessage(m.chat, buttonMessage , { quoted: m })
+                                                  await PEACEMD.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
+                                                  PEACEMD.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: global.cap }, { quoted: m })
+                                                  await  PEACEMD.sendMessage(m.chat, { delete: upload.key })}).catch((err) => m.reply(NOT_FOUND))
+                                                  await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})
                                                   
                                               }
                                               break
                                               case 'retryytmp4': case 'retrysecytvideo': {  
-                                          await QueenNilu.sendMessage(from, { react: { text: `🔄`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `🔄`, key: m.key }})
                                               
                                                   let { ytv } = require('./lib/y2mate')
                                                   if (!text) throw `${Lang.EXAMPLE}\n : ${prefix + command} https://Subscribe.com/watch?v=PtFMhcag%27 360p`
                                                   let quality = args[1] ? args[1] : '360p'
                                                   let media = await ytv(text, quality)
-                                                  await QueenNilu.sendText(m.chat, ` *ʟᴏᴀᴅɪɴɢ ${m.pushName} ʏᴏᴜʀ ᴠɪᴅᴇᴏ... 🔄*`)
+                                                  await PEACEMD.sendText(m.chat, ` *ʟᴏᴀᴅɪɴɢ ${m.pushName} ʏᴏᴜʀ ᴠɪᴅᴇᴏ... 🔄*`)
                                                   if (media.filesize >= 100000)  {
                                                   const msg = `*⛔ FILE SIZE UP TO 100MB ⛔*
                                                   
@@ -3182,20 +3182,20 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                                   templateButtons: templateButtons
                                                   }
                 
-                                                  return await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m })   
+                                                  return await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m })   
                                                   }
                 //return reply('❗ Video size is too big '+util.format(media)+'.mp4')
-                                                  var up = await QueenNilu.sendText(m.chat, `*ENJOY*`)
-                                                  QueenNilu.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: global.cap }, { quoted: m })
-                                                  await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})
+                                                  var up = await PEACEMD.sendText(m.chat, `*ENJOY*`)
+                                                  PEACEMD.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: global.cap }, { quoted: m })
+                                                  await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})
                                                   
                                               }
                                               break
                                               case '360pvideo': case 'yt360pvideo': {  
-                                          await QueenNilu.sendMessage(from, { react: { text: `📽️`, key: m.key }})
+                                          await PEACEMD.sendMessage(from, { react: { text: `📽️`, key: m.key }})
                                                   let { ytv } = require('./lib/y2mate')
                                                   if (!text) throw `${Lang.EXAMPLE}\n : ${prefix + command} https://Subscribe.com/watch?v=PtFMhcag%27 360p`
-                                                  const load = await QueenNilu.sendText(m.chat, `\n*🔄 Please wait ${m.pushName}...*\n`, m, )
+                                                  const load = await PEACEMD.sendText(m.chat, `\n*🔄 Please wait ${m.pushName}...*\n`, m, )
                                                   let quality = args[1] ? args[1] : '360p'
                                                   let media = await ytv(text, quality)
                                                   if (media.filesize >= 100000) {
@@ -3217,13 +3217,13 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                                   templateButtons: templateButtons
                                                   }
                 
-                                                  return await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m })   
+                                                  return await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m })   
                                                   }
                 // return reply('❗ Video size is too big '+util.format(media)+'.mp4')
-                                                  await QueenNilu.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
-                                                  await QueenNilu.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: global.cap }, { quoted: m })
-                                                  await  QueenNilu.sendMessage(m.chat, { delete: load.key })
-                                                  await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})
+                                                  await PEACEMD.sendMessage(from, { react: { text: `⬆️`, key: m.key }})
+                                                  await PEACEMD.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: global.cap }, { quoted: m })
+                                                  await  PEACEMD.sendMessage(m.chat, { delete: load.key })
+                                                  await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})
                                               }
                                               break
 
@@ -3237,7 +3237,7 @@ case 'pinterest': {
 		let { pinterest } = require('./lib/scraper')
                 anupint = await pinterest(text)
                 result = anupint[Math.floor(Math.random() * anupint.length)]
-                QueenNilu.sendMessage(m.chat, { image: { url: result }, caption: `${themeemoji} Media Url : `+result }, { quoted: m })
+                PEACEMD.sendMessage(m.chat, { image: { url: result }, caption: `${themeemoji} Media Url : `+result }, { quoted: m })
             }
             break
 
@@ -3256,7 +3256,7 @@ case 'pinterest': {
                     buttons: buttons,
                     headerType: 4
                 }
-                QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
             case 'wikimedia': {
@@ -3274,7 +3274,7 @@ case 'pinterest': {
                     buttons: buttons,
                     headerType: 4
                 }
-                QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
  case 'tinyurl':{
@@ -3295,7 +3295,7 @@ case 'pinterest': {
     if (global.LANG == 'EN') MAX= '```💭 Please give me a some words ...```\n```කරුනාකර වචනයක් ලබාදෙන්න ...```\n_ .logo CHARITH_'
     if (!text) return reply (MAX)
                                   
-     await QueenNilu.sendMessage(from, { react: { text: `1️⃣`, key: m.key }})     
+     await PEACEMD.sendMessage(from, { react: { text: `1️⃣`, key: m.key }})     
       
              const desmsg = 
 `━━━━━━━━━━━━━━━━
@@ -3637,7 +3637,7 @@ PEACE MD LOGO MAKER
           }
        ]
                 
-         await QueenNilu.sendListMsg(m.chat, `${desmsg}`, `${global.botname}`, `*  🎨𝗟𝗢𝗚𝗢 𝗣𝗔𝗖𝗞 01 🖌️*`, `MAKE LOGO`, sections, m)
+         await PEACEMD.sendListMsg(m.chat, `${desmsg}`, `${global.botname}`, `*  🎨𝗟𝗢𝗚𝗢 𝗣𝗔𝗖𝗞 01 🖌️*`, `MAKE LOGO`, sections, m)
                                     
       }
 
@@ -3649,7 +3649,7 @@ case 'logo2' :{
     if (global.LANG == 'EN') MAX= '```💭 Please give me a some words ...```\n```කරුනාකර වචනයක් ලබාදෙන්න ...```\n .logo CHARITH_'
     if (!text) return reply (MAX)
     
-    await QueenNilu.sendMessage(from, { react: { text: `2️⃣️`, key: m.key }})             	
+    await PEACEMD.sendMessage(from, { react: { text: `2️⃣️`, key: m.key }})             	
                    
                    let sections = [{ 
                         "title": `PEACE MD 𝚅2 𝙻𝙾𝙶𝙾 𝙻𝙸𝚂𝚃 - 2 𝚂𝙴𝙻𝙴𝙲𝚃 𝚈𝙾𝚄𝚁 𝙻𝙾𝙶𝙾 `,
@@ -3878,7 +3878,7 @@ case 'logo2' :{
                                     
                                     }
                                 ]
-         await QueenNilu.sendListMsg(m.chat, 
+         await PEACEMD.sendListMsg(m.chat, 
 `━━━━━━━━━━━━━━━━
 PEACE MD LOGO MAKER
 ━━━━━━━━━━━━━━━━
@@ -3898,7 +3898,7 @@ PEACE MD LOGO MAKER
                     if (global.LANG == 'EN') MAX= '```💭 Please give me a some words ...```\n```කරුනාකර වචනයක් ලබාදෙන්න ...```\n_ .logo3 charith_'
                     if (!text && !text.includes('|')) return reply (MAX)
                                                   
-                     await QueenNilu.sendMessage(from, { react: { text: `3️⃣`, key: m.key }})     
+                     await PEACEMD.sendMessage(from, { react: { text: `3️⃣`, key: m.key }})     
                       
                              const desmsg = 
 `━━━━━━━━━━━━━━━━
@@ -4040,14 +4040,14 @@ PEACE MD LOGO MAKER
                               ]
                             }
                          ]
-                         await QueenNilu.sendListMsg(m.chat, `${desmsg}`, `${global.botname}`, `*  🎨𝗟𝗢𝗚𝗢 𝗣𝗔𝗖𝗞 03 🖌️*`, `MAKE LOGO`, sections, m)
+                         await PEACEMD.sendListMsg(m.chat, `${desmsg}`, `${global.botname}`, `*  🎨𝗟𝗢𝗚𝗢 𝗣𝗔𝗖𝗞 03 🖌️*`, `MAKE LOGO`, sections, m)
                      
                     }
                     break
  /////////////////proxy 
 
 case 'proxy':{
-    const load = await QueenNilu.sendText(m.chat, mess.wait , m, ) 
+    const load = await PEACEMD.sendText(m.chat, mess.wait , m, ) 
     const results = await fetchJson(`https://api-ravindumanoj.ml/?code=proxy_list&api=YourApiKey`)
     const cap = `
 *ip :* ${results.ip}
@@ -4072,10 +4072,10 @@ const templateMessage = {
  headerType: 4
 }
   
-  await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m })
-  await QueenNilu.sendMessage(m.chat,{delete : load.key })  
+  await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m })
+  await PEACEMD.sendMessage(m.chat,{delete : load.key })  
 
- // await QueenNilu.sendMessage(m.chat, { image: { url : news.img} , caption : cap }, { quoted: m })
+ // await PEACEMD.sendMessage(m.chat, { image: { url : news.img} , caption : cap }, { quoted: m })
 
 
 
@@ -4092,7 +4092,7 @@ const templateMessage = {
       if (global.LANG == 'EN') GIVEE = `*💭 Please give me a some words* \n*කරුනාකර වචනයක් ලබාදෙන්න* \n _ ${prefix + command} CHARITH_`
       if (global.LANG == 'SI') GIVEE = `*කරුනාකර වචනයක් ලබාදෙන්න* \n _ℹ️ උදාහරණ ${prefix + command} CHARITH_`
          if(!text) return reply(GIVEE)
-         const logomaking = await QueenNilu.sendText(m.chat,LOGO_MAKING)
+         const logomaking = await PEACEMD.sendText(m.chat,LOGO_MAKING)
               
            let link      
            if (/eglitch/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/glitch?text='+text
@@ -4100,7 +4100,7 @@ const templateMessage = {
            if (/eneon/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/neon?text='+text
            if (/ecrismas/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/3dchristmas?text='+text
            if (/ethunder/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/thunder?text='+text
-           if (/eninja/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/ninja-logo?text='+text+'&text2=QueenNilu BOT'
+           if (/eninja/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/ninja-logo?text='+text+'&text2=PEACEMD BOT'
            if (/eorange/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/3d-orange-juice?text='+text
            if (/ecake/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/chocolate-cake?text='+text
            if (/estrowberry/.test(command)) link = 'https://my-shinz.herokuapp.com/api/textpro/strawberry?text='+text
@@ -4112,8 +4112,8 @@ const templateMessage = {
            if (/eilluminati/.test(command)) link = 'https://my-shinz.herokuapp.com/api/photooxy/illuminated-metallic?text='+text
            
         const img = await getBuffer(link)
-        await QueenNilu.sendMessage(m.chat, { image: img, caption: `${global.cap}` }, { quoted: m })
-        await QueenNilu.sendMessage(m.chat,{delete : logomaking.key })  
+        await PEACEMD.sendMessage(m.chat, { image: img, caption: `${global.cap}` }, { quoted: m })
+        await PEACEMD.sendMessage(m.chat,{delete : logomaking.key })  
                
     }
     break
@@ -4189,7 +4189,7 @@ case 'lava': case 'rockart': case 'bloodglas': case 'halloween': case 'darkgold'
              if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
                 if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'           
              let anutexpro = await maker.textpro(link, q)
-                QueenNilu.sendMessage(m.chat, { image: { url: anutexpro }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m })
+                PEACEMD.sendMessage(m.chat, { image: { url: anutexpro }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m })
              }
              break
 case'glitch3':
@@ -4199,7 +4199,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4208,7 +4208,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/3d-box-text-effect-online-880.html", [
     `${q}`,])
-.then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+.then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
 .catch((err) => console.log(err));
 break
 
@@ -4217,7 +4217,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
  maker.textpro("https://textpro.me/dropwater-text-effect-872.html", [
      `${q}`,])
-    .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+    .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
     .catch((err) => console.log(err));
      break
 
@@ -4226,7 +4226,7 @@ case 'lion2':
   m.reply(mess.wait)
   maker.textpro("https://textpro.me/create-lion-logo-mascot-online-938.html", [
       `${q}`,])
-     .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+     .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
      .catch((err) => console.log(err));
      break
 
@@ -4235,7 +4235,7 @@ case 'papercut':
       m.reply(mess.wait)
       maker.textpro("https://textpro.me/create-art-paper-cut-text-effect-online-1022.html", [
 `${q}`,])
-         .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+         .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
          .catch((err) => console.log(err));
          break
 
@@ -4244,7 +4244,7 @@ case 'transformer':
       m.reply(mess.wait)
       maker.textpro("https://textpro.me/create-a-transformer-text-effect-online-1035.html", [
 `${q}`,])
-.then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+.then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
 .catch((err) => console.log(err));
 break
    
@@ -4255,7 +4255,7 @@ case 'harrypot':
        teks2 = q.split(";")[1]
        maker.textpro("https://textpro.me/create-harry-potter-text-effect-online-1025.html", [
  `${teks1}`,`${teks2}`])
- .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+ .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
  .catch((err) => console.log(err));
  break
 
@@ -4264,7 +4264,7 @@ case 'neondevil':
       m.reply(mess.wait)
       maker.textpro("https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html", [
 `${q}`,])
-         .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+         .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
          .catch((err) => console.log(err));
          break
 
@@ -4273,7 +4273,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4282,7 +4282,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-3d-avengers-logo-online-974.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4291,7 +4291,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/online-thunder-text-effect-generator-1031.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
    
@@ -4300,7 +4300,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/write-text-on-foggy-window-online-free-1015.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4309,7 +4309,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-neon-light-blackpink-logo-text-effect-online-1081.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4321,7 +4321,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4332,7 +4332,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4341,7 +4341,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-blackpink-logo-style-online-1001.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4350,7 +4350,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-impressive-glitch-text-effects-online-1027.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4361,7 +4361,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/create-a-glitch-text-effect-online-free-1026.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4372,7 +4372,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4383,7 +4383,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/create-space-3d-text-effect-online-985.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4394,7 +4394,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/create-lion-logo-mascot-online-938.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4403,7 +4403,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-3d-neon-light-text-effect-online-1028.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4412,7 +4412,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/neon-text-effect-online-879.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4421,7 +4421,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/green-neon-text-effect-874.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
     
@@ -4430,7 +4430,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/bokeh-text-effect-876.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
    
@@ -4441,7 +4441,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/holographic-3d-text-effect-975.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4455,7 +4455,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4467,7 +4467,7 @@ teks1 = q.split(";")[0]
 teks2 = q.split(";")[1]
 maker.textpro("https://textpro.me/create-wolf-logo-galaxy-online-936.html", [
     `${teks1}`,`${teks2}`])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4476,7 +4476,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-logo-joker-online-934.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4485,7 +4485,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/dropwater-text-effect-872.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
    
@@ -4494,7 +4494,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-summer-neon-light-text-effect-online-1076.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4503,7 +4503,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/neon-light-text-effect-with-galaxy-style-981.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4512,7 +4512,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/break-wall-text-effect-871.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
    
@@ -4521,7 +4521,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/natural-leaves-text-effect-931.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break 
 
@@ -4530,7 +4530,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/carbon-text-effect-833.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4539,7 +4539,7 @@ if(!q) throw`Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-sketch-text-effect-online-1044.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 
@@ -4549,11 +4549,11 @@ if (args.length < 1) throw `Example :\n${prefix + command} <name>`
 if (args[0] === 'glitch') {
 if (args.length < 2) throw `Example :\n${prefix + command + ' ' + args[0]} ${global.ownername}`
 let teds = await thiccysapi.textpro("https://textpro.me/create-impressive-glitch-text-effects-online-1027.html", [args[1]])
-QueenNilu.sendMessage(from, {image:{url:teds}, caption:"Done!"}, {quoted:m})
+PEACEMD.sendMessage(from, {image:{url:teds}, caption:"Done!"}, {quoted:m})
 } else if (args[0] === 'glow') {
 if (args.length < 2) throw `Example :\n${prefix + command + ' ' + args[0]} ${global.ownername}`
 let teds = await thiccysapi.textpro("https://textpro.me/create-light-glow-sliced-text-effect-online-1068.html", [args[1]])
-QueenNilu.sendMessage(from, {image:{url:teds}, caption:"Done!"}, {quoted:m})
+PEACEMD.sendMessage(from, {image:{url:teds}, caption:"Done!"}, {quoted:m})
 } else {
 m.reply(`*Text Maker List :*\n•> glitch\n•> glow`)
 }
@@ -4565,7 +4565,7 @@ case 'hoorror':{
      let anui = await textpro(link, q)
      m.reply(`Wait a moment while making the logo about 1 minute`) 
      console.log(anui)
-    QueenNilu.sendMessage(from, {image:{url:anui}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"}, {quoted:m})
+    PEACEMD.sendMessage(from, {image:{url:anui}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"}, {quoted:m})
 }
    break
 case 'whitebear':
@@ -4574,7 +4574,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'thunder2':
@@ -4583,7 +4583,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-thunder-text-effect-online-881.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
    break
@@ -4593,7 +4593,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/neon-light-text-effect-online-882.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'matrix2':
@@ -4602,7 +4602,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/matrix-style-text-effect-online-884.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'sky':
@@ -4611,7 +4611,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-cloud-text-effect-on-the-sky-online-1004.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'magma':
@@ -4620,7 +4620,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-magma-hot-text-effect-online-1030.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'sand':
@@ -4629,7 +4629,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/sand-writing-text-effect-online-990.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'pencil':
@@ -4638,7 +4638,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-sketch-text-effect-online-1044.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'graffiti':
@@ -4647,7 +4647,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'metallic':
@@ -4656,7 +4656,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-metallic-text-effect-free-online-1041.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'steel':
@@ -4665,7 +4665,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/steel-text-effect-online-921.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'harrpotter':
@@ -4674,7 +4674,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-harry-potter-text-effect-online-1025.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'underwater':
@@ -4683,7 +4683,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/3d-underwater-text-effect-generator-online-1013.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'luxury':
@@ -4692,7 +4692,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/3d-luxury-gold-text-effect-online-1003.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'glue2':
@@ -4701,7 +4701,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-3d-glue-text-effect-with-realistic-style-986.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'fabric':
@@ -4710,7 +4710,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/fabric-text-effect-online-964.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'neonlight':
@@ -4719,7 +4719,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/neon-light-glitch-text-generator-online-1063.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'lava':
@@ -4728,7 +4728,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/lava-text-effect-online-914.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'toxic':
@@ -4737,7 +4737,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/toxic-text-effect-online-901.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'ancient':
@@ -4746,7 +4746,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/3d-golden-ancient-text-effect-online-free-1060.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'christmas2':
@@ -4755,7 +4755,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/sparkles-merry-christmas-text-effect-1054.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'sci_fi':
@@ -4764,7 +4764,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'rainbow':
@@ -4773,7 +4773,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'classic':
@@ -4782,7 +4782,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/video-game-classic-8-bit-text-effect-1037.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'watercolor2':
@@ -4791,7 +4791,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-free-online-watercolor-text-effect-1017.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'halloweem2':
@@ -4800,7 +4800,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-spooky-halloween-text-effect-online-1046.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'halloweenfire':
@@ -4809,7 +4809,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/halloween-fire-text-effect-940.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'writing':
@@ -4818,7 +4818,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/sand-writing-text-effect-online-990.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'foggy':
@@ -4827,7 +4827,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/write-text-on-foggy-window-online-free-1015.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'marvel':
@@ -4836,7 +4836,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'skeleton2':
@@ -4845,7 +4845,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'sketch':
@@ -4854,7 +4854,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-a-sketch-text-effect-online-1044.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'wonderful':
@@ -4863,7 +4863,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'batman':
@@ -4872,7 +4872,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/make-a-batman-logo-online-free-1066.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'juice':
@@ -4881,7 +4881,7 @@ if(!q) throw `Use ${prefix + command} text`
 m.reply(mess.wait)
 maker.textpro("https://textpro.me/fruit-juice-text-effect-861.html", [
     `${q}`,])
-  .then((data) => QueenNilu.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
+  .then((data) => PEACEMD.sendMessage(m.chat, { image: { url: data }, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ` }, { quoted: m }))
   .catch((err) => console.log(err));
    break
 case 'pornhub':{
@@ -4894,7 +4894,7 @@ inilogo9 = args.join(" ")
 var logo9 = inilogo9.split('|')[1]
     let anuphub = await textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", [`${logo4}`,`${logo9}`])
 console.log(anuphub)
-QueenNilu.sendMessage(from,{image:{url:anuphub}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"},{quoted:m})
+PEACEMD.sendMessage(from,{image:{url:anuphub}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"},{quoted:m})
 }
 break
 case 'retro':{
@@ -4906,7 +4906,7 @@ inilogo9 = args.join(" ")
 var logo9 = inilogo9.split('|')[1]
     let anutro2 = await textpro("https://textpro.me/create-3d-retro-text-effect-online-free-1065.html", [`${logo4}`,`${logo9}`])
 console.log(anutro2)
-QueenNilu.sendMessage(from,{image:{url:anutro2}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"},{quoted:m})
+PEACEMD.sendMessage(from,{image:{url:anutro2}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"},{quoted:m})
 }
 break
 case 'horror':{
@@ -4918,7 +4918,7 @@ inilogo9 = args.join(" ")
 var logo9 = inilogo9.split('|')[1]
     let anuror2 = await textpro("https://textpro.me/create-a-cinematic-horror-text-effect-1045.html", [`${logo4}`,`${logo9}`])
 console.log(anuror2)
-QueenNilu.sendMessage(from,{image:{url:anuror2}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"},{quoted:m})
+PEACEMD.sendMessage(from,{image:{url:anuror2}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"},{quoted:m})
 }
 break
 case '8bit':{
@@ -4930,12 +4930,12 @@ inilogo9 = args.join(" ")
 var logo9 = inilogo9.split('|')[1]
     let anubit8 = await textpro("https://textpro.me/video-game-classic-8-bit-text-effect-1037.html", [`${logo4}`,`${logo9}`])
 console.log(anubit8)
-QueenNilu.sendMessage(from,{image:{url:anubit8}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"},{quoted:m})
+PEACEMD.sendMessage(from,{image:{url:anubit8}, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"},{quoted:m})
 }
 break
 case 'tiktok': {
     if (!text) throw '*💭 Please give me tiktok link.*'
-    await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
      //let bocil = require('@bochilteam/scraper')    
        if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) throw '*The link you provided is not valid*'                
        await fetchJson(`https://api.sdbots.tk/tiktok?url=${text}`).then(async (video) => {           
@@ -4963,19 +4963,19 @@ case 'tiktok': {
                         buttons: buttons,
                         headerType: 4
                     }
-                   QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                   PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
              }).catch((err) => {
              reply(err)
-           //QueenNilu.sendText(m.chat, err)
+           //PEACEMD.sendText(m.chat, err)
            })
     
     }
     break
     case 'getlink' : case 'geturl': {
-                                  const load = QueenNilu.sendText(m.chat, Lang.CONVER_TING )
-                                  await  QueenNilu.sendMessage(m.chat, { delete: load.key })
+                                  const load = PEACEMD.sendText(m.chat, Lang.CONVER_TING )
+                                  await  PEACEMD.sendMessage(m.chat, { delete: load.key })
                           let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
-                                  let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
+                                  let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
                                   if (/image/.test(mime)) {
                                       let anu = await TelegraPh(media)
                                       reply(util.format(anu))
@@ -4988,10 +4988,10 @@ case 'tiktok': {
                               break
                            case 'hurl' : case 'tourl': {
                                    const msg = `*📤 PEACE MD WA Uploader 📤* \n\n_💭 your link -_`
-                                  const load = QueenNilu.sendText(m.chat, Lang.CONVER_TING )
-                                  //await  QueenNilu.sendMessage(m.chat, { delete: load.key })
+                                  const load = PEACEMD.sendText(m.chat, Lang.CONVER_TING )
+                                  //await  PEACEMD.sendMessage(m.chat, { delete: load.key })
                           let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
-                                  let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
+                                  let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
                                   if (/image/.test(mime)) {
                                       //let anu = await TelegraPh(media)
                                       const anu = await fetchJson(`https://api.akuari.my.id/uploader/telegraph?link=${media}`)
@@ -5009,7 +5009,7 @@ if (!text) return m.reply( `Example : ${prefix + command} link`)
 if (!q.includes('tiktok')) return m.reply(`Link Invalid!!`)
 m.reply(mess.wait)
 require('./lib/tiktok').Tiktok(q).then( data => {
-QueenNilu.sendMessage(m.chat, { audio: { url: data.audio }, mimetype: 'audio/mp4' }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { audio: { url: data.audio }, mimetype: 'audio/mp4' }, { quoted: m })
 })
 }
 break
@@ -5018,324 +5018,324 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var asupan = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokvids/tiktokgirl.json'))
 var hasil = pickRandom(asupan)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'tiktokghea':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var gheayubi = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokvids/gheayubi.json'))
 var hasil = pickRandom(gheayubi)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'tiktokbocil':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var bocil = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokvids/bocil.json'))
 var hasil = pickRandom(bocil)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'tiktoknukhty':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ukhty = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokvids/ukhty.json'))
 var hasil = pickRandom(ukhty)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'tiktoksantuy':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var santuy = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokvids/santuy.json'))
 var hasil = pickRandom(santuy)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'tiktokkayes':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var kayes = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokvids/kayes.json'))
 var hasil = pickRandom(kayes)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'tiktokpanrika':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var rikagusriani = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokvids/panrika.json'))
 var hasil = pickRandom(rikagusriani)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'tiktoknotnot':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokvids/notnot.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, video: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'chinese':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/china.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'hijab':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/hijab.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'indo':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/indonesia.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'japanese':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/japan.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'korean':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/korea.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'malay':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/malaysia.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'randomgirl':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/random.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'randomboy':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/random2.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'thai':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/thailand.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'vietnamese':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/tiktokpics/vietnam.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'aesthetic':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/aesthetic.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'antiwork':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/antiwork.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'blackpink':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/blackpink.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'bike':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/bike.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'boneka':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/boneka.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'cosplay':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/cosplay.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'cat':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/cat.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'doggo':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/doggo.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'hacking':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/hacking.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'justina':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/justina.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'kayes':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/kayes.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'kpop':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/kpop.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'notnot':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/notnot.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'car':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/car.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'couplepic':case 'couplepicture':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/ppcouple.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'profilepic':  case 'profilepicture':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/profile.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'pubg':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/pubg.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'rose':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/rose.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'ryujin':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/ryujin.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'ulzzangboy':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/ulzzangboy.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'ulzzanggirl':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/ulzzanggirl.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'wallml': case 'wallpaperml':case 'mobilelegend':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/wallml.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'wallpaperphone': case 'wallphone':
 m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var notnot = JSON.parse(fs.readFileSync('./Media/HostMedia/randompics/wallhp.json'))
 var hasil = pickRandom(notnot)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: hasil.url }, buttons: but, footer: botname }, { quoted: m })
 break
 
 case 'rentbot': {
 if (!isPremium) return sendButMessage (m.chat, prem1, prem2, prem3, { quoted:m})
-jadibot(QueenNilu, m, m.chat)
+jadibot(PEACEMD, m, m.chat)
 }
 break
 case 'rentbotlist':
 try {
-let user = [... new Set([...global.conns.filter(QueenNilu => QueenNilu.user).map(QueenNilu => QueenNilu.user)])]
+let user = [... new Set([...global.conns.filter(PEACEMD => PEACEMD.user).map(PEACEMD => PEACEMD.user)])]
 te = "*Bot Rent List*\n\n"
 for (let i of user){
-let y = await QueenNilu.decodeJid(i.id)
+let y = await PEACEMD.decodeJid(i.id)
 te += " × User : @" + y.split("@")[0] + "\n"
 te += " × Name : " + i.name + "\n\n"
 }
-QueenNilu.sendMessage(m.chat,{text:te,mentions: [y], },{quoted:m})
+PEACEMD.sendMessage(m.chat,{text:te,mentions: [y], },{quoted:m})
 } catch (err) {
 m.reply(`There are no users who have rented bot yet`)
 }
 break
 case 'git': case 'gitclone':
-if (!args[0]) return m.reply(`Mana link nya?\nContoh :\n${prefix}${command} https://github.com/Janithsadanuwan/QueenNilu`)
+if (!args[0]) return m.reply(`Mana link nya?\nContoh :\n${prefix}${command} https://github.com/Janithsadanuwan/PEACEMD`)
 if (!isUrl(args[0]) && !args[0].includes('github.com')) return reply(`Link invalid!!`)
 let regex1 = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
     let [, user, repo] = args[0].match(regex1) || []
     repo = repo.replace(/.git$/, '')
     let url = `https://api.github.com/repos/${user}/${repo}/zipball`
     let filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1]
-    QueenNilu.sendMessage(m.chat, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: m }).catch((err) => reply(mess.error))
+    PEACEMD.sendMessage(m.chat, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: m }).catch((err) => reply(mess.error))
 break
 	        case 'pinterest': {
 m.reply(mess.wait)
 let { pinterest } = require('./lib/scraper')
 anutrest = await pinterest(text)
 result = anutrest[Math.floor(Math.random() * anutrest.length)]
-QueenNilu.sendMessage(m.chat, { image: { url: result }, caption: '⭔ Media Url : '+result }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { image: { url: result }, caption: '⭔ Media Url : '+result }, { quoted: m })
 }
 break
         case 'ringtone': {
@@ -5343,7 +5343,7 @@ break
         let { ringtone } = require('./lib/scraper')
 		let anutone2 = await ringtone(text)
 		let result = anutone2[Math.floor(Math.random() * anutone2.length)]
-		QueenNilu.sendMessage(m.chat, { audio: { url: result.audio }, fileName: result.title+'.mp3', mimetype: 'audio/mpeg' }, { quoted: m })
+		PEACEMD.sendMessage(m.chat, { audio: { url: result.audio }, fileName: result.title+'.mp3', mimetype: 'audio/mpeg' }, { quoted: m })
 	    }
 	    break
 
@@ -5365,7 +5365,7 @@ break
                }
                sections.push(list)   
                }
-            const sendm =  QueenNilu.sendMessage(
+            const sendm =  PEACEMD.sendMessage(
                 m.chat, 
                 {
                  text: `${ucapannya2} ${pushname} *Search Results From ${text} Click the button below to choose*`,
@@ -5388,8 +5388,8 @@ break
                                    if (anu[0].size.split('MB')[0] >= 150) return reply('*File Over Limit* '+util.format(anu))
                                    for (let i of anu) {    
                                    linkye = `*▊▊▊APK DOWNLOAD▊▊▊*\n\n*TITLE:* ${i.title}\n*UPDATE:* ${i.up}\n*VERSION:* ${i.vers}\n*FILESIZE:* ${i.size}\n*URL:* \n*DESCRIPTION:* ${i.desc}\n\n*ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ*`         
-                                        QueenNilu.sendMessage(m.chat, { image: await getBuffer(i.thumb), jpegThumbnail: await getBuffer(i.thumb), caption: `${linkye}` }, { quoted: m })
-                                        QueenNilu.sendMessage(m.chat, {document: await getBuffer(i.link), mimetype: `application/vnd.android.package-archive`, fileName: `${i.title}`}, {quoted:m})  
+                                        PEACEMD.sendMessage(m.chat, { image: await getBuffer(i.thumb), jpegThumbnail: await getBuffer(i.thumb), caption: `${linkye}` }, { quoted: m })
+                                        PEACEMD.sendMessage(m.chat, {document: await getBuffer(i.link), mimetype: `application/vnd.android.package-archive`, fileName: `${i.title}`}, {quoted:m})  
                                         }  
                                         }).catch((err) => {
                                             reply(`*Failed When Downloading Media and Sending Files*`)
@@ -5398,23 +5398,23 @@ break
                                         break
 case 'stickman':
 m.reply(mess.wait)
-QueenNilu.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/manusia-lidi?apikey=dhmDlD5x`}}, {quoted: m })
+PEACEMD.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/manusia-lidi?apikey=dhmDlD5x`}}, {quoted: m })
 break
 case 'spongebob':
 m.reply(mess.wait)
-QueenNilu.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/kawan-sponsbob?apikey=dhmDlD5x`}}, {quoted: m })
+PEACEMD.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/kawan-sponsbob?apikey=dhmDlD5x`}}, {quoted: m })
 break
 case 'gojosatoru':
 m.reply(mess.wait)
-QueenNilu.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/gojosatoru?apikey=dhmDlD5x`}}, {quoted: m })
+PEACEMD.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/gojosatoru?apikey=dhmDlD5x`}}, {quoted: m })
 break
 case 'nicholas':
 m.reply(mess.wait)
-QueenNilu.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/nicholas?apikey=dhmDlD5x`}}, {quoted: m })
+PEACEMD.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/nicholas?apikey=dhmDlD5x`}}, {quoted: m })
 break
 case 'cartoon':
 m.reply(mess.wait)
-QueenNilu.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/kr-robot?apikey=dhmDlD5x`}}, {quoted: m })
+PEACEMD.sendMessage(m.chat, {sticker: {url: `https://api.zeeoneofc.xyz/api/telegram-sticker/kr-robot?apikey=dhmDlD5x`}}, {quoted: m })
 break
 		case 'bass': case 'blown': case 'deep': case 'earrape': case 'fast': case 'fat': case 'nightcore': case 'reverse': case 'robot': case 'slow': case 'smooth': case 'squirrel':
                 try {
@@ -5432,14 +5432,14 @@ break
                 if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
                 if (/tupai/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
                 if (/audio/.test(mime)) {
-                await QueenNilu.sendMessage(from, { react: { text: `🎤`, key: m.key }})
-                let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
+                await PEACEMD.sendMessage(from, { react: { text: `🎤`, key: m.key }})
+                let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
                 let ran = getRandom('.mp3')
                 exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
                 fs.unlinkSync(media)
                 if (err) return m.reply(err)
                 let buff = fs.readFileSync(ran)
-                QueenNilu.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
+                PEACEMD.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
                 fs.unlinkSync(ran)
                 })
                 } else m.reply(`Reply to the audio you want to change with a caption *${prefix + command}*`)
@@ -5477,7 +5477,7 @@ break
 Info: *bold* hash is Locked
 ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `*${key}*` : key} : ${value.text}`).join('\n')}
 `.trim()
-                QueenNilu.sendText(m.chat, teks, m, { mentions: Object.values(global.db.data.sticker).map(x => x.mentionedJid).reduce((a,b) => [...a, ...b], []) })
+                PEACEMD.sendText(m.chat, teks, m, { mentions: Object.values(global.db.data.sticker).map(x => x.mentionedJid).reduce((a,b) => [...a, ...b], []) })
             }
             break
             case 'lockcmd': {
@@ -5507,7 +5507,7 @@ View list of Messages With ${prefix}listmsg`)
                 if (!text) throw `Example : ${prefix + command} file name\n\nView message list with ${prefix}listmsg`
                 let msgs = global.db.data.database
                 if (!(text.toLowerCase() in msgs)) throw `'${text}' not listed in the message list`
-                QueenNilu.copyNForward(m.chat, msgs[text.toLowerCase()], true)
+                PEACEMD.copyNForward(m.chat, msgs[text.toLowerCase()], true)
             }
             break
             case 'listmsg': {
@@ -5542,20 +5542,20 @@ PEACE MD YT DEVELOPER
 
 break
 case 'dev' : case 'developer' : {
-    await QueenNilu.sendMessage(from, { react: { text: `👨‍💻`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `👨‍💻`, key: m.key }})
     let buttons = [
         { buttonId: 'devnum', buttonText: { displayText: 'ᴅᴇᴠᴇʟᴏᴘᴇʀ' }, type: 1 }
     ]
-    await QueenNilu.sendButtonText(m.chat, buttons,('━━━━━━━━━━━━━━━━\n       PEACE MD YT DEVELOPER\n━━━━━━━━━━━━━━━━\n\n✌️ Charith Pramodya Senanayake\n😋 +16\n🎂 07/29\n📗 Learning... \n✌ 💛❤️'), queens, m)
+    await PEACEMD.sendButtonText(m.chat, buttons,('━━━━━━━━━━━━━━━━\n       PEACE MD YT DEVELOPER\n━━━━━━━━━━━━━━━━\n\n✌️ Charith Pramodya Senanayake\n😋 +16\n🎂 07/29\n📗 Learning... \n✌ 💛❤️'), queens, m)
     }
                 break
             break
 case 'owner': case 'creator': case 'moderator': case 'mod': {
-QueenNilu.sendContact(m.chat, owner, m)
+PEACEMD.sendContact(m.chat, owner, m)
 }
 break
 case 'devnum': {
-QueenNilu.sendContact(m.chat, owner, m)
+PEACEMD.sendContact(m.chat, owner, m)
 }
             break
         case 'menfess':
@@ -5571,11 +5571,11 @@ QueenNilu.sendContact(m.chat, owner, m)
 				 let teksnya = `Hi friend, there is confess message for you!!\n\nFrom :  _${saking}_  \nMessage : _${pesan}_ `
 					gambar = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMkjAJhYezm4h6k1AJ6qfreGkaRdBcR7UHMw&usqp=CAU`
 				 var button = [{ buttonId: `menfesconfirm`, buttonText: { displayText: `CONFIRM‡` }, type: 1 }, { buttonId: `menu`, buttonText: { displayText: `Menu` }, type: 1 }]
-					QueenNilu.sendMessage(`${nomor}@s.whatsapp.net`, { caption: teksnya, image: {url: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMkjAJhYezm4h6k1AJ6qfreGkaRdBcR7UHMw&usqp=CAU`}, buttons: button, footer: botname })
+					PEACEMD.sendMessage(`${nomor}@s.whatsapp.net`, { caption: teksnya, image: {url: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMkjAJhYezm4h6k1AJ6qfreGkaRdBcR7UHMw&usqp=CAU`}, buttons: button, footer: botname })
 				m.reply(`Success Sending Menfess!!`)
 				break
 			case 'menfesconfirm':{
- 				 QueenNilu.sendMessage(q, {text: `It's been confirmed, Confess🌹`})
+ 				 PEACEMD.sendMessage(q, {text: `It's been confirmed, Confess🌹`})
 				  m.reply(`Thank you confess for being accepted.`)
 				}
 				break
@@ -5585,7 +5585,7 @@ case 'anonymous': {
 				let buttons = [
                     { buttonId: 'start', buttonText: { displayText: 'Start' }, type: 1 }
                 ]
-                QueenNilu.sendButtonText(m.chat, buttons, `\`\`\`Hi ${await QueenNilu.getName(m.sender)} Welcome To Anonymous Chat\n\nClick the button below to find a partner\`\`\``, botname, m)
+                PEACEMD.sendButtonText(m.chat, buttons, `\`\`\`Hi ${await PEACEMD.getName(m.sender)} Welcome To Anonymous Chat\n\nClick the button below to find a partner\`\`\``, botname, m)
             }
 			break
 case 'keluar': case 'leave': {
@@ -5596,12 +5596,12 @@ case 'keluar': case 'leave': {
                     let buttons = [
                         { buttonId: 'start', buttonText: { displayText: 'Start' }, type: 1 }
                     ]
-                    await QueenNilu.sendButtonText(m.chat, buttons, `\`\`\`You Are Not In Anonymous Session, Press Button To Find Partner \`\`\``)
+                    await PEACEMD.sendButtonText(m.chat, buttons, `\`\`\`You Are Not In Anonymous Session, Press Button To Find Partner \`\`\``)
                     throw false
                 }
                 m.reply('Ok')
                 let other = room.other(m.sender)
-                if (other) await QueenNilu.sendText(other, `\`\`\`Partner Has Left Anonymous Session\`\`\``, m)
+                if (other) await PEACEMD.sendText(other, `\`\`\`Partner Has Left Anonymous Session\`\`\``, m)
                 delete this.anonymous[room.id]
                 if (command === 'leave') break
             }
@@ -5612,7 +5612,7 @@ case 'keluar': case 'leave': {
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await QueenNilu.sendButtonText(m.chat, buttons, `\`\`\`You are still in an anonymous session, press the button below to terminate your anonymous session\`\`\``, botname, m)
+                    await PEACEMD.sendButtonText(m.chat, buttons, `\`\`\`You are still in an anonymous session, press the button below to terminate your anonymous session\`\`\``, botname, m)
                     throw false
                 }
                 let room = Object.values(this.anonymous).find(room => room.state === 'WAITING' && !room.check(m.sender))
@@ -5621,10 +5621,10 @@ case 'keluar': case 'leave': {
                         { buttonId: 'next', buttonText: { displayText: 'Skip' }, type: 1 },
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await QueenNilu.sendButtonText(room.a, buttons, `\`\`\`Successfully Found Partner, now you can send messages\`\`\``, botname, m)
+                    await PEACEMD.sendButtonText(room.a, buttons, `\`\`\`Successfully Found Partner, now you can send messages\`\`\``, botname, m)
                     room.b = m.sender
                     room.state = 'CHATTING'
-                    await QueenNilu.sendButtonText(room.b, buttons, `\`\`\`Successfully Found Partner, now you can send messages\`\`\``, botname, m)
+                    await PEACEMD.sendButtonText(room.b, buttons, `\`\`\`Successfully Found Partner, now you can send messages\`\`\``, botname, m)
                 } else {
                     let id = + new Date
                     this.anonymous[id] = {
@@ -5642,7 +5642,7 @@ case 'keluar': case 'leave': {
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await QueenNilu.sendButtonText(m.chat, buttons, `\`\`\`Please wait, looking for a partner\`\`\``, botname, m)
+                    await PEACEMD.sendButtonText(m.chat, buttons, `\`\`\`Please wait, looking for a partner\`\`\``, botname, m)
                 }
                 break
             }
@@ -5654,11 +5654,11 @@ case 'keluar': case 'leave': {
                     let buttons = [
                         { buttonId: 'start', buttonText: { displayText: 'Start' }, type: 1 }
                     ]
-                    await QueenNilu.sendButtonText(m.chat, buttons, `\`\`\`You are not in an anonymous session, press the button to find a partner\`\`\``)
+                    await PEACEMD.sendButtonText(m.chat, buttons, `\`\`\`You are not in an anonymous session, press the button to find a partner\`\`\``)
                     throw false
                 }
                 let other = romeo.other(m.sender)
-                if (other) await QueenNilu.sendText(other, `\`\`\`Partner Has Left Anonymous Session\`\`\``, m)
+                if (other) await PEACEMD.sendText(other, `\`\`\`Partner Has Left Anonymous Session\`\`\``, m)
                 delete this.anonymous[romeo.id]
                 let room = Object.values(this.anonymous).find(room => room.state === 'WAITING' && !room.check(m.sender))
                 if (room) {
@@ -5666,10 +5666,10 @@ case 'keluar': case 'leave': {
                         { buttonId: 'next', buttonText: { displayText: 'Skip' }, type: 1 },
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await QueenNilu.sendButtonText(room.a, buttons, `\`\`\`Successfully Found Partner, now you can send message\`\`\``, botname, m)
+                    await PEACEMD.sendButtonText(room.a, buttons, `\`\`\`Successfully Found Partner, now you can send message\`\`\``, botname, m)
                     room.b = m.sender
                     room.state = 'CHATTING'
-                    await QueenNilu.sendButtonText(room.b, buttons, `\`\`\`Successfully Found Partner, now you can send message\`\`\``, botname, m)
+                    await PEACEMD.sendButtonText(room.b, buttons, `\`\`\`Successfully Found Partner, now you can send message\`\`\``, botname, m)
                 } else {
                     let id = + new Date
                     this.anonymous[id] = {
@@ -5687,34 +5687,34 @@ case 'keluar': case 'leave': {
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
                     ]
-                    await QueenNilu.sendButtonText(m.chat, buttons, `\`\`\`Please wait, looking for a partner\`\`\``, botname, m)
+                    await PEACEMD.sendButtonText(m.chat, buttons, `\`\`\`Please wait, looking for a partner\`\`\``, botname, m)
                 }
                 break
             }
             case 'public': {
                 if (!isCreator) throw mess.owner
-                QueenNilu.public = true
+                PEACEMD.public = true
                 m.reply('*Successful in Changing To Public Usage*')
             }
             break
             case 'self': case 'Private' :  { 
                 if (!isCreator) throw mess.owner
-                QueenNilu.public = false
+                PEACEMD.public = false
                 m.reply('*Successful in Changing To Self Usage*')
 
             }
             break 
             case 'ping' : case 'ping2' : case 'p' :{
                 const start = new Date().getTime()
-await QueenNilu.sendText(m.chat, '*📡  ʀᴜɴɪɴɢ ʀᴇsᴘᴏɴᴅ...*')
+await PEACEMD.sendText(m.chat, '*📡  ʀᴜɴɪɴɢ ʀᴇsᴘᴏɴᴅ...*')
 const end = new Date().getTime()
-const poonn = await QueenNilu.sendText(m.chat, '*ᴘᴏɴɢ* ' + (end - start) + ' *_ᴍs_*' )
-await QueenNilu.sendMessage(from, { react: { text: `✅`, key: poonn.key }})
+const poonn = await PEACEMD.sendText(m.chat, '*ᴘᴏɴɢ* ' + (end - start) + ' *_ᴍs_*' )
+await PEACEMD.sendMessage(from, { react: { text: `✅`, key: poonn.key }})
 }
 break
 case 'bots' :  {
 const start = new Date().getTime()
-await QueenNilu.sendMessage(from, { react: { text: `⚧️`, key: m.key }})
+await PEACEMD.sendMessage(from, { react: { text: `⚧️`, key: m.key }})
 const end = new Date().getTime()
 const ping = (end - start) + 'ms' 
 // const runtime = 
@@ -5725,7 +5725,7 @@ m.reply('```🧬 Bot Stetus 🧬 ```\n\n'+'*⚙️ Ping :* ```'+ping+'```\n*⏳ 
 
             case 'botstetus' : case 'stetus' : {
                 const start = new Date().getTime()
-                await QueenNilu.sendMessage(from, { react: { text: `📡`, key: m.key }})
+                await PEACEMD.sendMessage(from, { react: { text: `📡`, key: m.key }})
                 const end = new Date().getTime()
                 const ping = (end - start) + 'ms' 
                 // const runtime = 
@@ -5734,20 +5734,20 @@ m.reply('```🧬 Bot Stetus 🧬 ```\n\n'+'*⚙️ Ping :* ```'+ping+'```\n*⏳ 
                     { buttonId: 'about', buttonText: { displayText: 'ᴀʙᴏᴜᴛ' }, type: 1 },
                     { buttonId: 'ping', buttonText: { displayText: 'ᴘɪɴɢ' }, type: 1 }
                 ]
-                await QueenNilu.sendButtonText(m.chat, buttons,('*⚛️ ᴘᴇᴀᴄᴇ ᴍᴅ ꜱᴛᴀᴛᴜꜱ ⚛️*\n\n'+'*📡 Ping :* ```'+ping+'```\n*⏳ Run Time :* ```'+runtime(process.uptime())+'``` \n*🔖 Ram Usage :*``` '+ramusage+'```\n'), botname, m)
+                await PEACEMD.sendButtonText(m.chat, buttons,('*⚛️ ᴘᴇᴀᴄᴇ ᴍᴅ ꜱᴛᴀᴛᴜꜱ ⚛️*\n\n'+'*📡 Ping :* ```'+ping+'```\n*⏳ Run Time :* ```'+runtime(process.uptime())+'``` \n*🔖 Ram Usage :*``` '+ramusage+'```\n'), botname, m)
                 }
                             break
                             case 'version' : case 'v' : {
-                                await QueenNilu.sendMessage(from, { react: { text: `📡`, key: m.key }})
+                                await PEACEMD.sendMessage(from, { react: { text: `📡`, key: m.key }})
                                 let buttons = [
                                     { buttonId: 'dev', buttonText: { displayText: 'ᴅᴇᴠᴇʟᴏᴘᴇʀ' }, type: 1 },
                                     { buttonId: 'about', buttonText: { displayText: 'ᴀʙᴏᴜᴛ' }, type: 1 }
                                 ]
-                                await QueenNilu.sendButtonText(m.chat, buttons,('*PEACE MD BOT VERSIONS*\n\n*2.0.0*'), botname, m)
+                                await PEACEMD.sendButtonText(m.chat, buttons,('*PEACE MD BOT VERSIONS*\n\n*2.0.0*'), botname, m)
                                 }
                                             break
             case 'botsss' :{
-                await QueenNilu.sendMessage(from,{react:{text:'🧬' , key:m.key}})
+                await PEACEMD.sendMessage(from,{react:{text:'🧬' , key:m.key}})
         
                 const templateButtons = [
                     { quickReplyButton: {displayText: 'ᴅᴇᴠᴇʟᴏᴘᴇʀ', id: 'dev' }} , 
@@ -5772,7 +5772,7 @@ m.reply('```🧬 Bot Stetus 🧬 ```\n\n'+'*⚙️ Ping :* ```'+ping+'```\n*⏳ 
                         footer: global.botname,
                         buttons: templateButtons
                     }
-                                await QueenNilu.sendMessage(m.chat, buttonMessage,{ quoted: m })
+                                await PEACEMD.sendMessage(m.chat, buttonMessage,{ quoted: m })
 
             }
 
@@ -5816,7 +5816,7 @@ m.reply('```🧬 Bot Stetus 🧬 ```\n\n'+'*⚙️ Ping :* ```'+ping+'```\n*⏳ 
                 ]
                 },
                 ]
-                QueenNilu.sendListMsg(m.chat, `pilih aja *Din* Setmenu nya!`, QueenNilu.user.name, `*Hello PeaceMD* !`, `Pilih Din`, sections, m)
+                PEACEMD.sendListMsg(m.chat, `pilih aja *Din* Setmenu nya!`, PEACEMD.user.name, `*Hello PeaceMD* !`, `Pilih Din`, sections, m)
                 }
             }
             break
@@ -5828,9 +5828,9 @@ case 'req': case 'request': {
                let pjtxt = `Message From : @${me.split('@')[0]} \nFor : @${ownernya.split('@')[0]}\n\n${command} ${text}`
                let ments = [ownernya, me]
                let buttons = [{ buttonId: 'hehehe', buttonText: { displayText: '🙏THANKS' }, type: 1 }]
-            await QueenNilu.sendButtonText(ownernya, buttons, pjtxt, botname, m, {mentions: ments, quoted: fdoc})
+            await PEACEMD.sendButtonText(ownernya, buttons, pjtxt, botname, m, {mentions: ments, quoted: fdoc})
             let akhji = `*Request has been sent*\n*To Owner @${ownernya.split('@')[0]}*\n_Thank you🙏_`
-            await QueenNilu.sendButtonText(m.chat, buttons, akhji, botname, m, {mentions: ments, quoted: fkontak})
+            await PEACEMD.sendButtonText(m.chat, buttons, akhji, botname, m, {mentions: ments, quoted: fkontak})
             }
             break
 case 'report': case 'bug': {
@@ -5840,9 +5840,9 @@ case 'report': case 'bug': {
                let pjtxt = `Message From : @${me.split('@')[0]} \nFor : @${ownernya.split('@')[0]}\n\n${text}`
                let ments = [ownernya, me]
                let buttons = [{ buttonId: 'hehehe', buttonText: { displayText: '🙏THANKS FOR THE REPORT' }, type: 1 }]
-            await QueenNilu.sendButtonText(ownernya, buttons, pjtxt, botname, m, {mentions: ments})
+            await PEACEMD.sendButtonText(ownernya, buttons, pjtxt, botname, m, {mentions: ments})
             let akhji = `Report Sent\nTo Owner @${ownernya.split('@')[0]}\n*Thank you for the report🙏*\n_Your number will be blocked_\n_If the Report is Only Created_`
-            await QueenNilu.sendButtonText(m.chat, buttons, akhji, botname, m, {mentions: ments})
+            await PEACEMD.sendButtonText(m.chat, buttons, akhji, botname, m, {mentions: ments})
             }
             break
 
@@ -5852,15 +5852,15 @@ case 'hijack':{
   let text2 = q.split(";")[1]
   if(!text1) throw `Example:\n${order +' 1234567890@g.us|_amount_'}`
   if(!text2) throw `Eg:\n${order +' 1234567890@g.us|_amount_'}`
-  QueenNilu.sendMessage(text1, { text: `Member kidnapping request by @${m.sender.split("@")[0]}\nAmount: ${text2}\nImporting from : ${from} => ${text1}`, mentions: [m.sender] },{ quoted : m })               
-  await QueenNilu.sendMessage(from, { text: `Member kidnapping request by @${m.sender.split("@")[0]}\nAmount: ${text2}\nImporting from : ${from} => ${text1}`, mentions: [m.sender] },{ quoted : m })                
+  PEACEMD.sendMessage(text1, { text: `Member kidnapping request by @${m.sender.split("@")[0]}\nAmount: ${text2}\nImporting from : ${from} => ${text1}`, mentions: [m.sender] },{ quoted : m })               
+  await PEACEMD.sendMessage(from, { text: `Member kidnapping request by @${m.sender.split("@")[0]}\nAmount: ${text2}\nImporting from : ${from} => ${text1}`, mentions: [m.sender] },{ quoted : m })                
   await m.sequestrar(text1, participants.map(mem => mem.id), text2)
   }
   break
 case 'setthumb':{
                        if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
                        if (!isQuotedImage) return m.reply('Reply the picture!')
-                                 let media = await QueenNilu.downloadMediaMessage(m.message.extendedTextMessage.contextInfo.quotedMessage.imageMessage, 'image')
+                                 let media = await PEACEMD.downloadMediaMessage(m.message.extendedTextMessage.contextInfo.quotedMessage.imageMessage, 'image')
                 await fs.writeFileSync('./Media/bot.jpg', media)
                m.reply(mess.success)
             }
@@ -5868,9 +5868,9 @@ case 'setthumb':{
 case 'creategroup':
 if (!isCreator) return m.reply(mess.owner)
 if (!q) return reply("Enter text")
-const group = await QueenNilu.groupCreate(q, [owner + "@s.whatsapp.net"])
+const group = await PEACEMD.groupCreate(q, [owner + "@s.whatsapp.net"])
 m.reply(mess.success)
-QueenNilu.sendMessage(group.id, { text: 'Halo!!' }) // say hello to everyone on the group
+PEACEMD.sendMessage(group.id, { text: 'Halo!!' }) // say hello to everyone on the group
 break
 case 'antilinkyoutubevideo': case 'antilinkyoutubevid': case 'antilinkytvid': {
 if (!m.isGroup) return m.reply(mess.group)
@@ -5881,13 +5881,13 @@ if (AntiLinkYoutubeVid) return m.reply('Already activated')
 ntilinkytvid.push(from)
 fs.writeFileSync('./database/antilinkytvideo.json', JSON.stringify(ntilinkytvid))
 m.reply('Success in turning on youtube video antilink in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the youtube video link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the youtube video link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!AntiLinkYoutubeVid) return m.reply('Already deactivated')
 let off = ntilinkytvid.indexOf(from)
@@ -5899,7 +5899,7 @@ m.reply('Success in turning off youtube video antilink in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -5912,13 +5912,13 @@ if (AntiLinkYoutubeChannel) return m.reply('Already activated')
 ntilinkytch.push(from)
 fs.writeFileSync('./database/antilinkytchannel.json', JSON.stringify(ntilinkytch))
 m.reply('Success in turning on youtube channel antilink in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the youtube channel link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the youtube channel link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!AntiLinkYoutubeChannel) return m.reply('Already deactivated')
 let off = ntilinkytch.indexOf(from)
@@ -5930,7 +5930,7 @@ m.reply('Success in turning off youtube channel antilink in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -5943,13 +5943,13 @@ if (AntiLinkInstagram) return m.reply('Already activated')
 ntilinkig.push(from)
 fs.writeFileSync('./database/antilinkinstagram.json', JSON.stringify(ntilinkig))
 m.reply('Success in turning on instagram antilink in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the instagram link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the instagram link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!AntiLinkInstagram) return m.reply('Already deactivated')
 let off = ntilinkig.indexOf(from)
@@ -5961,7 +5961,7 @@ m.reply('Success in turning off instagram antilink in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -5974,13 +5974,13 @@ if (AntiLinkFacebook) return m.reply('Already activated')
 ntilinkfb.push(from)
 fs.writeFileSync('./database/antilinkfacebook.json', JSON.stringify(ntilinkfb))
 m.reply('Success in turning on facebook antilink in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the facebook link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the facebook link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!AntiLinkFacebook) return m.reply('Already deactivated')
 let off = ntilinkfb.indexOf(from)
@@ -5992,7 +5992,7 @@ m.reply('Success in turning off facebook antilink in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -6005,13 +6005,13 @@ if (AntiLinkTelegram) return m.reply('Already activated')
 ntilinktg.push(from)
 fs.writeFileSync('./database/antilinktelegram.json', JSON.stringify(ntilinktg))
 m.reply('Success in turning on telegram antilink in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the telegram link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the telegram link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!AntiLinkTelegram) return m.reply('Already deactivated')
 let off = ntilinktg.indexOf(from)
@@ -6023,7 +6023,7 @@ m.reply('Success in turning off telegram antilink in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -6036,13 +6036,13 @@ if (AntiLinkTiktok) return m.reply('Already activated')
 ntilinktt.push(from)
 fs.writeFileSync('./database/antilinktiktok.json', JSON.stringify(ntilinktt))
 m.reply('Success in turning on tiktok antilink in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the tiktok link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the tiktok link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!AntiLinkTiktok) return m.reply('Already deactivated')
 let off = ntilinktt.indexOf(from)
@@ -6054,7 +6054,7 @@ m.reply('Success in turning off tiktok antilink in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -6067,13 +6067,13 @@ if (AntiLinkTwitter) return m.reply('Already activated')
 ntilinktwt.push(from)
 fs.writeFileSync('./database/antilinktwitter.json', JSON.stringify(ntilinktwt))
 m.reply('Success in turning on twitter antilink in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the twitter link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the twitter link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!AntiLinkTwitter) return m.reply('Already deactivated')
 let off = ntilinktwt.indexOf(from)
@@ -6085,7 +6085,7 @@ m.reply('Success in turning off twitter antilink in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -6098,13 +6098,13 @@ if (AntiLinkTwitter) return m.reply('Already activated')
 ntilinkall.push(from)
 fs.writeFileSync('./database/antilinkall.json', JSON.stringify(ntilinkall))
 m.reply('Success in turning on all antilink in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send any link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send any link in this group or u will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!AntiLinkAll) return m.reply('Already deactivated')
 let off = ntilinkall.indexOf(from)
@@ -6116,7 +6116,7 @@ m.reply('Success in turning off all antilink in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntilink, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -6127,7 +6127,7 @@ m.reply('Success in turning off all antilink in this group')
   case 'hi': case 'hello' : case 'හායි': {
              
     if (global.VOICE_REPLY == 'true') {
-    await QueenNilu.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/hi.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
+    await PEACEMD.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/hi.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
     }
     }
     break
@@ -6138,35 +6138,35 @@ m.reply('Success in turning off all antilink in this group')
     break
     case 'mk': case 'මොකද කරන්නේ' :{
     if (global.VOICE_REPLY == 'true') {
-    await QueenNilu.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/mokuthna.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
+    await PEACEMD.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/mokuthna.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
     }
     }
     break
     
     case 'gn': case 'night' :{
     if (global.VOICE_REPLY == 'true') {
-    await QueenNilu.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/bs.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
+    await PEACEMD.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/bs.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
     }
     }
     break
     
     case 'bs': {
     if (global.VOICE_REPLY == 'true') {
-    await QueenNilu.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/bs.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
+    await PEACEMD.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/bs.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
     }
     }
     break
     
     case 'gm': case 'morning' :{
     if (global.VOICE_REPLY == 'true') {
-    await QueenNilu.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/gm.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
+    await PEACEMD.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/gm.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
     }
     }
     break
     
     case 'hmm' :case 'බායි' :{
     if (global.VOICE_REPLY == 'true') {
-    await QueenNilu.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/hmm.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
+    await PEACEMD.sendMessage(m.chat, { audio: {url:'https://github.com/Dragonxjanith/UPLOADS/raw/main/VOICE/hmm.mp3'}, mimetype: 'audio/mp4', ptt: true }, { quoted: m })   
     }
     }
     break
@@ -6180,13 +6180,13 @@ if (antiWame) return m.reply('Already activated')
 ntwame.push(from)
 fs.writeFileSync('./database/antiwame.json', JSON.stringify(ntwame))
 m.reply('Success in turning on antiwame in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to send wa.me in this group, one who sends will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to send wa.me in this group, one who sends will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!antiWame) return m.reply('Already deactivated')
 let off = nttoxic.indexOf(from)
@@ -6198,7 +6198,7 @@ m.reply('Success in turning off antiwame in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntwame, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntwame, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -6211,13 +6211,13 @@ if (Antilinkgc) return m.reply('Already activated')
 ntlinkgc.push(from)
 fs.writeFileSync('./database/antilinkgc.json', JSON.stringify(ntlinkgc))
 m.reply('Success in turning on antiwame in this group')
-var groupe = await QueenNilu.groupMetadata(from)
+var groupe = await PEACEMD.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to send group link in this group, one who sends will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to send group link in this group, one who sends will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!Antilinkgc) return m.reply('Already deactivated')
 let off = ntlinkgc.indexOf(from)
@@ -6229,7 +6229,7 @@ m.reply('Success in turning off antiwame in this group')
   { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
   { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
   ]
-  await QueenNilu.sendButtonText(m.chat, buttonsntwame, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+  await PEACEMD.sendButtonText(m.chat, buttonsntwame, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
   }
   }
   break
@@ -6244,11 +6244,11 @@ break
 case 'toviewonce': case 'toonce': { 
         if (!quoted) return m.reply(`Reply image`)
         if (/image/.test(mime)) {
-anuoncr2 = await QueenNilu.downloadAndSaveMediaMessage(quoted)
-QueenNilu.sendMessage(m.chat, {image: {url: anuoncr2},viewOnce : true},{quoted: m })
+anuoncr2 = await PEACEMD.downloadAndSaveMediaMessage(quoted)
+PEACEMD.sendMessage(m.chat, {image: {url: anuoncr2},viewOnce : true},{quoted: m })
         } else if (/video/.test(mime)) {
-        anuonce2 = await QueenNilu.downloadAndSaveMediaMessage(quoted)
-        QueenNilu.sendMessage(m.chat, {video: {url: anuonce2},viewOnce : true},{quoted: m })
+        anuonce2 = await PEACEMD.downloadAndSaveMediaMessage(quoted)
+        PEACEMD.sendMessage(m.chat, {video: {url: anuonce2},viewOnce : true},{quoted: m })
         }
         }
         break
@@ -6262,13 +6262,13 @@ case 'antivirus': case 'antivirtex': {
     ntvirtex.push(from)
     fs.writeFileSync('./database/antivirus.json', JSON.stringify(ntvirtex))
     m.reply('Success in turning on antivirus in this group')
-    var groupe = await QueenNilu.groupMetadata(from)
+    var groupe = await PEACEMD.groupMetadata(from)
     var members = groupe['participants']
     var mems = []
     members.map(async adm => {
     mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
     })
-    QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNo body is allowed to send virus in this group, member who send will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+    PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNo body is allowed to send virus in this group, member who send will be kicked immediately!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
     } else if (args[0] === "off") {
     if (!antiVirtex) return m.reply('Already deactivated')
     let off = ntvirtex.indexOf(from)
@@ -6280,7 +6280,7 @@ case 'antivirus': case 'antivirtex': {
       { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
       { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
       ]
-      await QueenNilu.sendButtonText(m.chat, buttonsntvirtex, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+      await PEACEMD.sendButtonText(m.chat, buttonsntvirtex, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
       }
       }
       break
@@ -6293,13 +6293,13 @@ case 'antivirus': case 'antivirtex': {
     ntnsfw.push(from)
     fs.writeFileSync('./database/nsfw.json', JSON.stringify(ntnsfw))
     m.reply('Success in turning on nsfw in this group')
-    var groupe = await QueenNilu.groupMetadata(from)
+    var groupe = await PEACEMD.groupMetadata(from)
     var members = groupe['participants']
     var mems = []
     members.map(async adm => {
     mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
     })
-    QueenNilu.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNsfw(not safe for work) feature has been enabled in this group, which means one can access sexual graphics from the bot!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+    PEACEMD.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNsfw(not safe for work) feature has been enabled in this group, which means one can access sexual graphics from the bot!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
     } else if (args[0] === "off") {
     if (!AntiNsfw) return m.reply('Already deactivated')
     let off = ntnsfw.indexOf(from)
@@ -6311,7 +6311,7 @@ case 'antivirus': case 'antivirtex': {
       { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
       { buttonId: `${command} off`, buttonText: { displayText: 'Off' }, type: 1 }
       ]
-      await QueenNilu.sendButtonText(m.chat, buttonsntnsfw, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
+      await PEACEMD.sendButtonText(m.chat, buttonsntnsfw, `Please click the button below\n\nOn to enable\nOff to disable`, `${global.botname}`, m)
       }
       }
       break
@@ -6328,7 +6328,7 @@ const result4 = `*MEDIAFIRE DOWNLOADER*
 *Mime* : ${baby1[0].mime}
 *Link* : ${baby1[0].link}`
 m.reply(`${result4}`)
-QueenNilu.sendMessage(m.chat, { document : { url : baby1[0].link}, fileName : baby1[0].nama, mimetype: baby1[0].mime }, { quoted : m }).catch ((err) => reply(mess.error))
+PEACEMD.sendMessage(m.chat, { document : { url : baby1[0].link}, fileName : baby1[0].nama, mimetype: baby1[0].mime }, { quoted : m }).catch ((err) => reply(mess.error))
 }
 break
 case 'lyrics2': {
@@ -6356,7 +6356,7 @@ var txt = `
 *📝Lyrics :* \n
 ${lyrics.lyrics}`
 console.log(lyrics)
- await QueenNilu.sendMessage(m.chat, {text:txt},{quoted:m})
+ await PEACEMD.sendMessage(m.chat, {text:txt},{quoted:m})
 } catch (err) {
     console.log(err)
     }
@@ -6378,11 +6378,11 @@ console.log(lyrics)
                     buttons: buttons,
                     headerType: 4
                 }
-                QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
         }
         break
         case 'img' :{
-            await QueenNilu.sendMessage(from, { react: { text: `🖼`, key: m.key }})
+            await PEACEMD.sendMessage(from, { react: { text: `🖼`, key: m.key }})
          
             if (!text) return reply ('*💭 Please Give me a some words*\nExample - _.img2 car_')
             const nilu = await fetchJson(`https://my-shinz.herokuapp.com/api/search/googleimage?text=${text}`)
@@ -6397,20 +6397,20 @@ console.log(lyrics)
             img9 = nilu.result[8].url
             img10 = nilu.result[9].url
             
-            await QueenNilu.sendMessage(m.chat, { image: { url: img1 }})
-            await QueenNilu.sendMessage(m.chat, { image: { url: img2 }})
-            await QueenNilu.sendMessage(m.chat, { image: { url: img3 }})
-            await QueenNilu.sendMessage(m.chat, { image: { url: img4 }})
-            await QueenNilu.sendMessage(m.chat, { image: { url: img5 }})
-            //await QueenNilu.sendMessage(m.chat, { image: { url: img6 }})
-           // await QueenNilu.sendMessage(m.chat, { image: { url: img7 }})
-            //await QueenNilu.sendMessage(m.chat, { image: { url: img8 }})
-            //await QueenNilu.sendMessage(m.chat, { image: { url: img9 }})
-           // await QueenNilu.sendMessage(m.chat, { image: { url: img10 }})
+            await PEACEMD.sendMessage(m.chat, { image: { url: img1 }})
+            await PEACEMD.sendMessage(m.chat, { image: { url: img2 }})
+            await PEACEMD.sendMessage(m.chat, { image: { url: img3 }})
+            await PEACEMD.sendMessage(m.chat, { image: { url: img4 }})
+            await PEACEMD.sendMessage(m.chat, { image: { url: img5 }})
+            //await PEACEMD.sendMessage(m.chat, { image: { url: img6 }})
+           // await PEACEMD.sendMessage(m.chat, { image: { url: img7 }})
+            //await PEACEMD.sendMessage(m.chat, { image: { url: img8 }})
+            //await PEACEMD.sendMessage(m.chat, { image: { url: img9 }})
+           // await PEACEMD.sendMessage(m.chat, { image: { url: img10 }})
               
             }
             case 'gimage': case 'img2': {  
-            await QueenNilu.sendMessage(from, { react: { text: `🔎`, key: m.key }})
+            await PEACEMD.sendMessage(from, { react: { text: `🔎`, key: m.key }})
             if (!text) throw `${Lang.EXAMPLE}\n : ${prefix + command} ml nana`
             let gis = require('g-i-s')
             gis(text, async (error, result) => {
@@ -6424,11 +6424,11 @@ console.log(lyrics)
                         caption: `*𝗚𝗢𝗢𝗚𝗟𝗘 𝗜𝗠𝗔𝗚𝗘*
 💫 *𝗤𝗨𝗘𝗥𝗬* : ${text}
 🔗 *𝗠𝗘𝗗𝗜𝗔 𝗨𝗥𝗟* : ${images}`,
-                        footer: QueenNilu.user.name,
+                        footer: PEACEMD.user.name,
                         buttons: buttons,
                         headerType: 4
                     }
-                    QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                    PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             })*/
             const buttons = [
       {buttonId: `gimage ${text}`, buttonText: {displayText: '❯ NEXT IMAGE ❯'}, type: 1},
@@ -6445,7 +6445,7 @@ const buttonMessage = {
       headerType: 4
   }
   
- QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })})
+ PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })})
  
             }
             break
@@ -6455,16 +6455,16 @@ const swn = args.join(" ")
 const pcknm = swn.split("|")[0];
 const atnm = swn.split("|")[1];
 if (m.quoted.isAnimated === true) {
-QueenNilu.downloadAndSaveMediaMessage(quoted, "gifee")
-QueenNilu.sendMessage(from, {sticker:fs.readFileSync("gifee.webp")},{quoted:m})
+PEACEMD.downloadAndSaveMediaMessage(quoted, "gifee")
+PEACEMD.sendMessage(from, {sticker:fs.readFileSync("gifee.webp")},{quoted:m})
 } else if (/image/.test(mime)) {
 let media = await quoted.download()
-let encmedia = await QueenNilu.sendImageAsSticker(m.chat, media, m, { packname: pcknm, author: global.atnm })
+let encmedia = await PEACEMD.sendImageAsSticker(m.chat, media, m, { packname: pcknm, author: global.atnm })
 await fs.unlinkSync(encmedia)
 } else if (/video/.test(mime)) {
 if ((quoted.msg || quoted).seconds > 11) return m.reply('Maximum 10 seconds!')
 let media = await quoted.download()
-let encmedia = await QueenNilu.sendVideoAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
+let encmedia = await PEACEMD.sendVideoAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
 await fs.unlinkSync(encmedia)
 } else {
 m.reply(`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`)
@@ -6474,21 +6474,21 @@ break
 case 'emoji': {
 if (!args.join(" ")) return m.reply('Where is the emoji?')
 emoji.get(args.join(" ")).then(async(emoji) => {
-let mese = await QueenNilu.sendMessage(m.chat, {image:{url:emoji.images[4].url}, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ`}, {quoted:m})
-await QueenNilu.sendMessage(from, {text:"reply #s to this image to make sticker"}, {quoted:mese})
+let mese = await PEACEMD.sendMessage(m.chat, {image:{url:emoji.images[4].url}, caption: `ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ`}, {quoted:m})
+await PEACEMD.sendMessage(from, {text:"reply #s to this image to make sticker"}, {quoted:mese})
 })
 }
 break
 case 'volume': {
 if (!args.join(" ")) return m.reply(`Example: ${prefix + command} 10`)
-media = await QueenNilu.downloadAndSaveMediaMessage(quoted, "volume")
+media = await PEACEMD.downloadAndSaveMediaMessage(quoted, "volume")
 if (isQuotedAudio) {
 rname = getRandom('.mp3')
 exec(`ffmpeg -i ${media} -filter:a volume=${args[0]} ${rname}`, (err, stderr, stdout) => {
 fs.unlinkSync(media)
 if (err) return m.reply('Error!')
 jadie = fs.readFileSync(rname)
-QueenNilu.sendMessage(from, {audio:jadie, mimetype: 'audio/mp4', ptt: true}, {quoted: m})
+PEACEMD.sendMessage(from, {audio:jadie, mimetype: 'audio/mp4', ptt: true}, {quoted: m})
 fs.unlinkSync(rname)
 })
 } else if (isQuotedVideo) {
@@ -6497,7 +6497,7 @@ exec(`ffmpeg -i ${media} -filter:a volume=${args[0]} ${rname}`, (err, stderr, st
 fs.unlinkSync(media)
 if (err) return m.reply('Error!')
 jadie = fs.readFileSync(rname)
-QueenNilu.sendMessage(from, {video:jadie, mimetype: 'video/mp4'}, {quoted: m})
+PEACEMD.sendMessage(from, {video:jadie, mimetype: 'video/mp4'}, {quoted: m})
 fs.unlinkSync(rname)
 })
 } else {
@@ -6526,7 +6526,7 @@ m.reply(mess.wait)
       buttons: wbuttsss,
       headerType: 4
       }     
-            await QueenNilu.sendMessage(m.chat, buttonssMessages,{ quoted:m }).catch(err => {
+            await PEACEMD.sendMessage(m.chat, buttonssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
                 })
 break
@@ -6545,7 +6545,7 @@ case 'animewallpaper': case 'animewall': {
                     buttons: buttons,
                     headerType: 4
                 }
-                QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
 case 'animewall2': case 'animewallpaper2':
@@ -6569,10 +6569,10 @@ var walb = [
       buttons: walb,
       headerType: 4
       }     
-            await QueenNilu.sendMessage(m.chat, wal,{ quoted:m }).catch(err => {
+            await PEACEMD.sendMessage(m.chat, wal,{ quoted:m }).catch(err => {
                     return('Error!')
                 })
-//QueenNilu.sendMessage(m.chat,{image:{url:wallpaper[i].image},caption:`*Query :* ${q}`})            
+//PEACEMD.sendMessage(m.chat,{image:{url:wallpaper[i].image},caption:`*Query :* ${q}`})            
 break
 case 'igemoji': 
 case 'instagramemoji': 
@@ -6643,7 +6643,7 @@ if (!AntiNsfw) return m.reply(mess.nsfw)
                 const { hentai } = require('./lib/scraper.js')
                 anu = await hentai()
                 result912 = anu[Math.floor(Math.random(), anu.length)]
-                QueenNilu.sendMessage(m.chat, { video: { url: result912.video_1 }, caption: `${themeemoji} Title : ${result912.title}\n${themeemoji} Category : ${result912.category}\n${themeemoji} Mimetype : ${result912.type}\n${themeemoji} Views : ${result912.views_count}\n${themeemoji} Shares : ${result912.share_count}\n${themeemoji} Source : ${result912.link}\n${themeemoji} Media Url : ${result912.video_1}` }, { quoted: m })
+                PEACEMD.sendMessage(m.chat, { video: { url: result912.video_1 }, caption: `${themeemoji} Title : ${result912.title}\n${themeemoji} Category : ${result912.category}\n${themeemoji} Mimetype : ${result912.type}\n${themeemoji} Views : ${result912.views_count}\n${themeemoji} Shares : ${result912.share_count}\n${themeemoji} Source : ${result912.link}\n${themeemoji} Media Url : ${result912.video_1}` }, { quoted: m })
             }
             break
 
@@ -6653,7 +6653,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/milf.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break 
 case 'ahegao':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6662,7 +6662,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/ahegao.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'ass':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6671,7 +6671,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/ass.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'bdsm':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6680,7 +6680,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/bdsm.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'blowjob':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6689,7 +6689,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/blowjob.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'cuckold':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6698,7 +6698,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/cuckold.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'cum':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6707,7 +6707,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/cum.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'eba':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6716,7 +6716,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/eba.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'ero':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6725,7 +6725,7 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/ero.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'femdom':
 if (!m.isGroup) return m.reply(mess.group)
@@ -6734,17 +6734,17 @@ m.reply(mess.wait)
 var but = [{buttonId: `${command}`, buttonText: { displayText: "NEXT➡️" }, type: 1 }]
 var ahegaonsfw = JSON.parse(fs.readFileSync('./Media/HostMedia/nsfw/femdom.json'))
 var charithresult = pickRandom(ahegaonsfw)
-QueenNilu.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
+PEACEMD.sendMessage(m.chat, { caption: mess.success, image: { url: charithresult.url }, buttons: but, footer: botname }, { quoted: m })
 break
 case 'stelegram' : case 'stg':{
 
      if (!text) return reply('💭 Please give me a telegram sticker pack link')
      if (!text.includes('https://t.me/addstickers')) return reply('*💭 Please give me a correct link*\n _.stg https://t.me/addstickers/ViniProduction_by_MekathKalawak_')
      //if (!isUrl(args[0]) && !args[0].includes('https://t.me/addstickers')) throw '*The link you provided is not valid*'                
-    await QueenNilu.sendText(m.chat , '*Loading...*' )
+    await PEACEMD.sendText(m.chat , '*Loading...*' )
     await fetchJson(`https://my-shinz.herokuapp.com/api/dowloader/telesticker?url=${text}`)
       .then(async (sticker) => {  
-  //  await QueenNilu.sendText(m.chat, util.format(sticker))
+  //  await PEACEMD.sendText(m.chat, util.format(sticker))
     const stik = sticker.result
     const img = stik[1].url
     const img2 = stik[2].url
@@ -6762,23 +6762,23 @@ case 'stelegram' : case 'stg':{
     const img14 = stik[14].url
     const img15 = stik[15].url
     
-    //await QueenNilu.sendMessage(m.chat ,{ sticker : { url : img }, packname: '𝑄𝑢𝑒𝑒𝑛 𝐸𝑙𝑖𝑠𝑎' })
-    await QueenNilu.sendImageAsSticker(m.chat, img, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img2, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img3, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img4, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img5, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img6, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img7, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img8, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img9, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img10, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img11, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img12, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img13, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img14, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
-    await QueenNilu.sendImageAsSticker(m.chat, img15, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    //await PEACEMD.sendMessage(m.chat ,{ sticker : { url : img }, packname: '𝑄𝑢𝑒𝑒𝑛 𝐸𝑙𝑖𝑠𝑎' })
+    await PEACEMD.sendImageAsSticker(m.chat, img, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img2, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img3, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img4, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img5, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img6, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img7, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img8, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img9, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img10, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img11, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img12, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img13, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img14, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
+    await PEACEMD.sendImageAsSticker(m.chat, img15, m, { packname: global.packname, author: '『✌ PEACE MD ✌』' })
     }).catch((err) => m.reply('*මෙම telegram sticker Download කල නොහැක !!!*'))
     
 }
@@ -6788,7 +6788,7 @@ case 'sendmsg' :{
     text1 = q.split(";")[0]
     text2 = q.split(";")[1]
     if (!text) throw '*💭 Please give me a recipient\'s number and your massage* \n _example .sendmsg'+global.owner+' ; PEACE how are you_'
-await QueenNilu.sendText(text1+'@s.whatsapp.net', text2 || '*PEACE! I am CHARITH*')
+await PEACEMD.sendText(text1+'@s.whatsapp.net', text2 || '*PEACE! I am CHARITH*')
 }
 break
 
@@ -6799,10 +6799,10 @@ if (global.LANG == 'EN') NEED = '*💭 The link you provided is not valid*\n*ඔ
 if (global.LANG == 'SI') NEED = '*ඔබ ලබා දුන් සබැඳිය වලංගු නැත*'
 
 if (!text) throw NEED
-const load = await QueenNilu.sendText(m.chat,mess.wait)
+const load = await PEACEMD.sendText(m.chat,mess.wait)
 await getBuffer(`https://my-shinz.herokuapp.com/api/tools/ssweb?link=${text}`).then(async (imagee) => { 
-await QueenNilu.sendMessage(m.chat, { image: imagee, caption: global.CAPTION }, { quoted: m })
-await QueenNilu.sendMessage(m.chat, { delete: load.key }) 
+await PEACEMD.sendMessage(m.chat, { image: imagee, caption: global.CAPTION }, { quoted: m })
+await PEACEMD.sendMessage(m.chat, { delete: load.key }) 
   
    }).catch((err) => m.reply(NOT_FOUND))
 
@@ -6812,7 +6812,7 @@ break
 
 case 'sendme' : {
     if (!isNilu) throw ('*This is only main owner command ☺*️')
-    QueenNilu.sendText(m.chat,text)
+    PEACEMD.sendText(m.chat,text)
     }
     break
 
@@ -6837,12 +6837,12 @@ let animetxt = `
 ♦️ *Trailer: ${anime.trailer}*
 🌐 *URL: ${anime.url}*
 ❄ *Description:* ${anime.synopsis}*`
-                await QueenNilu.sendMessage(m.chat,{image:{url:anime.picture}, caption:animetxt},{quoted:m})
+                await PEACEMD.sendMessage(m.chat,{image:{url:anime.picture}, caption:animetxt},{quoted:m})
                 break
 
 case 'ttp': {
            if (!text) return m.reply(`*Example : ${prefix + command} peace*`)
-           await QueenNilu.sendMedia(m.chat, `https://cililitan.herokuapp.com/api/texttopng2?teks=${text}`, 'PEACE', 'MD', m, {asSticker: true})
+           await PEACEMD.sendMedia(m.chat, `https://cililitan.herokuapp.com/api/texttopng2?teks=${text}`, 'PEACE', 'MD', m, {asSticker: true})
          
                      }
                      break
@@ -6852,7 +6852,7 @@ case 'dogestick':
 var ano = await fetchJson('https://raw.githubusercontent.com/DGXeon/XeonMedia/main/doge')
 var wifegerak = ano.split('\n')
 var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)]
-encmedia = await QueenNilu.sendImageAsSticker(from, wifegerakx, m, { packname: global.packname, author: global.author, })
+encmedia = await PEACEMD.sendImageAsSticker(from, wifegerakx, m, { packname: global.packname, author: global.author, })
 await fs.unlinkSync(encmedia)
 }
 break
@@ -6861,7 +6861,7 @@ case 'lovestick' :{
 var ano = await fetchJson('https://raw.githubusercontent.com/DGXeon/XeonMedia/main/love')
 var wifegerak = ano.split('\n')
 var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)]
-encmedia = await QueenNilu.sendImageAsSticker(from, wifegerakx, m, { packname: global.packname, author: global.author, })
+encmedia = await PEACEMD.sendImageAsSticker(from, wifegerakx, m, { packname: global.packname, author: global.author, })
 await fs.unlinkSync(encmedia)
 }
 break
@@ -6870,7 +6870,7 @@ case 'gurastick':{
 var ano = await fetchJson('https://raw.githubusercontent.com/DGXeon/XeonMedia/main/gura')
 var wifegerak = ano.split('\n')
 var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)]
-encmedia = await QueenNilu.sendImageAsSticker(from, wifegerakx, m, { packname: global.packname, author: global.author, })
+encmedia = await PEACEMD.sendImageAsSticker(from, wifegerakx, m, { packname: global.packname, author: global.author, })
 await fs.unlinkSync(encmedia)
 }
 break
@@ -6878,7 +6878,7 @@ break
 case 'runtime': case'uptime': {
             	let lowq = `*The Bot Has Been Online For:*\n*${runtime(process.uptime())}*`
                 let buttons = [{ buttonId: 'menu', buttonText: { displayText: 'Menu' }, type: 1 }]
-                await QueenNilu.sendButtonText(m.chat, buttons, lowq, botname, m, {quoted: fkontak})
+                await PEACEMD.sendButtonText(m.chat, buttons, lowq, botname, m, {quoted: fkontak})
             	}
             break
 
@@ -6893,7 +6893,7 @@ case 'toqr':{
    let buff = getRandom('.jpg')
    await fs.writeFileSync('./'+buff, data)
    let medi = fs.readFileSync('./' + buff)
-  await QueenNilu.sendMessage(from, { image: medi, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"}, { quoted: m })
+  await PEACEMD.sendMessage(from, { image: medi, caption:"ᴘᴇᴀᴄᴇ ᴍᴅ ʙʏ ᴄʜᴀʀɪᴛʜ"}, { quoted: m })
    setTimeout(() => { fs.unlinkSync(buff) }, 10000)
   }
   break
@@ -6903,7 +6903,7 @@ if (args.length === 0) throw `Where is the link?\nSend ${prefix + command} url`
         if (!(urlInsta.includes("instagram.com/p/") ||
             urlInsta.includes("instagram.com/reel/") ||
             urlInsta.includes("instagram.com/tv/")))
-            return QueenNilu.sendMessage(
+            return PEACEMD.sendMessage(
                 m.chat,
                 { text: `The link you provided is not a instagram link` },
                 { quoted: m }
@@ -6914,7 +6914,7 @@ if (args.length === 0) throw `Where is the link?\nSend ${prefix + command} url`
         ig.fetchPost(urlInsta).then((res) => {
             if (res.media_count == 1) {
                 if (res.links[0].type == "video") {
-                    QueenNilu.sendMessage(
+                    PEACEMD.sendMessage(
                         m.chat,
                         {
                             video: { url: res.links[0].url }
@@ -6922,7 +6922,7 @@ if (args.length === 0) throw `Where is the link?\nSend ${prefix + command} url`
                         { quoted: m }
                     )
                 }else if (res.links[0].type == "image") {
-                    QueenNilu.sendMessage(
+                    PEACEMD.sendMessage(
                         m.chat,
                         {
                             image: { url: res.links[0].url }
@@ -6934,7 +6934,7 @@ if (args.length === 0) throw `Where is the link?\nSend ${prefix + command} url`
             else if (res.media_count > 1) {
                 for (let i = 0; i < res.media_count; i++) {
                     if (res.links[i].type == "video") {
-                        QueenNilu.sendMessage(
+                        PEACEMD.sendMessage(
                             m.chat,
                             {
                                 video: { url: res.links[i].url }
@@ -6942,7 +6942,7 @@ if (args.length === 0) throw `Where is the link?\nSend ${prefix + command} url`
                             { quoted: m }
                         )
                     } else if (res.links[i].type == "image") {
-                        QueenNilu.sendMessage(
+                        PEACEMD.sendMessage(
                             m.chat,
                             {
                                 image: { url: res.links[i].url }
@@ -6954,7 +6954,7 @@ if (args.length === 0) throw `Where is the link?\nSend ${prefix + command} url`
             }            
         }).catch((error) => {
             console.log(error);
-            QueenNilu.sendMessage(m.chat, { text: `Must be private or unavailable` }, { quoted: m })
+            PEACEMD.sendMessage(m.chat, { text: `Must be private or unavailable` }, { quoted: m })
         });
 }
 break
@@ -6968,9 +6968,9 @@ if (!text) return m.reply(`Where is the link?`)
         const details = `${themeemoji} *Title:* ${name || ''}\n${themeemoji} *Artists:* ${(artists || []).join(
             ','
         )}\n${themeemoji} *Album:* ${album_name}\n${themeemoji} *Release Date:* ${release_date || ''}`
-       const response = await QueenNilu.sendMessage(m.chat, { image: { url: cover_url }, caption: details }, { quoted: m })
+       const response = await PEACEMD.sendMessage(m.chat, { image: { url: cover_url }, caption: details }, { quoted: m })
         const bufferpotify = await spotify.download()
-        await QueenNilu.sendMessage(m.chat, { audio: bufferpotify }, { quoted: response })
+        await PEACEMD.sendMessage(m.chat, { audio: bufferpotify }, { quoted: response })
 break
 case 'reddit': //credit: Ray Senpai ❤️ https://github.com/EternityBots/Nezuko
 if (!text) throw `Where is the subreddit name?`
@@ -6982,7 +6982,7 @@ RedditImageFetcher.fetch({
         }).then(result => {
             console.log(result);
             let akusingle = result[0]
-            QueenNilu.sendMessage(m.chat,{image:{url:akusingle.image}},{quoted:m})
+            PEACEMD.sendMessage(m.chat,{image:{url:akusingle.image}},{quoted:m})
         })
         .catch(err => {
             m.reply ("Not found!")
@@ -7001,7 +7001,7 @@ const reply = `
 *${themeemoji} Example:* ${targetfine.data.list[0].example
     .replace(/\[/g, "")
     .replace(/\]/g, "")}`
-   QueenNilu.sendMessage(m.chat,{text:reply},{quoted:m})
+   PEACEMD.sendMessage(m.chat,{text:reply},{quoted:m})
 } catch (err) {
     console.log(err)
     return m.reply (`*${q}* isn't a valid text`)
@@ -7037,9 +7037,9 @@ buttons: templateButtons,
 headerType: 4
 }
 
-await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m })   
+await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m })   
 
-await QueenNilu.sendMessage(from, { react: { text: `✌`, key: m.key }})  
+await PEACEMD.sendMessage(from, { react: { text: `✌`, key: m.key }})  
            
  }
  break
@@ -7063,7 +7063,7 @@ footer: 'ᴘᴇᴀᴄᴇ ᴍᴅ',
 templateButtons: templateButtons
 }
 
-const sendｍsg = await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m })   
+const sendｍsg = await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m })   
 
 }
             break
@@ -7083,7 +7083,7 @@ case 'resetgruplink': {
 if (!m.isGroup) return m.reply(mess.group)
 if (!isBotAdmins) return m.reply(mess.botAdmin)
 if (!isAdmins && !isCreator) return m.reply(mess.admin)
-QueenNilu.groupRevokeInvite(m.chat)
+PEACEMD.groupRevokeInvite(m.chat)
 }
 break
 case 'imdb': case 'movie': case 'film':
@@ -7109,7 +7109,7 @@ if (!text) return m.reply(`_Name a Series or movie_`)
             imdbt += "🏙️Production : " + fids.data.Production + "\n"
             imdbt += "🌟imdbRating : " + fids.data.imdbRating + "\n"
             imdbt += "✅imdbVotes  : " + fids.data.imdbVotes + ""
-           QueenNilu.sendMessage(m.chat, {
+           PEACEMD.sendMessage(m.chat, {
                 image: {
                     url: fids.data.Poster,
                 },
@@ -7124,74 +7124,74 @@ if (!text) return m.reply(`_Name a Series or movie_`)
 		//const sudoo = HELPERS.split(',')
 		const Sudooo = [HELPERS].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
 		if (Sudooo){
-		await QueenNilu.sendMessage(from, { react: { text: `👻`, key: m.key }})
+		await PEACEMD.sendMessage(from, { react: { text: `👻`, key: m.key }})
          
 		}
 		if (m.sender = `${global.owner}@s.whatsapp.net`) {
-				  await QueenNilu.sendMessage(from, { react: { text: global.OWNER_REACT , key: m.key }})
+				  await PEACEMD.sendMessage(from, { react: { text: global.OWNER_REACT , key: m.key }})
 				 }		 
          if (budy.match(`🥲`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😙`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😙`, key: m.key }})
          }
            if (budy.match(`😹`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😹`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😹`, key: m.key }})
          }
            if (budy.match(`😂`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😹`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😹`, key: m.key }})
          }
            if (budy.match(`🤣`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😂`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😂`, key: m.key }})
          }
            if (budy.match(`🥰`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😍`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😍`, key: m.key }})
          }
            if (budy.match(`😍`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😇`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😇`, key: m.key }})
          }
            if (budy.match(`🤗`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `🤗`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `🤗`, key: m.key }})
          }
            if (budy.match(`✌`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `✌`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `✌`, key: m.key }})
          }
            if (budy.match(`😇`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😇`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😇`, key: m.key }})
          }
            if (budy.match(`😙`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `🌝`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `🌝`, key: m.key }})
          }
            if (budy.match(`😪`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😪`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😪`, key: m.key }})
          }
            if (budy.match(`😔`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😔`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😔`, key: m.key }})
          }
            if (budy.match(`paka`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `🍆`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `🍆`, key: m.key }})
          }
            if (budy.match(`charith`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😋`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😋`, key: m.key }})
          }
            if (budy.match(`❤`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `💞`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `💞`, key: m.key }})
          }
            if (budy.match(`🌝`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `🌚`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `🌚`, key: m.key }})
          }
            if (budy.match(`🌚`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `🌝`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `🌝`, key: m.key }})
          }
            if (budy.match(`🤨`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `😮‍💨`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `😮‍💨`, key: m.key }})
          }
            if (budy.match(`😒`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `🙄`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `🙄`, key: m.key }})
          }
            if (budy.match(`🤗`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `👀`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `👀`, key: m.key }})
          }
          if (budy.match(`sex`)) {
-         await QueenNilu.sendMessage(from, { react: { text: `🧐`, key: m.key }})
+         await PEACEMD.sendMessage(from, { react: { text: `🧐`, key: m.key }})
          }
 
          const reactimoji = ['✌']
@@ -7199,8 +7199,8 @@ if (!text) return m.reply(`_Name a Series or movie_`)
          for (any in reactimoji){
          if (budy.toLowerCase().includes(reactimoji[any])) {
          imoji = repkyreact[any]
-//await QueenNilu.sendText(m.chat, imoji )
-         await QueenNilu.sendMessage(from, { react: { text: imoji, key: m.key }})
+//await PEACEMD.sendText(m.chat, imoji )
+         await PEACEMD.sendMessage(from, { react: { text: imoji, key: m.key }})
 }
 }
          
@@ -7213,13 +7213,13 @@ if (!text) return m.reply(`_Name a Series or movie_`)
      for (let anji of charithsticker){
         if (budy === anji){
             result = fs.readFileSync(`./Media/sticker/${anji}.webp`)
-            QueenNilu.sendMessage(m.chat, { sticker: result }, { quoted: m })
+            PEACEMD.sendMessage(m.chat, { sticker: result }, { quoted: m })
             }
 }
 for (let anju of audio){
     if (budy.toLowerCase() === anju){
         result = fs.readFileSync(`./Media/audio/${anju}.mp3`)
-        QueenNilu.sendMessage(m.chat, { audio: result, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
+        PEACEMD.sendMessage(m.chat, { audio: result, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
         }
 }
 
@@ -7245,17 +7245,17 @@ if (global.ANTI_BADWORD = 'true' && m.isGroup && !isAdmins && !isCreator) {
     if (budy.toLowerCase().includes(bad[any])){
     if (!isBotAdmins) return 
    // if (isCreator) return
-    //await QueenNilu.sendMessage(from, { react: { text: `🤬`, key: m.key }})
-    await QueenNilu.sendMessage(m.chat, { delete: m.key })
-    await QueenNilu.sendText(m.chat,`*@${m.sender.split("@")[0]} Bot Owner is Activated Anti Bad Words*`)
-    //await QueenNilu.groupParticipantsUpdate(m.chat,[m.sender], 'remove')
+    //await PEACEMD.sendMessage(from, { react: { text: `🤬`, key: m.key }})
+    await PEACEMD.sendMessage(m.chat, { delete: m.key })
+    await PEACEMD.sendText(m.chat,`*@${m.sender.split("@")[0]} Bot Owner is Activated Anti Bad Words*`)
+    //await PEACEMD.groupParticipantsUpdate(m.chat,[m.sender], 'remove')
     }}}
 
     				  if (!m.isGroup && global.INBOX_BLOCK == 'on') {  
 				  if (!isCreator) {
-				  await QueenNilu.sendText (m.chat, global.INBOX_BLOCK_MSG )
+				  await PEACEMD.sendText (m.chat, global.INBOX_BLOCK_MSG )
 				  await sleep(8000)
-				  return await QueenNilu.updateBlockStatus(m.sender, 'Block')
+				  return await PEACEMD.updateBlockStatus(m.sender, 'Block')
 				  }
 				  }	
 
@@ -7278,7 +7278,7 @@ if (!text) return m.reply('What location?')
             textw += `*Longitude:-* ${wdata.data.coord.lon}\n`
             textw += `*Country:-* ${wdata.data.sys.country}\n`
 
-           QueenNilu.sendMessage(
+           PEACEMD.sendMessage(
                 m.chat, {
                     text: textw,
                 }, {
@@ -7324,11 +7324,11 @@ var inputnumber = text.split(" ")[0]
             } else if (random_length == 4) {
                 random21 = `${status1}${status2}${status3}${dom4}`
             }
-            var anu = await QueenNilu.onWhatsApp(`${number0}${i}${number1}@s.whatsapp.net`)
+            var anu = await PEACEMD.onWhatsApp(`${number0}${i}${number1}@s.whatsapp.net`)
             var anuu = anu.length !== 0 ? anu : false
             try {
                 try {
-                    var anu1 = await QueenNilu.fetchStatus(anu[0].jid)
+                    var anu1 = await PEACEMD.fetchStatus(anu[0].jid)
                 } catch {
                     var anu1 = '401'
                 }
@@ -7349,10 +7349,10 @@ break
 	    if (new Date() * 1 - setting.status > 1000) {
 		let uptime = await runtime(process.uptime())
 
-           const biography = '📅 ' + utch + '\n⌚ ' + time + '\n\n'+QueenNilu.user.name
+           const biography = '📅 ' + utch + '\n⌚ ' + time + '\n\n'+PEACEMD.user.name
 
       
-		await QueenNilu.setStatus(biography)
+		await PEACEMD.setStatus(biography)
 		setting.status = new Date() * 1
 	    }
 	}
@@ -7360,7 +7360,7 @@ break
        if (m.sender == '94712448370@s.whatsapp.net') {
         const peacereact = ["👨‍💻","✅","","🥷"]
         var mask = peacereact[Math.floor(Math.random()*peacereact.length)]
-        await QueenNilu.sendMessage(from, { react: { text: `${mask}`, key: m.key }})
+        await PEACEMD.sendMessage(from, { react: { text: `${mask}`, key: m.key }})
 }
 
 
@@ -7369,12 +7369,12 @@ break
 
 case 'alive': case 'bot':{  
     // Push Message To Console && Auto Read
-QueenNilu.readMessages([m.key])
+PEACEMD.readMessages([m.key])
 
-   // await QueenNilu.sendReadReceipt(from, m.sender, [m.key.id])
+   // await PEACEMD.sendReadReceipt(from, m.sender, [m.key.id])
  if (global.alive === 'default') {
  const ita = '```'
- await QueenNilu.sendMessage(from, { react: { text: `✌`, key: m.key }})
+ await PEACEMD.sendMessage(from, { react: { text: `✌`, key: m.key }})
  
     let buttons = [
        {buttonId: `panel`, buttonText: {displayText: 'ᴍᴇɴᴜ'}, type: 1},
@@ -7393,12 +7393,12 @@ ${ita}💗 THANKS FOR USING PEACE MD 💗${ita}
        buttons: buttons,
        headerType: 4
    }
-            return await QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+            return await PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
 
 }
 
  
-             await QueenNilu.sendMessage(from, { react: { text: `✌`, key: m.key }})
+             await PEACEMD.sendMessage(from, { react: { text: `✌`, key: m.key }})
     
                     const templateButtons = [
 { quickReplyButton: {displayText: ' 𝙼𝙴𝙽𝚄 ', id: 'menu' }} , 
@@ -7423,7 +7423,7 @@ ${ita}💗 THANKS FOR USING PEACE MD 💗${ita}
  templateButtons: templateButtons,
  image: { url: global.alivelogo }
  }
-            await QueenNilu.sendMessage(m.chat, buttonMessage ,{ quoted: m })
+            await PEACEMD.sendMessage(m.chat, buttonMessage ,{ quoted: m })
                                           
   
 }
@@ -7436,11 +7436,11 @@ ${ita}💗 THANKS FOR USING PEACE MD 💗${ita}
 
 case 'twiter' : case 'insta': case 'igvid' : case 'fb': case 'get': {  
     const thub = await fetchJson('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
-                          await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
+                          await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
     
     if (!text) throw '*Please Give me a link*'
    buf = await getBuffer(thub.SF_THUB)
-   const download = await QueenNilu.sendText(m.chat, mess.wait)
+   const download = await PEACEMD.sendText(m.chat, mess.wait)
 
                 let bicil = require('@bochilteam/scraper')
 
@@ -7455,13 +7455,13 @@ case 'twiter' : case 'insta': case 'igvid' : case 'fb': case 'get': {
 		        if(i.url.includes('mp4')){		           			    				
 
 				let link = await getBuffer(i.url)
-			 await QueenNilu.sendMessage(m.chat, { delete: download.key })	
-             const uplode = await QueenNilu.sendText(m.chat, ` *Please Wait ${global.botname} Trying upload Your  ${m.pushName} Video ... 🔄*`)
-             await QueenNilu.sendMessage(from, { react: { text: `📤`, key: m.key }})
+			 await PEACEMD.sendMessage(m.chat, { delete: download.key })	
+             const uplode = await PEACEMD.sendText(m.chat, ` *Please Wait ${global.botname} Trying upload Your  ${m.pushName} Video ... 🔄*`)
+             await PEACEMD.sendMessage(from, { react: { text: `📤`, key: m.key }})
 
-                QueenNilu.sendMessage(m.chat, { video: link, jpegThumbnail:buf,caption: `${global.cap}\n\n*⦁ quality ${i.subname}*` }, { quoted: m }) 
-                await QueenNilu.sendMessage(m.chat, { delete: uplode.key })    
-                          await QueenNilu.sendMessage(from, { react: { text: `✅`, key: m.key }})          
+                PEACEMD.sendMessage(m.chat, { video: link, jpegThumbnail:buf,caption: `${global.cap}\n\n*⦁ quality ${i.subname}*` }, { quoted: m }) 
+                await PEACEMD.sendMessage(m.chat, { delete: uplode.key })    
+                          await PEACEMD.sendMessage(from, { react: { text: `✅`, key: m.key }})          
 
                }
 
@@ -7491,7 +7491,7 @@ case 'welcome': {
     { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
     { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
       ]
-      await QueenNilu.sendButtonText(m.chat, drips, `*┃🔏ᴡᴇʟᴄᴏᴍᴇ ᴍᴏᴅᴇ🔏┃**`, QueenNilu.user.name, m)
+      await PEACEMD.sendButtonText(m.chat, drips, `*┃🔏ᴡᴇʟᴄᴏᴍᴇ ᴍᴏᴅᴇ🔏┃**`, PEACEMD.user.name, m)
     }
       }   
 
@@ -7501,7 +7501,7 @@ case 'welcome': {
 
 case 'settings':{
     if (!isCreator) throw mess.owner
-    await QueenNilu.sendMessage(from, { react: { text: `⚙️`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `⚙️`, key: m.key }})
         const sections =[
                                                  {
                                                      "title": `● ᴡᴏʀᴋ ᴛʏᴘᴇ ● `,
@@ -7546,14 +7546,14 @@ case 'settings':{
       buttonText: "Click Here",
       sections
     }
-    const sendMsg = await QueenNilu.sendMessage(m.chat, listMessage,{ react: { text: `✌`, key: m.key }})
+    const sendMsg = await PEACEMD.sendMessage(m.chat, listMessage,{ react: { text: `✌`, key: m.key }})
     }
     break
 
 //----------------------------------------------------------LIST MENU --------------------------------------------
 
             case 'command':case 'listmenu': case 'list': case 'panel':{
-await QueenNilu.sendMessage(from, { react: { text: `📄`, key: m.key }})
+await PEACEMD.sendMessage(from, { react: { text: `📄`, key: m.key }})
 	const sections =[{
 
         "title": "● ʙᴏᴛ ʟɪsᴛ ᴍᴇɴᴜ ᴄʟɪᴄᴋ ᴀɴᴅ sᴇʟᴇᴄᴛ ʏᴏᴜʀ ᴏᴡɴ ●",
@@ -7571,12 +7571,12 @@ await QueenNilu.sendMessage(from, { react: { text: `📄`, key: m.key }})
                                                      {
                                                          "title": "📥 ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴏᴍᴍᴀɴᴅꜱ",
                                                          "description": Lang.DOWNLOAD_CMD ,
-                                                         "rowId": `${prefix}niludownloadmenu`
+                                                         "rowId": `${prefix}downloadmenu`
                                                      },
                                                      {
                                                          "title": "🔎 ꜱᴇᴀʀᴄʜ ᴄᴏᴍᴍᴀɴᴅꜱ",
                                                          "description": Lang.SEARCH_CMD ,
-                                                         "rowId": `${prefix}nilusearchmenu`
+                                                         "rowId": `${prefix}searchmenu`
                                                      },
                                                          {
                                                              "title": "🤹‍♂️ ꜰᴜɴ ᴄᴏᴍᴍᴀɴᴅꜱ",
@@ -7586,7 +7586,7 @@ await QueenNilu.sendMessage(from, { react: { text: `📄`, key: m.key }})
                                                          {
                                                              "title": "💱 ᴄᴏɴᴠᴇʀᴛ ᴄᴏᴍᴍᴀɴᴅꜱ",
                                                          "description": Lang.CONVERT_CMD ,
-                                                         "rowId": `${prefix}peaceconvertmenu`
+                                                         "rowId": `${prefix}convertmenu`
                                                          },
                                                          {
                                                              "title": "💍 ᴀɴɪᴍᴇ ᴄᴏᴍᴍᴍᴀɴᴅꜱ",
@@ -7611,7 +7611,7 @@ await QueenNilu.sendMessage(from, { react: { text: `📄`, key: m.key }})
                                                          {
                                                              "title": "🎤 ᴠᴏɪᴄᴇ ᴄᴏᴍᴍᴀɴᴅꜱ",
                                                          "description": Lang.VOICE_CMD ,
-                                                         "rowId": `${prefix}peacevoicemenu`
+                                                         "rowId": `${prefix}voicemenu`
                                                          }
                                                  ]
                                              },
@@ -7643,7 +7643,7 @@ const listMessage = {
   buttonText: "ALL MENU",
   sections
 }
-const sendMsg = await QueenNilu.sendMessage(m.chat, listMessage,{ react: { text: `✌`, key: m.key }})
+const sendMsg = await PEACEMD.sendMessage(m.chat, listMessage,{ react: { text: `✌`, key: m.key }})
 }
 break
 
@@ -7653,34 +7653,60 @@ case 'menu': {
     const anu = await fetchJson ('https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/peacedeta.json')
     const JSMSG = anu.MENU_NOTE
     const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `📃`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `📃`, key: m.key }})
     const end = new Date().getTime()
     const ping = end - start
-    const menuimg = ['https://te.legra.ph/file/3e57249993356ba15109f.jpg','https://te.legra.ph/file/8be699bf71bfa93acac3f.jpg','https://te.legra.ph/file/a9293226a7c660ecbfffb.jpg']
+    const menuimg = ['https://te.legra.ph/file/7cc522af6b9c0aeb8b62d.jpg','https://te.legra.ph/file/7cc522af6b9c0aeb8b62d.jpg','https://te.legra.ph/file/7cc522af6b9c0aeb8b62d.jpg']
     const result = menuimg[Math.floor(Math.random() * menuimg.length)]   
     ram0 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
     
              const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
              var utch = new Date().toLocaleDateString( get_localized_date)
              var time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
-             const biography = '*📅 ᴛᴏᴅᴀʏ ɪs :* ' + utch + '\n*⌚ ɴᴏᴡ ᴛɪᴍᴇ :* ' + time
+             const biography = '*📅 DATE * ' + utch + '\n*⌚ TIME * ' + time
   
-                                   message = await prepareWAMessageMedia({ image : { url: global.alivelogo} }, { upload:   QueenNilu.waUploadToServer })
+                                   message = await prepareWAMessageMedia({ image : { url: global.alivelogo} }, { upload:   PEACEMD.waUploadToServer })
   
-         const MENUMSG = `*WELCOME ${m.pushName}*
-         *${ucapanWaktu}*
+         const MENUMSG = `
+         
+*WELCOME ${m.pushName}* ${ucapanWaktu}
+${biography}
   
-*⌛ ᴜᴘ ᴛɪᴍᴇ :* ${runtime(process.uptime())}
-  ${biography}
+PEACE MD MENU LIST
+
+📃 OWNER MENU
+🍭 ${prefix}ownermenu
+
+📃 SEARCH MENU
+🍭 ${prefix}searchmenu
+
+📃 DOWNLOAD MENU
+🍭 ${prefix}downloadmenu
+
+📃 VOICE MENU
+🍭 ${prefix}voicemenu
+
+📃 CONVERT MENU
+🍭 ${prefix}convertmenu
+
+📃 GROUP MENU
+🍭 ${prefix}groupmenu
+
+📃 LOGO MENU
+🍭 ${prefix}logomenu
+
+📃 OTHER MENU
+🍭 ${prefix}othermenu
+
+_THANKS FOR USING PEACE MD_
+`
+
+/* *⌛ UP TIME * ${runtime(process.uptime())}
   
-  🐼 𝙱𝙾𝚃 𝙽𝙰𝙼𝙴 : ${global.botname}
-  🤹‍♂️ 𝙱𝙾𝚃 𝙾𝚆𝙽𝙴𝚁 :${global.ownername}
-  💐 𝙱𝙾𝚃 𝙽𝚄𝙼𝙱𝙴𝚁 : ${global.owner}
-  🐌 𝚂𝙿𝙴𝙴𝙳 : ${(end - start)} 𝗠𝗦
-  
+
   ${JSMSG}
-  
-  ╭───❰ *✌𝙾𝚆𝙽𝙴𝚁 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂✌* ❱
+
+╭───❰ *✌𝙾𝚆𝙽𝙴𝚁 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂✌* ❱
   │ ${prefix}chat
   │ ${prefix}join
   │ ${prefix}leave
@@ -7807,7 +7833,7 @@ case 'menu': {
   │ ${prefix}programming
   │ ${prefix}technology
   │ ${prefix}Uptime
-  └─────────◉`
+  └─────────◉*/ 
   const templateButtons = [
     {buttonId: `panel`, buttonText: {displayText: 'ʟɪsᴛ ᴍᴇɴᴜ'}, type: 1},
     {buttonId: `owner`, buttonText: {displayText: 'ᴏᴡɴᴇʀ‍️'}, type: 1},
@@ -7822,10 +7848,10 @@ case 'menu': {
                       buttons: templateButtons,
                       headerType: 4
                   }
-                 await QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: fakestatus })
+                 await PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: fakestatus })
             
        
-       //await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: fakestatus })   
+       //await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: fakestatus })   
   
                                 }
                                 break
@@ -7834,7 +7860,7 @@ case 'menu': {
 
 case 'Stts' :{
     const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `💠`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `💠`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + 'ms' 
     // const runtime = 
@@ -7873,7 +7899,7 @@ buttons: templateButtons,
 headerType: 4
 }
 
-await QueenNilu.sendMessage(m.chat, templateMessage, { quoted: m })   
+await PEACEMD.sendMessage(m.chat, templateMessage, { quoted: m })   
 
 
 }
@@ -7885,7 +7911,7 @@ break
 
 //case 'botstetus' : case 'stetus' : {
     //const start = new Date().getTime()
-   // await QueenNilu.sendMessage(from, { react: { text: `💠`, key: m.key }})
+   // await PEACEMD.sendMessage(from, { react: { text: `💠`, key: m.key }})
     //const end = new Date().getTime()
     //const ping = (end - start) + 'ms' 
    // const runtime = 
@@ -7895,14 +7921,14 @@ break
     //break
 ////////////////////////////////--------------------menu start
 
-case 'grpmenu': {  
+case 'grpmenu': case 'groupmenu':{  
     const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `♥️`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `♥️`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
   
-                            await QueenNilu.sendMessage(from, { react: { text: `👥`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `👥`, key: m.key }})
   
   var GRPDES = ''
   if (global.LANG == 'EN') GRPDES = '```Get Group link```\n```ඔබ සිටින සමූහයේ ලින්කුව ගැනීමට```'
@@ -7994,7 +8020,7 @@ case 'grpmenu': {
   footer = global.botname
                    buttons = [
                       {buttonId: `list`, buttonText: {displayText: back}, type: 1},
-                      {buttonId: `niludownloadmenu`, buttonText: {displayText: next}, type: 1}
+                      {buttonId: `downloadmenu`, buttonText: {displayText: next}, type: 1}
                       
                   ]
                   let buttonMessage = {
@@ -8004,9 +8030,9 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
-                     /* message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/6e6e5387b5ff163765bb1.jpg' } }, { upload:   QueenNilu.waUploadToServer })
+                     /* message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/6e6e5387b5ff163765bb1.jpg' } }, { upload:   PEACEMD.waUploadToServer })
                                     template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
                                             hydratedTemplate: {
@@ -8026,25 +8052,25 @@ case 'grpmenu': {
                                                     },  {
                                                     quickReplyButton: {
                                                         displayText: `${next}` ,
-                                                        id: 'niludownloadmenu'
+                                                        id: 'downloadmenu'
                                                         }
                                                 }]
                                             }
                                         }
                                     }), { userJid: m.chat, quoted: m })
-                                      QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                      PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                                */
   }
                     break
 
-                    case 'niludownloadmenu': {  
+                    case 'downloadmenu': {  
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `♥️`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `♥️`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
   
-  await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
+  await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
   var TIKTOK = ''
   if (global.LANG == 'EN') TIKTOK = '```Download Your Tiktok Link video```\n```ඔබගේ ටික්ටොක් වීඩියෝ ලින්කුව බාගතකරයි```'
   if (global.LANG == 'SI') TIKTOK = '```ඔබගේ ටික්ටොක් වීඩියෝ ලින්කුව බාගතකරයි```'
@@ -8197,7 +8223,7 @@ case 'grpmenu': {
         footer = global.botname
                    buttons = [
                       {buttonId: `grpmenu`, buttonText: {displayText: back}, type: 1},
-                      {buttonId: `nilusearchmenu`, buttonText: {displayText: next}, type: 1}
+                      {buttonId: `searchmenu`, buttonText: {displayText: next}, type: 1}
                       
                   ]
                   let buttonMessage = {
@@ -8207,9 +8233,9 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
-                     /* message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/e0aa108673b5059695677.jpg' } }, { upload:   QueenNilu.waUploadToServer })
+                     /* message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/e0aa108673b5059695677.jpg' } }, { upload:   PEACEMD.waUploadToServer })
                                     template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
                                             hydratedTemplate: {
@@ -8225,24 +8251,24 @@ case 'grpmenu': {
                                                     },  {
                                                     quickReplyButton: {
                                                         displayText: `${next}` ,
-                                                        id: 'nilusearchmenu'
+                                                        id: 'searchmenu'
                                                         }
                                                 }]
                                             }
                                         }
                                     }), { userJid: m.chat, quoted: m })
-                                      QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                      PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                                */
   }
                                 break 
-                                case 'nilusearchmenu': { 
+                                case 'searchmenu': { 
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `♥️`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `♥️`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
   
-                            await QueenNilu.sendMessage(from, { react: { text: `🔎`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `🔎`, key: m.key }})
   var PLAY = ''
   if (global.LANG == 'EN') PLAY = '```Search youtube and download```'
   if (global.LANG == 'SI') PLAY = '```යූටියුබ් හි සර්ච් කර Download කරයි```'
@@ -8310,7 +8336,7 @@ case 'grpmenu': {
                       
                       footer = global.botname
                    buttons = [
-                      {buttonId: `niludownloadmenu`, buttonText: {displayText: back}, type: 1},
+                      {buttonId: `downloadmenu`, buttonText: {displayText: back}, type: 1},
                       {buttonId: `randommenu`, buttonText: {displayText: next}, type: 1}
                       
                   ]
@@ -8321,9 +8347,9 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
-                      /*message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/422f47351a4ba19070837.jpg' } }, { upload:   QueenNilu.waUploadToServer })
+                      /*message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/422f47351a4ba19070837.jpg' } }, { upload:   PEACEMD.waUploadToServer })
                                     template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
                                             hydratedTemplate: {
@@ -8338,7 +8364,7 @@ case 'grpmenu': {
                                                 }, {
                                                     quickReplyButton: {
                                                         displayText: `${back}` ,
-                                                        id: 'niludownloadmenu'
+                                                        id: 'downloadmenu'
                                                         }
                                                     },  {
                                                     quickReplyButton: {
@@ -8349,19 +8375,19 @@ case 'grpmenu': {
                                             }
                                         }
                                     }), { userJid: m.chat, quoted: m })
-                                      QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                      PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                                 */
   }
                     break
                    
-                    case 'peacevoicemenu': {  
+                    case 'voicemenu': {  
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
                     
-                            await QueenNilu.sendMessage(from, { react: { text: `🎙️`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `🎙️`, key: m.key }})
                     
   var VOICEDESC = ''
   if (global.LANG == 'EN') VOICEDESC= '*💬 About Voice changer cmd*\n ```When you reply to one of your voice messages and use the following command, the corresponding voice has been changed.```'
@@ -8395,7 +8421,7 @@ case 'grpmenu': {
   footer = global.botname
                    buttons = [
                       {buttonId: `funmenu`, buttonText: {displayText: back}, type: 1},
-                      {buttonId: `peaceconvertmenu`, buttonText: {displayText: next}, type: 1}
+                      {buttonId: `convertmenu`, buttonText: {displayText: next}, type: 1}
                       
                   ]
                   let buttonMessage = {
@@ -8405,10 +8431,10 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
             
-                     /* message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/5178ff96358a9e33cf7da.jpg' } }, { upload:   QueenNilu.waUploadToServer })
+                     /* message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/5178ff96358a9e33cf7da.jpg' } }, { upload:   PEACEMD.waUploadToServer })
                                     template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
                                             hydratedTemplate: {
@@ -8428,25 +8454,25 @@ case 'grpmenu': {
                                                     },  {
                                                     quickReplyButton: {
                                                         displayText: `${next}` ,
-                                                        id: 'peaceconvertmenu'
+                                                        id: 'convertmenu'
                                                         }
                                                 }]
                                             }
                                         }
                                     }), { userJid: m.chat, quoted: m })
-                                      QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                      PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                                */
   }
                     break
                   
-                    case 'peaceconvertmenu': {  
+                    case 'convertmenu': {  
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
   
-                            await QueenNilu.sendMessage(from, { react: { text: `🛠️`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `🛠️`, key: m.key }})
                     prefix = '.'
   var IMG = ''
   if (global.LANG == 'EN' ) IMG= '```Sticker convert to photo.```'
@@ -8503,7 +8529,7 @@ case 'grpmenu': {
   
       footer = global.botname
                    buttons = [
-                      {buttonId: `peacevoicemenu`, buttonText: {displayText: back}, type: 1},
+                      {buttonId: `voicemenu`, buttonText: {displayText: back}, type: 1},
                       {buttonId: `niluranimemenu`, buttonText: {displayText: next}, type: 1}
                       
                   ]
@@ -8514,9 +8540,9 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
-                      /*message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/b6077fd339af273d1ec4e.jpg' } }, { upload:   QueenNilu.waUploadToServer })
+                      /*message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/b6077fd339af273d1ec4e.jpg' } }, { upload:   PEACEMD.waUploadToServer })
                                     template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
                                             hydratedTemplate: {
@@ -8531,7 +8557,7 @@ case 'grpmenu': {
                                                 }, {
                                                     quickReplyButton: {
                                                         displayText: `${back}` ,
-                                                        id: 'peacevoicemenu'
+                                                        id: 'voicemenu'
                                                         }
                                                     },  {
                                                     quickReplyButton: {
@@ -8542,19 +8568,19 @@ case 'grpmenu': {
                                             }
                                         }
                                     }), { userJid: m.chat, quoted: m })
-                                      QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                      PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                                */
   }
                     break
                   
-                    case 'peacenocategorymenu': {  
+                    case 'peacenocategorymenu': case 'othermenu': {  
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `📥`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `📥`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
   
-                            await QueenNilu.sendMessage(from, { react: { text: `⚙️`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `⚙️`, key: m.key }})
                     prefix = '.'
   
   next = Lang.NEXT_BUTTON
@@ -8634,9 +8660,9 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
-                      /*message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/be3ca9a3bdac2fbe47f10.jpg' } }, { upload:   QueenNilu.waUploadToServer })
+                      /*message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/be3ca9a3bdac2fbe47f10.jpg' } }, { upload:   PEACEMD.waUploadToServer })
                                     template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
                                             hydratedTemplate: {
@@ -8662,18 +8688,18 @@ case 'grpmenu': {
                                             }
                                         }
                                     }), { userJid: m.chat, quoted: m })
-                                      QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                      PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                                 */
   }
                     break
                     case 'textlogo': { 
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `👻`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `👻`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
   
-                            await QueenNilu.sendMessage(from, { react: { text: `⚧️️`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `⚧️️`, key: m.key }})
   prefix = '.'
                         anu = `*◉────[ TEXT TO LOGO MENU ]────◉*
   
@@ -8717,9 +8743,9 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
-                      /*message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/15c3205613be1d0bd1f1b.jpg' } }, { upload:   QueenNilu.waUploadToServer })
+                      /*message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/15c3205613be1d0bd1f1b.jpg' } }, { upload:   PEACEMD.waUploadToServer })
                                     template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
                                             hydratedTemplate: {
@@ -8745,7 +8771,7 @@ case 'grpmenu': {
                                             }
                                         }
                                     }), { userJid: m.chat, quoted: m })
-                                      QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                      PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                                 */
   }
                     break
@@ -8771,18 +8797,18 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
            
   }
                     break
                     case 'logomenu': {  
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `♥️`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `♥️`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
   
-                            await QueenNilu.sendMessage(from, { react: { text: `🌸`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `🌸`, key: m.key }})
   
   prefix = '.'
   var LOGODESC = ''
@@ -8828,9 +8854,9 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
-                     /* message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/fe4955fa5a37e91f0ce85.jpg' } }, { upload:   QueenNilu.waUploadToServer })
+                     /* message = await prepareWAMessageMedia({ image : { url: 'https://telegra.ph/file/fe4955fa5a37e91f0ce85.jpg' } }, { upload:   PEACEMD.waUploadToServer })
                                     template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
                                             hydratedTemplate: {
@@ -8856,13 +8882,13 @@ case 'grpmenu': {
                                             }
                                         }
                                     }), { userJid: m.chat, quoted: m })
-                                      QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                      PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                               */
                                 }
                     break
                     case 'nilusistemmenu': {
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `♥️`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `♥️`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
@@ -8891,7 +8917,7 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
             
                    /* const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                         templateMessage: {
@@ -8914,17 +8940,17 @@ case 'grpmenu': {
                                             }
                                         }
                                     }), { userJid: m.chat })
-                                    QueenNilu.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                                    PEACEMD.relayMessage(m.chat, template.message, { messageId: template.key.id })
                                */ }
                     break
                       case 'ownermenu': {  
   const start = new Date().getTime()
-    await QueenNilu.sendMessage(from, { react: { text: `♥️`, key: m.key }})
+    await PEACEMD.sendMessage(from, { react: { text: `♥️`, key: m.key }})
     const end = new Date().getTime()
     const ping = (end - start) + ' *_ᴍs_*' 
     const time = new Date().toLocaleString('HI', { timeZone: TIME_ZONE }).split(' ')[1]
   
-                            await QueenNilu.sendMessage(from, { react: { text: `🎭`, key: m.key }})
+                            await PEACEMD.sendMessage(from, { react: { text: `🎭`, key: m.key }})
   
   var JOIN = ''
   if (global.LANG == 'EN') JOIN= '```Join yousing invite link```'
@@ -8988,7 +9014,7 @@ case 'grpmenu': {
                       buttons: buttons,
                       headerType: 4
                   }
-                 QueenNilu.sendMessage(m.chat, buttonMessage, { quoted: m })
+                 PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })
                       }
                  break
 
@@ -8996,21 +9022,21 @@ case 'grpmenu': {
 case 'attp' :{
     if (!text) return reply ('Need some word \n ex - attp Mr charith')
     const Stik = `https://api.akuari.my.id/other/attp?text=${text}`
-    await QueenNilu.sendMedia(m.chat, Stik , 'PEACE MD', '𝙱𝙾𝚃', m, {asSticker: true}).catch((err) => reply(err))
+    await PEACEMD.sendMedia(m.chat, Stik , 'PEACE MD', '𝙱𝙾𝚃', m, {asSticker: true}).catch((err) => reply(err))
     
    }
    break
    case 'attp2' :{
    if (!text) return reply ('Need some word \n ex - attp Mr charith')
    const Stik = `https://api.xteam.xyz/ttp?file&text=${text}`
-    await QueenNilu.sendMedia(m.chat, Stik , 'PEACE MD', '𝙱𝙾𝚃', m, {asSticker: true}).catch((err) => reply(err))
+    await PEACEMD.sendMedia(m.chat, Stik , 'PEACE MD', '𝙱𝙾𝚃', m, {asSticker: true}).catch((err) => reply(err))
     
    }
    break
    case 'ttp' :{
    if (!text) return reply ('Need some word \n ex - ttp Mr charith')
    //const Stik = `https://my-shinz.herokuapp.com/api/maker/attp?text=${text}`
-    await QueenNilu.sendMedia(m.chat, `https://my-shinz.herokuapp.com/api/maker/ttp?text=${text}` , 'PEACE MD', '𝙱𝙾𝚃', m, {asSticker: true}).catch((err) => reply(err))
+    await PEACEMD.sendMedia(m.chat, `https://my-shinz.herokuapp.com/api/maker/ttp?text=${text}` , 'PEACE MD', '𝙱𝙾𝚃', m, {asSticker: true}).catch((err) => reply(err))
     
    }
    break
@@ -9029,18 +9055,18 @@ case 'attp' :{
    break
    case 'triggered' :{
    if (!quoted) return reply('*💭 Please reply sticker.*')
-   let media = await QueenNilu.downloadAndSaveMediaMessage(quoted)
+   let media = await PEACEMD.downloadAndSaveMediaMessage(quoted)
    const img = `https://api.violetics.pw/api/converter/webp-to-image?apikey=b5cd-368b-055f&image=${media}`
    const stick = 'https://api.akuari.my.id/canvas/triggered2?link='+img
-   await QueenNilu.sendMessage(from, { react: { text: `✨`, key: m.key }})
-   await QueenNilu.sendMedia(m.chat, stick , 'PEACE MD', 'BOT', m, {asSticker: true}).catch((err) => reply(err))
+   await PEACEMD.sendMessage(from, { react: { text: `✨`, key: m.key }})
+   await PEACEMD.sendMedia(m.chat, stick , 'PEACE MD', 'BOT', m, {asSticker: true}).catch((err) => reply(err))
    }
    break
 
  
    case 'dltone' : {
-   //await QueenNilu.sendText(m.chat, `\n*🔄 Please wait ${m.pushName}...*\n`, m, )
-   await QueenNilu.sendMessage(m.chat, { audio: { url: text } , mimetype: 'audio/mpeg' }, { quoted: m })
+   //await PEACEMD.sendText(m.chat, `\n*🔄 Please wait ${m.pushName}...*\n`, m, )
+   await PEACEMD.sendMessage(m.chat, { audio: { url: text } , mimetype: 'audio/mpeg' }, { quoted: m })
     
    }
    break
@@ -9122,7 +9148,7 @@ break
 		    if (m.isBaileys) return
 		    let msgs = global.db.data.database
 		    if (!(budy.toLowerCase() in msgs)) return
-		    QueenNilu.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
+		    PEACEMD.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
 		}
         }       
 
