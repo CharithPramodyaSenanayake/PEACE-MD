@@ -118,7 +118,7 @@ const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase(
 const args = body.trim().split(/ +/).slice(1)
 const pushname = m.pushName || "No Name"
 const botNumber = await PEACEMD.decodeJid(PEACEMD.user.id)
-const Janith = "94712448370"
+const CHARITH = "94712448370"
 const isNilu = m.sender == "94712448370@s.whatsapp.net" ? true : false
 const isCreator = [CHARITH, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
 const itsMe = m.sender == botNumber ? true : false
