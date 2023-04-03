@@ -1,5 +1,5 @@
 require('./settings')
-const { default: QueenNilucharithConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
+const { default: PeaceMDcharithConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
 const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
 const pino = require('pino')
 const { Boom } = require('@hapi/boom')
@@ -52,22 +52,22 @@ if (global.db) setInterval(async () => {
   }, 30 * 1000)
 
 
-async function startQueenNilu() {
-    const QueenNilu = QueenNilucharithConnect({
+async function startPeaceMD() {
+    const PeaceMD = PeaceMDcharithConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
-        browser: ['QUEEN NILU V2','Safari','1.0.0'],
+        browser: ['PEACE MD','Safari','1.0.0'],
         auth: state
     })
 
 
-    store.bind(QueenNilu.ev)
+    store.bind(PeaceMD.ev)
     
     // anticall auto block
     
 
-    QueenNilu.ev.on('messages.upsert', async chatUpdate => {
-   // await QueenNilu.sendPresenceUpdate('unavailable')
+    PeaceMD.ev.on('messages.upsert', async chatUpdate => {
+   // await PeaceMD.sendPresenceUpdate('unavailable')
         //console.log(JSON.stringify(chatUpdate, undefined, 2))
         try {
         mek = chatUpdate.messages[0]
@@ -79,35 +79,35 @@ async function startQueenNilu() {
         if (!mek.message) return
         mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
         if (mek.key && mek.key.remoteJid === 'status@broadcast') return
-        if (!QueenNilu.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
+        if (!PeaceMD.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
         if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
       
-        m = smsg(QueenNilu, mek, store)
-        require("./PeaceMD")(QueenNilu, m, chatUpdate, store)
+        m = smsg(PeaceMD, mek, store)
+        require("./PeaceMD")(PeaceMD, m, chatUpdate, store)
         } catch (err) {
             console.log(err)
         }
     })
   //GROUP UPDATE\\
-    QueenNilu.ev.on('group-participants.update', async (anu) => {
+    PeaceMD.ev.on('group-participants.update', async (anu) => {
         if (anu.id == '120363043491784571@g.us') return
         if (anu.id == '120363052773472047@g.us') return
         if (global.SEND_WELCOME == 'false') return
         console.log(anu)
         try {
-            let metadata = await QueenNilu.groupMetadata(anu.id)
+            let metadata = await PeaceMD.groupMetadata(anu.id)
             let participants = anu.participants
             for (let num of participants) {
                 // Get Profile Picture User
                 try {
-                    ppuser = await QueenNilu.profilePictureUrl(num, 'image')
+                    ppuser = await PeaceMD.profilePictureUrl(num, 'image')
                 } catch {
                     ppuser = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
                 }
 
                 // Get Profile Picture Group
                 try {
-                    ppgroup = await QueenNilu.profilePictureUrl(anu.id, 'image')
+                    ppgroup = await PeaceMD.profilePictureUrl(anu.id, 'image')
                 } catch {
                     ppgroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
                 }
@@ -141,7 +141,7 @@ sourceUrl: link,
 mediaUrl: link,
 }}
 }
-QueenNilu.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
+PeaceMD.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
                 } else if (anu.action == 'remove') {
                     let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: buffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
                     he = `He/She is gone bro ${metadata.subject} @${num.split("@")[0]}\n\n${metadata.desc}`
@@ -169,7 +169,7 @@ sourceUrl: link,
 mediaUrl: link,
 }}
 }
-QueenNilu.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
+PeaceMD.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
                 }
             }
         } catch (err) {
@@ -178,7 +178,7 @@ QueenNilu.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
     })
 	
     //Setting\\
-    QueenNilu.decodeJid = (jid) => {
+    PeaceMD.decodeJid = (jid) => {
         if (!jid) return jid
         if (/:\d+@/gi.test(jid)) {
             let decode = jidDecode(jid) || {}
@@ -186,44 +186,44 @@ QueenNilu.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
         } else return jid
     }
     
-    QueenNilu.ev.on('contacts.update', update => {
+    PeaceMD.ev.on('contacts.update', update => {
         for (let contact of update) {
-            let id = QueenNilu.decodeJid(contact.id)
+            let id = PeaceMD.decodeJid(contact.id)
             if (store && store.contacts) store.contacts[id] = { id, name: contact.notify }
         }
     })
 
-    QueenNilu.getName = (jid, withoutContact  = false) => {
-        id = QueenNilu.decodeJid(jid)
-        withoutContact = QueenNilu.withoutContact || withoutContact 
+    PeaceMD.getName = (jid, withoutContact  = false) => {
+        id = PeaceMD.decodeJid(jid)
+        withoutContact = PeaceMD.withoutContact || withoutContact 
         let v
         if (id.endsWith("@g.us")) return new Promise(async (resolve) => {
             v = store.contacts[id] || {}
-            if (!(v.name || v.subject)) v = QueenNilu.groupMetadata(id) || {}
+            if (!(v.name || v.subject)) v = PeaceMD.groupMetadata(id) || {}
             resolve(v.name || v.subject || PhoneNumber('+' + id.replace('@s.whatsapp.net', '')).getNumber('international'))
         })
         else v = id === '0@s.whatsapp.net' ? {
             id,
             name: 'WhatsApp'
-        } : id === QueenNilu.decodeJid(QueenNilu.user.id) ?
-            QueenNilu.user :
+        } : id === PeaceMD.decodeJid(PeaceMD.user.id) ?
+            PeaceMD.user :
             (store.contacts[id] || {})
             return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
     
-QueenNilu.sendContact = async (jid, kon, quoted = '', opts = {}) => {
+PeaceMD.sendContact = async (jid, kon, quoted = '', opts = {}) => {
         let list = []
         for (let i of kon) {
             list.push({
-                displayName: await QueenNilu.getName(i + '@s.whatsapp.net'),
-                vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await QueenNilu.getName(i + '@s.whatsapp.net')}\nFN:${await QueenNilu.getName(i + '@s.whatsapp.net')}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:QUEEN NILU BOT MD 2023\nitem2.EMAIL;type=INTERNET:GitHub: QUEEN-NILU\nEND:VCARD`
+                displayName: await PeaceMD.getName(i + '@s.whatsapp.net'),
+                vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await PeaceMD.getName(i + '@s.whatsapp.net')}\nFN:${await PeaceMD.getName(i + '@s.whatsapp.net')}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:QUEEN NILU BOT MD 2023\nitem2.EMAIL;type=INTERNET:GitHub: QUEEN-NILU\nEND:VCARD`
             })
         }
-        QueenNilu.sendMessage(jid, { contacts: { displayName: `${list.length} Contact`, contacts: list }, ...opts }, { quoted })
+        PeaceMD.sendMessage(jid, { contacts: { displayName: `${list.length} Contact`, contacts: list }, ...opts }, { quoted })
         }
     
-    QueenNilu.setStatus = (status) => {
-        QueenNilu.query({
+    PeaceMD.setStatus = (status) => {
+        PeaceMD.query({
             tag: 'iq',
             attrs: {
                 to: '@s.whatsapp.net',
@@ -239,11 +239,11 @@ QueenNilu.sendContact = async (jid, kon, quoted = '', opts = {}) => {
         return status
     }
 	
-    QueenNilu.public = true
+    PeaceMD.public = true
 
-    QueenNilu.serializeM = (m) => smsg(QueenNilu, m, store)
+    PeaceMD.serializeM = (m) => smsg(PeaceMD, m, store)
 
-    QueenNilu.ev.on('connection.update', async (update) => {
+    PeaceMD.ev.on('connection.update', async (update) => {
         const { connection, lastDisconnect } = update	    
         if (connection === 'close') {
         
@@ -251,27 +251,27 @@ QueenNilu.sendContact = async (jid, kon, quoted = '', opts = {}) => {
         let reason = new Boom(lastDisconnect?.error)?.output.statusCode
 
 
-            if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again`); QueenNilu.logout(); }
-            else if (reason === DisconnectReason.connectionClosed) { console.log("✌ Connection closed, reconnecting...."); startQueenNilu(); }
-            else if (reason === DisconnectReason.connectionLost) { console.log("✌ Connection Lost from Server, reconnecting..."); startQueenNilu(); }
-            else if (reason === DisconnectReason.connectionReplaced) { console.log("✌ Connection Replaced, Another New Session Opened, Please Close Current Session First"); QueenNilu.logout(); }
-            else if (reason === DisconnectReason.loggedOut) { console.log(`✌ Device Logged Out, Please Scan Again And Run.`); QueenNilu.logout(); }
-            else if (reason === DisconnectReason.restartRequired) { console.log("✌ Restart Required, Restarting..."); startQueenNilu(); }
-            else if (reason === DisconnectReason.timedOut) { console.log("✌ Connection TimedOut, Reconnecting..."); startQueenNilu(); }
-            else QueenNilu.end(`✌ Unknown DisconnectReason: ${reason}|${connection}`)
+            if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again`); PeaceMD.logout(); }
+            else if (reason === DisconnectReason.connectionClosed) { console.log("✌ Connection closed, reconnecting...."); startPeaceMD(); }
+            else if (reason === DisconnectReason.connectionLost) { console.log("✌ Connection Lost from Server, reconnecting..."); startPeaceMD(); }
+            else if (reason === DisconnectReason.connectionReplaced) { console.log("✌ Connection Replaced, Another New Session Opened, Please Close Current Session First"); PeaceMD.logout(); }
+            else if (reason === DisconnectReason.loggedOut) { console.log(`✌ Device Logged Out, Please Scan Again And Run.`); PeaceMD.logout(); }
+            else if (reason === DisconnectReason.restartRequired) { console.log("✌ Restart Required, Restarting..."); startPeaceMD(); }
+            else if (reason === DisconnectReason.timedOut) { console.log("✌ Connection TimedOut, Reconnecting..."); startPeaceMD(); }
+            else PeaceMD.end(`✌ Unknown DisconnectReason: ${reason}|${connection}`)
         }
 
 
 
         console.log('✅ Peace MD connected...');
-        await QueenNilu.groupAcceptInvite('Gn0Iv7EGl61320g41RlbZw').then((res) => console.log('joined support group')).catch((err) => console.log('error'))
-        //await QueenNilu.sendText(QueenNilu.user.id,`Good Morning `)
-        //await QueenNilu.sendMessage(QueenNilu.user.id, { image: { url : 'https://telegra.ph/file/dc1f402eb040f9b68aa5c.jpg'} , caption : "● *👸 QUEEN ELISA WHATSAPP BOT  👸* ●\n\n\n*✅ SUCCESS CONNECT YOUR WHATSAPP*\n\n*_🌐 website 🌐_*\n ```http://nimaelisa.cf``` \n\n*_🖥️ github link 🖥️_*\n```https://bit.ly/3QFzqKi```\n\n*_🖨️ Qr scan 🖨️_*\n```https://bit.ly/3dvhTWM```\n\n*_🎬 Youtube  🎬_*\n```http://youtube.com/c/MRNIMAOFC```\n\n💬  _USE_ *ping* _CHECK YOUR CONNECTION_\n\n\n```THANKS FRO USING QUEEN ELISA ✌♥️```" })
+        await PeaceMD.groupAcceptInvite('Gn0Iv7EGl61320g41RlbZw').then((res) => console.log('joined support group')).catch((err) => console.log('error'))
+        //await PeaceMD.sendText(PeaceMD.user.id,`Good Morning `)
+        //await PeaceMD.sendMessage(PeaceMD.user.id, { image: { url : 'https://telegra.ph/file/dc1f402eb040f9b68aa5c.jpg'} , caption : "● *👸 QUEEN ELISA WHATSAPP BOT  👸* ●\n\n\n*✅ SUCCESS CONNECT YOUR WHATSAPP*\n\n*_🌐 website 🌐_*\n ```http://nimaelisa.cf``` \n\n*_🖥️ github link 🖥️_*\n```https://bit.ly/3QFzqKi```\n\n*_🖨️ Qr scan 🖨️_*\n```https://bit.ly/3dvhTWM```\n\n*_🎬 Youtube  🎬_*\n```http://youtube.com/c/MRNIMAOFC```\n\n💬  _USE_ *ping* _CHECK YOUR CONNECTION_\n\n\n```THANKS FRO USING QUEEN ELISA ✌♥️```" })
    
 
  })
 
-    QueenNilu.ev.on('creds.update', saveState)
+    PeaceMD.ev.on('creds.update', saveState)
 
     // Add Other
     /** Send Button 5 Image
@@ -284,8 +284,8 @@ QueenNilu.sendContact = async (jid, kon, quoted = '', opts = {}) => {
      * @param {*} options
      * @returns
      */
-    QueenNilu.send5ButImg = async (jid , text = '' , footer = '', img, but = [], options = {}) =>{
-        let message = await prepareWAMessageMedia({ image: img }, { upload: QueenNilu.waUploadToServer })
+    PeaceMD.send5ButImg = async (jid , text = '' , footer = '', img, but = [], options = {}) =>{
+        let message = await prepareWAMessageMedia({ image: img }, { upload: PeaceMD.waUploadToServer })
         var template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
         templateMessage: {
         hydratedTemplate: {
@@ -296,10 +296,10 @@ QueenNilu.sendContact = async (jid, kon, quoted = '', opts = {}) => {
             }
             }
             }), options)
-            QueenNilu.relayMessage(jid, template.message, { messageId: template.key.id })
+            PeaceMD.relayMessage(jid, template.message, { messageId: template.key.id })
     }
 //FIX LIST MASSAGE 🦄
-QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '', sects = [], quoted) => {
+PeaceMD.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '', sects = [], quoted) => {
         let sections = sects
         var listMes = {
         text: text,
@@ -308,7 +308,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
         buttonText: butText,
         sections
         }
-        QueenNilu.sendMessage(jid, listMes, { quoted: quoted })
+        PeaceMD.sendMessage(jid, listMes, { quoted: quoted })
         }
     /**
      * 
@@ -319,7 +319,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} quoted 
      * @param {*} options 
      */
-    QueenNilu.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
+    PeaceMD.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
         let buttonMessage = {
             text,
             footer,
@@ -327,7 +327,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
             headerType: 2,
             ...options
         }
-        QueenNilu.sendMessage(jid, buttonMessage, { quoted, ...options })
+        PeaceMD.sendMessage(jid, buttonMessage, { quoted, ...options })
     }
     
     /**
@@ -338,7 +338,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.sendText = (jid, text, quoted = '', options) => QueenNilu.sendMessage(jid, { text: text, ...options }, { quoted })
+    PeaceMD.sendText = (jid, text, quoted = '', options) => PeaceMD.sendMessage(jid, { text: text, ...options }, { quoted })
 
     /**
      * 
@@ -349,9 +349,9 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.sendImage = async (jid, path, caption = '', quoted = '', options) => {
+    PeaceMD.sendImage = async (jid, path, caption = '', quoted = '', options) => {
 	let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await QueenNilu.sendMessage(jid, { image: buffer, caption: caption, ...options }, { quoted })
+        return await PeaceMD.sendMessage(jid, { image: buffer, caption: caption, ...options }, { quoted })
     }
 
     /**
@@ -363,9 +363,9 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.sendVideo = async (jid, path, caption = '', quoted = '', gif = false, options) => {
+    PeaceMD.sendVideo = async (jid, path, caption = '', quoted = '', gif = false, options) => {
         let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await QueenNilu.sendMessage(jid, { video: buffer, caption: caption, gifPlayback: gif, ...options }, { quoted })
+        return await PeaceMD.sendMessage(jid, { video: buffer, caption: caption, gifPlayback: gif, ...options }, { quoted })
     }
 
     /**
@@ -377,9 +377,9 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.sendAudio = async (jid, path, quoted = '', ptt = false, options) => {
+    PeaceMD.sendAudio = async (jid, path, quoted = '', ptt = false, options) => {
         let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await QueenNilu.sendMessage(jid, { audio: buffer, ptt: ptt, ...options }, { quoted })
+        return await PeaceMD.sendMessage(jid, { audio: buffer, ptt: ptt, ...options }, { quoted })
     }
 
     /**
@@ -390,7 +390,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.sendTextWithMentions = async (jid, text, quoted, options = {}) => QueenNilu.sendMessage(jid, { text: text, contextInfo: { mentionedJid: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + '@s.whatsapp.net') }, ...options }, { quoted })
+    PeaceMD.sendTextWithMentions = async (jid, text, quoted, options = {}) => PeaceMD.sendMessage(jid, { text: text, contextInfo: { mentionedJid: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + '@s.whatsapp.net') }, ...options }, { quoted })
 
     /**
      * 
@@ -400,7 +400,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
+    PeaceMD.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
         let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
         let buffer
         if (options && (options.packname || options.author)) {
@@ -409,7 +409,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
             buffer = await imageToWebp(buff)
         }
 
-        await QueenNilu.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
+        await PeaceMD.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
 
@@ -421,7 +421,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.sendVideoAsSticker = async (jid, path, quoted, options = {}) => {
+    PeaceMD.sendVideoAsSticker = async (jid, path, quoted, options = {}) => {
         let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
         let buffer
         if (options && (options.packname || options.author)) {
@@ -430,7 +430,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
             buffer = await videoToWebp(buff)
         }
 
-        await QueenNilu.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
+        await PeaceMD.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
 	
@@ -441,7 +441,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} attachExtension 
      * @returns 
      */
-    QueenNilu.downloadAndSaveMediaMessage = async (message, filename, attachExtension = true) => {
+    PeaceMD.downloadAndSaveMediaMessage = async (message, filename, attachExtension = true) => {
         let quoted = message.msg ? message.msg : message
         let mime = (message.msg || message).mimetype || ''
         let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0]
@@ -457,7 +457,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
         return trueFileName
     }
 
-    QueenNilu.downloadMediaMessage = async (message) => {
+    PeaceMD.downloadMediaMessage = async (message) => {
         let mime = (message.msg || message).mimetype || ''
         let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0]
         const stream = await downloadContentFromMessage(message, messageType)
@@ -479,8 +479,8 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.sendMedia = async (jid, path, fileName = '', caption = '', quoted = '', options = {}) => {
-        let types = await QueenNilu.getFile(path, true)
+    PeaceMD.sendMedia = async (jid, path, fileName = '', caption = '', quoted = '', options = {}) => {
+        let types = await PeaceMD.getFile(path, true)
            let { mime, ext, res, data, filename } = types
            if (res && res.status !== 200 || file.length <= 65536) {
                try { throw { json: JSON.parse(file.toString()) } }
@@ -500,7 +500,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
        else if (/video/.test(mime)) type = 'video'
        else if (/audio/.test(mime)) type = 'audio'
        else type = 'document'
-       await QueenNilu.sendMessage(jid, { [type]: { url: pathFile }, caption, mimetype, fileName, ...options }, { quoted, ...options })
+       await PeaceMD.sendMessage(jid, { [type]: { url: pathFile }, caption, mimetype, fileName, ...options }, { quoted, ...options })
        return fs.promises.unlink(pathFile)
        }
 
@@ -512,7 +512,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} options 
      * @returns 
      */
-    QueenNilu.copyNForward = async (jid, message, forceForward = false, options = {}) => {
+    PeaceMD.copyNForward = async (jid, message, forceForward = false, options = {}) => {
         let vtype
 		if (options.readViewOnce) {
 			message.message = message.message && message.message.ephemeralMessage && message.message.ephemeralMessage.message ? message.message.ephemeralMessage.message : (message.message || undefined)
@@ -543,11 +543,11 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
                 }
             } : {})
         } : {})
-        await QueenNilu.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
+        await PeaceMD.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
         return waMessage
     }
 
-    QueenNilu.cMod = (jid, copy, text = '', sender = QueenNilu.user.id, options = {}) => {
+    PeaceMD.cMod = (jid, copy, text = '', sender = PeaceMD.user.id, options = {}) => {
         //let copy = message.toJSON()
 		let mtype = Object.keys(copy.message)[0]
 		let isEphemeral = mtype === 'ephemeralMessage'
@@ -568,7 +568,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
 		if (copy.key.remoteJid.includes('@s.whatsapp.net')) sender = sender || copy.key.remoteJid
 		else if (copy.key.remoteJid.includes('@broadcast')) sender = sender || copy.key.remoteJid
 		copy.key.remoteJid = jid
-		copy.key.fromMe = sender === QueenNilu.user.id
+		copy.key.fromMe = sender === PeaceMD.user.id
 
         return proto.WebMessageInfo.fromObject(copy)
     }
@@ -579,7 +579,7 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
      * @param {*} path 
      * @returns 
      */
-    QueenNilu.getFile = async (PATH, save) => {
+    PeaceMD.getFile = async (PATH, save) => {
         let res
         let data = Buffer.isBuffer(PATH) ? PATH : /^data:.*?\/.*?;base64,/i.test(PATH) ? Buffer.from(PATH.split`,`[1], 'base64') : /^https?:\/\//.test(PATH) ? await (res = await getBuffer(PATH)) : fs.existsSync(PATH) ? (filename = PATH, fs.readFileSync(PATH)) : typeof PATH === 'string' ? PATH : Buffer.alloc(0)
         //if (!Buffer.isBuffer(data)) throw new TypeError('Result is not a buffer')
@@ -599,10 +599,10 @@ QueenNilu.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '',
 
     }
 
-    return QueenNilu
+    return PeaceMD
 }
 
-startQueenNilu()
+startPeaceMD()
 
 
 let file = require.resolve(__filename)
