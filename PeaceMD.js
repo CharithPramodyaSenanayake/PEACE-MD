@@ -2050,11 +2050,44 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                 await PEACEMD.sendMessage(from, { react: { text: `🎦`, key: m.key }})
                   }
                             break
+                            case 'song': {
+                                var GIVEME = '```💭 Please give me a song name.```\n```කරුනාකර මට ගීතයක නමක් ලබාදෙන්න.```\n* .song rosa male natuwe katu*'
+                                if (!text) return reply(GIVEME)
+                                let yts = require("yt-search")
+                                let search = await yts(text)                   
+                              let sections = []   
+                              let listmenu = [`ytmp4 ${search.all[0].url}`,`ytmp3 ${search.all[1].url}`,`ytmp4 ${search.all[2].url}`,`ytmp3 ${search.all[3].url}`,`ytmp4 ${search.all[4].url}`,`ytmp3 ${search.all[5].url}`,`ytmp4 ${search.all[6].url}`,`ytmp3 ${search.all[7].url}`,`ytmp4 ${search.all[8].url}`,`ytmp3 ${search.all[9].url}`,`ytmp4 ${search.all[10].url}`,`ytmp3 ${search.all[11].url}`,`ytmp4 ${search.all[12].url}`,`ytmp3 ${search.all[13].url}`,`ytmp4 ${search.all[14].url}`,`ytmp3 ${search.all[15].url}`,`ytmp4 ${search.all[16].url}`,`ytmp3 ${search.all[17].url}`,`ytmp4 ${search.all[18].url}`,`ytmp3 ${search.all[19].url}`]
+                                    let listmenuu = [`VIDEO MP4⬤: ${search.all[0].title}`,`SONG MP3⬤: ${search.all[1].title}`,`VIDEO MP4⬤: ${search.all[2].title}`,`SONG MP3⬤: ${search.all[3].title}`,`VIDEO MP4⬤: ${search.all[4].title}`,`SONG MP3⬤: ${search.all[5].title}`,`VIDEO MP4⬤: ${search.all[6].title}`,`SONG MP3⬤: ${search.all[7].title}`,`VIDEO MP4⬤: ${search.all[8].title}`,`SONG MP3⬤: ${search.all[9].title}`,`VIDEO MP4⬤: ${search.all[10].title}`,`SONG MP3⬤: ${search.all[11].title}`,`VIDEO MP4⬤: ${search.all[12].title}`,`SONG MP3⬤: ${search.all[13].title}`,`VIDEO MP4⬤: ${search.all[14].title}`,`SONG MP3⬤: ${search.all[15].title}`,`VIDEO MP4⬤: ${search.all[16].title}`,`SONG MP3⬤: ${search.all[17].title}`,`VIDEO MP4⬤: ${search.all[18].title}`,`SONG MP3⬤: ${search.all[19].title}`]
+                                    let listmenuuu = [`\n${search.all[0].description}`,`\n${search.all[1].description}`,`\n${search.all[2].description}`,`\n${search.all[3].description}`,`\n${search.all[4].description}`,`\n${search.all[5].description}`,`\n${search.all[6].description}`,`\n${search.all[7].description}`,`\n${search.all[8].description}`,`\n${search.all[9].description}`,`\n${search.all[10].description}`,`\n${search.all[11].description}`,`\n${search.all[12].description}`,`\n${search.all[13].description}`,`\n${search.all[14].description}`,`\n${search.all[15].description}`,`\n${search.all[16].description}`,`\n${search.all[17].description}`,`\n${search.all[18].description}`,`\n${search.all[19].description}`]
+                                    let nombor = 1
+                                    let startnum = 0
+                                    let startnumm = 0
+                                    for (let x of listmenu) {
+                                    const list = {title: 'RESULT NUMBER ' + nombor++,
+                                    rows: [
+                                       {
+                                        title: `${listmenuu[startnum++]}`,
+                                        description: `${listmenuuu[startnumm++]}`,
+                                        rowId: `${prefix}${x}`
+                              }, 
+                              ]
+                              }
+                              sections.push(list)   
+                              }
+                              const sendm =  PEACEMD.sendMessage(
+                              m.chat, 
+                              {
+                              text: "\n\n*_DONE SCRAPING DATA_*",
+                              footer: botname,
+                              title: `HERE IS YOUR RESULTS CHOMIE FROM *${text}* _select song or video below_`,
+                              buttonText: "CLICK HERE",
+                              sections
+                              }, { quoted : m })
+                              }
+                              break
                 
-                                              case 'song' : {
-                var GIVEME = ''
-                if (global.LANG == 'SI') GIVEME = "```කරුනාකර මට ගීතයක නමක් ලබාදෙන්න.```\n*උදාහරණ - .song rosa male natuwe katu*"
-                if (global.LANG == 'EN') GIVEME ="```💭 Please give me a song name.```\n```කරුනාකර මට ගීතයක නමක් ලබාදෙන්න.```\n* .song rosa male natuwe katu*"
+                                              /*case 'song' : {
+                var GIVEME = '```💭 Please give me a song name.```\n```කරුනාකර මට ගීතයක නමක් ලබාදෙන්න.```\n* .song rosa male natuwe katu*'
                 const rash = await fetchJson(`https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/JS/songdl.json`)
                 const audidd = rash.audcmd
                 const docidd = rash.doccmd
@@ -2098,7 +2131,7 @@ if (!text) return m.reply(`Example : ${prefix + command} bombe motayi`)
                                PEACEMD.sendMessage(m.chat, buttonMessage, { quoted: m })})
 
                             }
-                          break
+                          break*/
                                                                          
                                               case 'video': { 
                 const rash = await fetchJson(`https://raw.githubusercontent.com/CharithPramodyaSenanayake/peacy/main/JS/songdl.json`)
